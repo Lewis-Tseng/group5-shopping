@@ -1,0 +1,186 @@
+
+@media (max-width: 767px) {
+  .arrow-slider {
+    margin: 15px auto;
+    position: relative;
+  }
+  .arrow-slider .mobile-carousel {
+    margin: 0 15px;
+  }
+  .arrow-slider .mobile-arrows {
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+    height: auto;
+    -webkit-transition: height 1s ease;
+    transition: height 1s ease;
+  }
+  .arrow-slider .mobile-arrows .slick-next {
+    right: 30px;
+    left: auto;
+  }
+  .arrow-slider .mobile-arrows .slick-prev {
+    left: 30px;
+    right: auto;
+  }
+  .arrow-slider .left,
+  .arrow-slider .right {
+    display: block;
+    position: relative;
+    background-image: none !important;
+  }
+  .arrow-slider .left .mobile-image,
+  .arrow-slider .right .mobile-image {
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+  }
+  .arrow-slider .left .mobile-image img,
+  .arrow-slider .right .mobile-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  .arrow-slider .left .color-overlay,
+  .arrow-slider .right .color-overlay {
+    display: none;
+  }
+  .arrow-slider .left .content,
+  .arrow-slider .right .content {
+    margin-top: 10px;
+    padding: 15px 15px 0 15px;
+    text-align: center;
+  }
+  .arrow-slider .left .button-wrap,
+  .arrow-slider .right .button-wrap {
+    padding: 15px;
+    text-align: center;
+  }
+}
+@media (min-width: 768px) {
+  
+  .arrow-slider .mobile-arrows,
+  .arrow-slider .mobile-image {
+    display: none;
+  }
+  .arrow-slider .wrapper {
+    position: relative;
+    height: 100%;
+    max-height: 80.5%;
+    overflow: hidden;
+  }
+  .arrow-slider .left,
+  .arrow-slider .right {
+    cursor: pointer;
+    background-size: 100vw;
+    bottom: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    transition: all 1s ease;
+    width: 50%;
+    background-repeat: no-repeat;
+  }
+  .arrow-slider .left .color-overlay,
+  .arrow-slider .right .color-overlay {
+    background-color: white;
+    opacity: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity 1s ease, background-color 1s ease;
+    z-index: 1;
+  }
+  .arrow-slider .left .content-wrap,
+  .arrow-slider .right .content-wrap,
+  .arrow-slider .left .button-wrap,
+  .arrow-slider .right .button-wrap {
+    opacity: 0;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+  .arrow-slider .left .button-wrap,
+  .arrow-slider .right .button-wrap {
+    width: auto;
+    transition: opacity 0.5s ease;
+  }
+  .arrow-slider .left .content-wrap,
+  .arrow-slider .right .content-wrap {
+    width: 0;
+    transition: opacity 1s ease;
+  }
+  .arrow-slider .left .content,
+  .arrow-slider .right .content {
+    position: absolute;
+    left: 0;
+    transform: translateY(-50%);
+    top: 50%;
+    width: auto;
+    max-width: 370px;
+  }
+  .arrow-slider .left {
+    background-position: left center;
+    left: 0;
+    z-index: 1;
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 50%, 100% 0);
+  }
+  .arrow-slider .left .content-wrap {
+    left: 35%;
+  }
+  .arrow-slider .right {
+    background-position: right center;
+    right: 0;
+    z-index: 2;
+    clip-path: polygon(0 0, 0 50%, 0 100%, 100% 100%, 100% 0);
+  }
+  .arrow-slider .right .content-wrap {
+    right: 75%;
+  }
+  .arrow-slider .right .button-wrap {
+    /*left: 50%;*/
+  }
+
+
+
+  .arrow-slider.left-focused .right {
+    width: 37.5%;
+  }
+  .arrow-slider.left-focused .right .color-overlay,
+  .arrow-slider.left-focused .right .content-wrap {
+    opacity: 1;
+  }
+  
+  .arrow-slider.left-focused .left .button-wrap {
+    opacity: 1;
+  }
+
+
+
+
+  .arrow-slider.right-focused .right {
+    width: 62.5%;
+    -webkit-clip-path: polygon(15% 0, 0 50%, 15% 100%, 100% 100%, 100% 0);
+    clip-path: polygon(15% 0, 0 50%, 15% 100%, 100% 100%, 100% 0);
+  }
+  .arrow-slider.right-focused .left .color-overlay,
+  .arrow-slider.right-focused .left .content-wrap {
+    opacity: 1;
+  }
+  .arrow-slider.right-focused .right .button-wrap {
+    opacity: 1;
+  }
+  .arrow-slider.right-focused .left {
+    width: 37.5%;
+  }
+  .arrow-slider.left-focused .left {
+    -webkit-clip-path: polygon(0 0, 0 100%, 85% 100%, 100% 50%, 85% 0);
+    clip-path: polygon(0 0, 0 100%, 85% 100%, 100% 50%, 85% 0);
+    width: 62.5%;
+  }
+  
+}
