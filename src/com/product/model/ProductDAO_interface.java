@@ -17,6 +17,8 @@ public interface ProductDAO_interface {
 	
 	public List<ProductVO> getAll(Map<String, String[]> map);
 	
+	public List<ProductVO> getAllPro_StaisZero();
+	
 	public void updatePro_Sto(String pro_no, Integer pro_sto);
 
 }
