@@ -8,15 +8,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <jsp:useBean id="listProduct_ByCompositeQuery" scope="request" type="java.util.List<ProductVO>" />  --%>
 	<%
-	List<ProductVO> list =  (List) session.getAttribute("listProduct_ByCompositeQuery");
-	
-		List<ProductVO> list3 = new ArrayList<ProductVO>();
-			list3 = list.stream()
-			.filter(p -> p.getPro_sta().equals("0"))
-			.collect(Collectors.toList());
-			Collections.reverse(list3);
-			
-			pageContext.setAttribute("list3", list3);
+	List<ProductVO> list =  (List)session.getAttribute("listProduct_ByCompositeQuery");
+			pageContext.setAttribute("list", list);
 				%>
 				
 				<jsp:useBean id="product_imageSvc" scope="page" class="com.product_image.model.Product_ImageService"/>
@@ -343,7 +336,7 @@ CoaVO coaVO = (CoaVO) session.getAttribute("coaVO");
 										
 									</div>
 									<div class="probox1">
-										<c:forEach var="productVO" items="${list3}"  begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+										<c:forEach var="productVO" items="${list}"  begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 										<c:if test="${productVO.pro_sta==0}">
 										<!--商品視窗-->
 										<div class="col-md-4 class-left probox2">

@@ -2,6 +2,7 @@ package com.product.controller;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -402,7 +403,11 @@ public class ProductServlet extends HttpServlet {
 				/***************************2.開始複合查詢***************************************/
 				ProductService productSvc = new ProductService();
 				List<ProductVO> list  = productSvc.getAll(map);
-				
+				//過濾出狀態是0的上架商品
+				list = list.stream()
+						.filter(p -> p.getPro_sta().equals("0"))
+						.collect(Collectors.toList());
+				        Collections.reverse(list);
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				session.setAttribute("listProduct_ByCompositeQuery", list); // 資料庫取出的list物件,存入request
 				RequestDispatcher successView = req.getRequestDispatcher("/front_end/product_front/shopping_mall_home_search.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp

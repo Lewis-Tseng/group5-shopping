@@ -350,6 +350,70 @@ public class ProductDAO implements ProductDAO_interface {
 	}
 	
 	@Override
+	public List<ProductVO> getAllPro_StaisZero() {
+		List<ProductVO> list = new ArrayList<ProductVO>();
+		ProductVO productVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				productVO = new ProductVO();
+				productVO.setPro_no(rs.getString("pro_no"));
+				productVO.setCat_no(rs.getString("cat_no"));
+				productVO.setPro_nam(rs.getString("pro_nam"));
+
+				Reader reader = rs.getCharacterStream("pro_con");
+				productVO.setPro_con(readString(reader));
+
+				productVO.setPro_pri(rs.getInt("pro_pri"));
+				productVO.setPro_sta(rs.getString("pro_sta"));
+				productVO.setPro_sto(rs.getInt("pro_sto"));
+				
+				list.add(productVO);
+
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} catch (IOException e) {
+			e.printStackTrace(System.err);
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
+	@Override
 	public void updatePro_Sto(String pro_no, Integer pro_sto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -492,6 +556,8 @@ public class ProductDAO implements ProductDAO_interface {
 		return sb.toString();
 	}
 	/**************************************************************************************/
+
+
 
 	
 
