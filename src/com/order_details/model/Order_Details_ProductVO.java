@@ -2,6 +2,7 @@ package com.order_details.model;
 
 import com.product.model.ProductVO;
 
+//為了方便購物車頁面抓取參數，新增此類別當訂單明細與商品參數結合的暫時性擴充類別
 public class Order_Details_ProductVO extends ProductVO{
 
 	private Integer pro_quantity;

@@ -29,7 +29,7 @@ public class MemMailService {
 	       // ●須將myGmail的【安全性較低的應用程式存取權】打開
 	     final String myGmail = "da103G6@gmail.com";
 	     final String myGmail_password = "da103g6!";
-		   Session session = Session.getInstance(props, new Authenticator() {
+	     Session session = Session.getInstance(props, new Authenticator() {
 			   protected PasswordAuthentication getPasswordAuthentication() {
 				   return new PasswordAuthentication(myGmail, myGmail_password);
 			   }
