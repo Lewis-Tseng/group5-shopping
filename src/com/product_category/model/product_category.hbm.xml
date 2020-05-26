@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class>
+        
+        <id name="cat_no" column="cat_no">
+            <generator class="sequence">
+                <param name="sequence_name">product_category_seq</param>
+            </generator>       
+        </id>
+    
+        <property name="cat_no" column="cat_no"/>
+        <property name="cat_nam" column="cat_nam"/>
+    
+        <set name="products" table="product" lazy="false" cascade="none" inverse="true" order-by="pro_no asc">
+            <key>
+                <column name="cat_no"/>
+            </key>
+            <one-to-many class="com.product.model.ProductVO"/>
+        </set>
+    
+    
+    
+    
+    
+    
+    </class>
+
+
+
+
+
+
+
+
+
+</hibernate-mapping>

@@ -1,21 +1,23 @@
 package com.product.model;
 
+import com.product_category.model.Product_CategoryVO;
+
 public class ProductVO implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String pro_no;
-	private String cat_no;
 	private String pro_nam;
 	private String pro_con;
 	private Integer pro_pri;
 	private String pro_sta;
 	private Integer pro_sto;
+	private Product_CategoryVO cat_no;
 	
 	public ProductVO(){
 		
 	}
 	
-	public ProductVO(String pro_no, String cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
+	public ProductVO(String pro_no, Product_CategoryVO cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
 			Integer pro_sto) {
 		this.pro_no = pro_no;
 		this.cat_no = cat_no;
@@ -32,14 +34,6 @@ public class ProductVO implements java.io.Serializable {
 
 	public void setPro_no(String pro_no) {
 		this.pro_no = pro_no;
-	}
-
-	public String getCat_no() {
-		return cat_no;
-	}
-
-	public void setCat_no(String cat_no) {
-		this.cat_no = cat_no;
 	}
 
 	public String getPro_nam() {
@@ -80,6 +74,14 @@ public class ProductVO implements java.io.Serializable {
 
 	public void setPro_sto(Integer pro_sto) {
 		this.pro_sto = pro_sto;
+	}
+	
+	public Product_CategoryVO getCat_no() {
+		return cat_no;
+	}
+
+	public void setCat_no(Product_CategoryVO cat_no) {
+		this.cat_no = cat_no;
 	}
 
 	@Override
