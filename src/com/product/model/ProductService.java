@@ -15,34 +15,41 @@ public class ProductService {
 		dao = new ProductDAO();
 	}
 
-	public ProductVO addProduct(Product_CategoryVO cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
+	public ProductVO addProduct(String cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
 			Integer pro_sto) {
 
 		ProductVO productVO = new ProductVO();
-
-		productVO.setCat_no(cat_no);
 		productVO.setPro_nam(pro_nam);
 		productVO.setPro_con(pro_con);
 		productVO.setPro_pri(pro_pri);
 		productVO.setPro_sta(pro_sta);
 		productVO.setPro_sto(pro_sto);
+		//原本productVO.setCat_no(cat_no);
+		//改成下面三行轉存進去
+		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+		product_categoryVO.setCat_no(cat_no);
+		productVO.setCat_no(product_categoryVO);
+		
 		dao.insert(productVO);
 
 		return productVO;
 	}
 
-	public ProductVO updateProduct(String pro_no, Product_CategoryVO cat_no, String pro_nam, String pro_con, Integer pro_pri,
+	public ProductVO updateProduct(String pro_no, String cat_no, String pro_nam, String pro_con, Integer pro_pri,
 			String pro_sta, Integer pro_sto) {
 
 		ProductVO productVO = new ProductVO();
-
 		productVO.setPro_no(pro_no);
-		productVO.setCat_no(cat_no);
 		productVO.setPro_nam(pro_nam);
 		productVO.setPro_con(pro_con);
 		productVO.setPro_pri(pro_pri);
 		productVO.setPro_sta(pro_sta);
 		productVO.setPro_sto(pro_sto);
+		
+		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+		product_categoryVO.setCat_no(cat_no);
+		productVO.setCat_no(product_categoryVO);
+		
 		dao.update(productVO);
 
 		return productVO;

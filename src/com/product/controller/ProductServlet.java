@@ -14,6 +14,7 @@ import com.order_details.model.Order_DetailsVO;
 import com.order_details.model.Order_Details_ProductVO;
 import com.product.model.ProductService;
 import com.product.model.ProductVO;
+import com.product_category.model.Product_CategoryVO;
 import com.product_image.model.Product_ImageService;
 import com.product_image.model.Product_ImageVO;
 import com.product_order.model.Product_OrderService;
@@ -174,13 +175,18 @@ public class ProductServlet extends HttpServlet {
 
 				ProductVO productVO = new ProductVO();
 				productVO.setPro_no(pro_no);
-				productVO.setCat_no(cat_no);
 				productVO.setPro_nam(pro_nam);
 				productVO.setPro_con(pro_con);
 				productVO.setPro_pri(pro_pri);
 				productVO.setPro_sta(pro_sta);
 				productVO.setPro_sto(pro_sto);
-
+				
+				//productVO.setCat_no(cat_no);
+				//原本set cat_no的方式改成下面三行
+				Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+				product_categoryVO.setCat_no(cat_no);
+				productVO.setCat_no(product_categoryVO);
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productVO", productVO); // 含有輸入格式錯誤的empVO物件,也存入req
@@ -257,12 +263,15 @@ public class ProductServlet extends HttpServlet {
 				}
 				
 				ProductVO productVO = new ProductVO();
-				productVO.setCat_no(cat_no);
 				productVO.setPro_nam(pro_nam);
 				productVO.setPro_con(pro_con);
 				productVO.setPro_pri(pro_pri);
 				productVO.setPro_sta(pro_sta);
 				productVO.setPro_sto(pro_sto);
+				
+				Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+				product_categoryVO.setCat_no(cat_no);
+				productVO.setCat_no(product_categoryVO);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {

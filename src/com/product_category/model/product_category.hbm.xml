@@ -11,7 +11,6 @@
             </generator>       
         </id>
     
-        <property name="cat_no" column="cat_no"/>
         <property name="cat_nam" column="cat_nam"/>
     
         <set name="products" table="product" lazy="false" cascade="none" inverse="true" order-by="pro_no asc">
@@ -20,20 +19,7 @@
             </key>
             <one-to-many class="com.product.model.ProductVO"/>
         </set>
-    
-    
-    
-    
-    
-    
+
     </class>
-
-
-
-
-
-
-
-
 
 </hibernate-mapping>

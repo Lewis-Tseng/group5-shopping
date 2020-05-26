@@ -25,6 +25,7 @@ import org.hibernate.query.Query;
 import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
 
+import com.product_category.model.Product_CategoryVO;
 import com.product_order.model.Product_OrderVO;
 
 import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product;
@@ -33,13 +34,6 @@ import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product_Order;
 public class ProductDAO implements ProductDAO_interface {
 	
 	private static final String GET_ALL_STMT = "from ProductVO order by pro_no";
-	
-	private static final String INSERT_STMT = "INSERT INTO product (pro_no, cat_no, pro_nam, pro_con, pro_pri, pro_sta, pro_sto) VALUES ('PT'||LPAD(to_char(product_seq.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT1 = "SELECT pro_no, cat_no, pro_nam, pro_con, pro_pri, pro_sta, pro_sto FROM product order by pro_no";
-	private static final String GET_ONE_STMT = "SELECT pro_no, cat_no, pro_nam, pro_con, pro_pri, pro_sta, pro_sto FROM product where pro_no = ?";
-	private static final String DELETE = "DELETE FROM product where pro_no = ?";
-	private static final String UPDATE = "UPDATE product set  pro_nam=?, cat_no=?, pro_con=?, pro_pri=?, pro_sta=?, pro_sto=? where pro_no = ?";
-	private static final String UPDATEPRO_STO = "UPDATE product set pro_sto=? where pro_no=?";
 	
 	@Override
 	public void insert(ProductVO productVO) {
@@ -172,21 +166,24 @@ public class ProductDAO implements ProductDAO_interface {
 	}
 	
 	
-//	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 
-//		ProductDAO dao = new ProductDAO();
+		ProductDAO dao = new ProductDAO();
 		
 //        String str = getLongString("E:\\product1.txt");
 
 		//新增 
-//		ProductVO productVO1 = new ProductVO();
-//		productVO1.setPro_nam("啞鈴");
+		ProductVO productVO1 = new ProductVO();
+		productVO1.setPro_nam("啞鈴");
 //		productVO1.setCat_no("PR00001");
 //		productVO1.setPro_con("");
-//		productVO1.setPro_pri(10000);
-//		productVO1.setPro_sta("0");
-//		productVO1.setPro_sto(111);
-//		dao.insert(productVO1);
+		productVO1.setPro_pri(10000);
+		productVO1.setPro_sta("0");
+		productVO1.setPro_sto(111);
+		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+		product_categoryVO.setCat_no("PR00001");
+		productVO1.setCat_no(product_categoryVO);
+		dao.insert(productVO1);
 //
 //		//修改
 //		ProductVO productVO2 = new ProductVO();
@@ -225,7 +222,7 @@ public class ProductDAO implements ProductDAO_interface {
 //			System.out.print(aProduct.getPro_sto() + ",");
 //		}
 
-//	}
+	}
 
 	/*************************** 使用Clob物件 讀入CLOB(參考老師JDBC範例) ***************************************/	
 //	
