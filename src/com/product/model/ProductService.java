@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.product_category.model.Product_CategoryVO;
+
 public class ProductService {
 
 	private ProductDAO_interface dao;
@@ -13,7 +15,7 @@ public class ProductService {
 		dao = new ProductDAO();
 	}
 
-	public ProductVO addProduct(String cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
+	public ProductVO addProduct(Product_CategoryVO cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
 			Integer pro_sto) {
 
 		ProductVO productVO = new ProductVO();
@@ -29,7 +31,7 @@ public class ProductService {
 		return productVO;
 	}
 
-	public ProductVO updateProduct(String pro_no, String cat_no, String pro_nam, String pro_con, Integer pro_pri,
+	public ProductVO updateProduct(String pro_no, Product_CategoryVO cat_no, String pro_nam, String pro_con, Integer pro_pri,
 			String pro_sta, Integer pro_sto) {
 
 		ProductVO productVO = new ProductVO();

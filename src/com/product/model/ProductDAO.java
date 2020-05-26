@@ -20,6 +20,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.hibernate.*;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
@@ -109,8 +110,8 @@ public class ProductDAO implements ProductDAO_interface {
 
 	@Override
 	public List<ProductVO> getAll() {
-		List<ProductVO> list = new ArrayList<ProductVO>();
 		
+		List<ProductVO> list = new ArrayList<ProductVO>();
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		try {
@@ -132,147 +133,43 @@ public class ProductDAO implements ProductDAO_interface {
 
 		try {
             session.beginTransaction();
-            list = 
-			
-
+            
 			String finalSQL = "select * from product"
 					+ jdbcUtil_CompositeQuery_Product.get_WhereCondition(map) + "order by pro_no";
-			pstmt = con.prepareStatement(finalSQL);
-			System.out.println("===finalSQL(by DAO) = " + finalSQL);
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-
+		    System.out.println("===finalSQL(by DAO) = " + finalSQL);
+		    
+			NativeQuery<ProductVO> query = session.createNativeQuery(finalSQL, ProductVO.class);
+			list = query.getResultList();
+			 
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 		return list;
 	}
 	
 	@Override
 	public List<ProductVO> getAllPro_StaisZero() {
 		List<ProductVO> list = new ArrayList<ProductVO>();
-		ProductVO productVO = null;
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-
-				productVO = new ProductVO();
-				productVO.setPro_no(rs.getString("pro_no"));
-				productVO.setCat_no(rs.getString("cat_no"));
-				productVO.setPro_nam(rs.getString("pro_nam"));
-
-				Reader reader = rs.getCharacterStream("pro_con");
-				productVO.setPro_con(readString(reader));
-
-				productVO.setPro_pri(rs.getInt("pro_pri"));
-				productVO.setPro_sta(rs.getString("pro_sta"));
-				productVO.setPro_sto(rs.getInt("pro_sto"));
-				
-				list.add(productVO);
-
-			}
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} catch (IOException e) {
-			e.printStackTrace(System.err);
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+            session.beginTransaction();
+            Query<ProductVO> query = session.createQuery(GET_ALL_STMT, ProductVO.class);
+            list = query.getResultList();
+            session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 		return list;
 	}
 	
 	@Override
 	public void updatePro_Sto(String pro_no, Integer pro_sto) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATEPRO_STO);
-			
-			pstmt.setInt(1, pro_sto);
-			pstmt.setString(2, pro_no);
-			
-			pstmt.executeUpdate();
-			
-			
-		} catch (SQLException se){
-			throw new RuntimeException("A database error occured." + se.getMessage());
-			
-		} finally {
-			if(pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if(con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
 		
 	}
-	
-	
-	
 	
 	
 //	public static void main(String[] args) throws IOException {

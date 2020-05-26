@@ -23,7 +23,7 @@ import com.product_order.model.Product_OrderVO;
 
 import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product;
 import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product_Order;
-//留著參考與Hibenate比較用
+//留著參考與HibenateDAO比較用
 public class ProductJDBCDAO implements ProductDAO_interface {
 	private static DataSource ds = null;
 	static {
