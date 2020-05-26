@@ -402,7 +402,7 @@ public class ProductServlet extends HttpServlet {
 				
 				/***************************2.開始複合查詢***************************************/
 				ProductService productSvc = new ProductService();
-				List<ProductVO> list  = productSvc.getAll(map);
+				List<ProductVO> list  = productSvc.getAll_CompositeQuery(map);
 				//過濾出狀態是0的上架商品
 				list = list.stream()
 						.filter(p -> p.getPro_sta().equals("0"))

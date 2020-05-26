@@ -15,7 +15,7 @@ public interface ProductDAO_interface {
 
 	public List<ProductVO> getAll();
 	
-	public List<ProductVO> getAll(Map<String, String[]> map);
+	public List<ProductVO> getAll_CompositeQuery(Map<String, String[]> map);
 	
 	public List<ProductVO> getAllPro_StaisZero();
 	

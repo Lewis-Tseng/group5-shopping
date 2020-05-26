@@ -19,22 +19,25 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.hibernate.*;
-import org.hibernate.query.Query;
-import org.hibernate.Session;
-import hibernate.util.HibernateUtil;
-
 import com.product_order.model.Product_OrderVO;
 
 import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product;
 import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product_Order;
+//留著參考與Hibenate比較用
+public class ProductJDBCDAO implements ProductDAO_interface {
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA103G5");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 
-public class ProductDAO implements ProductDAO_interface {
-	
-	private static final String GET_ALL_STMT = "from ProductVO order by pro_no";
-	
+
 	private static final String INSERT_STMT = "INSERT INTO product (pro_no, cat_no, pro_nam, pro_con, pro_pri, pro_sta, pro_sto) VALUES ('PT'||LPAD(to_char(product_seq.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT1 = "SELECT pro_no, cat_no, pro_nam, pro_con, pro_pri, pro_sta, pro_sto FROM product order by pro_no";
+	private static final String GET_ALL_STMT = "SELECT pro_no, cat_no, pro_nam, pro_con, pro_pri, pro_sta, pro_sto FROM product order by pro_no";
 	private static final String GET_ONE_STMT = "SELECT pro_no, cat_no, pro_nam, pro_con, pro_pri, pro_sta, pro_sto FROM product where pro_no = ?";
 	private static final String DELETE = "DELETE FROM product where pro_no = ?";
 	private static final String UPDATE = "UPDATE product set  pro_nam=?, cat_no=?, pro_con=?, pro_pri=?, pro_sta=?, pro_sto=? where pro_no = ?";
@@ -43,102 +46,278 @@ public class ProductDAO implements ProductDAO_interface {
 	@Override
 	public void insert(ProductVO productVO) {
 
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Connection con = null;
+		PreparedStatement pstmt = null;
 
 		try {
-			session.beginTransaction();
-            session.saveOrUpdate(productVO);
-            session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-		    session.getTransaction().rollback();
-		    throw ex;
+	
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(INSERT_STMT);
+
+			pstmt.setString(1, productVO.getCat_no());
+			pstmt.setString(2, productVO.getPro_nam());           
+			pstmt.setString(3, productVO.getPro_con());
+			pstmt.setInt(4, productVO.getPro_pri());
+			pstmt.setString(5, productVO.getPro_sta());
+            pstmt.setInt(6, productVO.getPro_sto());
+			
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
 		}
 	}
 
 	@Override
 	public void update(ProductVO productVO) {
 
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Connection con = null;
+		PreparedStatement pstmt = null;
 
 		try {
-            session.beginTransaction();
-            session.saveOrUpdate(productVO);
-            session.beginTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE);
+
+			pstmt.setString(1, productVO.getPro_nam());
+			pstmt.setString(2, productVO.getCat_no());
+			pstmt.setString(3, productVO.getPro_con());
+			pstmt.setInt(4, productVO.getPro_pri());
+			pstmt.setString(5, productVO.getPro_sta());
+			pstmt.setInt(6, productVO.getPro_sto());
+			pstmt.setString(7, productVO.getPro_no());
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 	}
 
 	@Override
 	public void delete(String pro_no) {
 
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Connection con = null;
+		PreparedStatement pstmt = null;
 
 		try {
-            session.beginTransaction();
 
-            Query<ProductVO> query = session.createQuery("delete ProductVO where pro_no=?0",ProductVO.class);
-            query.setParameter(0, pro_no);
-            System.out.println("刪除的比數=" + query.executeUpdate());
-            
-            session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
-		
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE);
+
+			pstmt.setString(1, pro_no);
+
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 	}
 
 	@Override
 	public ProductVO findByPrimaryKey(String pro_no) {
 
 		ProductVO productVO = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
 		try {
-            session.beginTransaction();
-            productVO = (ProductVO) session.get(ProductVO.class, pro_no);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMT);
+
+			pstmt.setString(1, pro_no);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				productVO = new ProductVO();
+				productVO.setPro_no(rs.getString("pro_no"));
+				productVO.setCat_no(rs.getString("cat_no"));
+				productVO.setPro_nam(rs.getString("pro_nam"));
+
+				Reader reader = rs.getCharacterStream("pro_con");
+				productVO.setPro_con(readString(reader));
+
+				productVO.setPro_pri(rs.getInt("pro_pri"));
+				productVO.setPro_sta(rs.getString("pro_sta"));
+                productVO.setPro_sto(rs.getInt("pro_sto"));
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} catch (IOException e) {
+			e.printStackTrace(System.err);
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 		return productVO;
 	}
 
 	@Override
 	public List<ProductVO> getAll() {
 		List<ProductVO> list = new ArrayList<ProductVO>();
-		
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		ProductVO productVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
 		try {
-            session.beginTransaction();
-            Query<ProductVO> query = session.createQuery(GET_ALL_STMT, ProductVO.class);
-		    list = query.getResultList();
-		    session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				productVO = new ProductVO();
+				productVO.setPro_no(rs.getString("pro_no"));
+				productVO.setCat_no(rs.getString("cat_no"));
+				productVO.setPro_nam(rs.getString("pro_nam"));
+
+				Reader reader = rs.getCharacterStream("pro_con");
+				productVO.setPro_con(readString(reader));
+
+				productVO.setPro_pri(rs.getInt("pro_pri"));
+				productVO.setPro_sta(rs.getString("pro_sta"));
+				productVO.setPro_sto(rs.getInt("pro_sto"));
+				
+				list.add(productVO);
+
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} catch (IOException e) {
+			e.printStackTrace(System.err);
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 		return list;
 	}
 
 	@Override
 	public List<ProductVO> getAll_CompositeQuery(Map<String, String[]> map) {
 		List<ProductVO> list = new ArrayList<ProductVO>();
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		ProductVO productVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
 		try {
-            session.beginTransaction();
-            list = 
-			
+
+			con = ds.getConnection();
 
 			String finalSQL = "select * from product"
 					+ jdbcUtil_CompositeQuery_Product.get_WhereCondition(map) + "order by pro_no";
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("===finalSQL(by DAO) = " + finalSQL);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				productVO = new ProductVO();
+				productVO.setPro_no(rs.getString("pro_no"));
+				productVO.setCat_no(rs.getString("cat_no"));
+				productVO.setPro_nam(rs.getString("pro_nam"));
+				productVO.setPro_con(rs.getString("pro_con"));
+				productVO.setPro_pri(rs.getInt("pro_pri"));
+				productVO.setPro_sta(rs.getString("pro_sta"));
+				productVO.setPro_sto(rs.getInt("pro_sto"));
+				list.add(productVO);
+
+			}
 
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
