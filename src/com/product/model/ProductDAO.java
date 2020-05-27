@@ -168,7 +168,7 @@ public class ProductDAO implements ProductDAO_interface {
 	
 	public static void main(String[] args) throws IOException {
 
-		ProductDAO dao = new ProductDAO();
+//		ProductDAO dao = new ProductDAO();
 		
 //        String str = getLongString("E:\\product1.txt");
 

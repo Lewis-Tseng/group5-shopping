@@ -17,11 +17,9 @@ public class ProductVO implements java.io.Serializable {
 		
 	}
 	
-	public ProductVO(String pro_no, String cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
+	public ProductVO(String pro_no, Product_CategoryVO product_categoryVO, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
 			Integer pro_sto) {
-		this.pro_no = pro_no;
-		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
-		product_categoryVO.setCat_no(cat_no);
+		this.pro_no = pro_no;	
 		this.product_categoryVO = product_categoryVO;
 		this.pro_nam = pro_nam;
 		this.pro_con = pro_con;
@@ -82,8 +80,8 @@ public class ProductVO implements java.io.Serializable {
 		return product_categoryVO;
 	}
 
-	public void setProduct_categoryVO(Product_CategoryVO cat_no) {
-		this.product_categoryVO = cat_no;
+	public void setProduct_categoryVO(Product_CategoryVO product_categoryVO) {
+		this.product_categoryVO = product_categoryVO;
 	}
 
 	@Override

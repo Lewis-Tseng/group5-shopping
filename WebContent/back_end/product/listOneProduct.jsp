@@ -16,7 +16,7 @@
 <%-- 取出 對應的DeptVO物件--%>
 <%
 	Product_CategoryService product_categorySvc = new Product_CategoryService();
-Product_CategoryVO product_categoryVO = product_categorySvc.getOneProduct_Category(productVO.getProduct_categoryVO());
+Product_CategoryVO product_categoryVO = product_categorySvc.getOneProduct_Category(productVO.getProduct_categoryVO().getCat_no());
 %>
 <jsp:useBean id="product_imageSvc" scope="page" class="com.product_image.model.Product_ImageService" />
 <!DOCTYPE html>
