@@ -9,7 +9,7 @@
                 <!-- 連線池c3p0設定-->
 		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
 		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
-		<property name="hibernate.connection.username">DA103</property>
+		<property name="hibernate.connection.username">DA103G5</property>
 		<property name="hibernate.connection.password">123456</property>       
 		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
 		<property name="hibernate.c3p0.min_size">5</property>
@@ -37,8 +37,7 @@
         <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
     
         <mapping resource="com/product/model/product.hbm.xml"/>
-        <mapping resource="com/product_category/model/product_category.hbm.xml"/>
-    
+        <mapping resource="com/product_category/model/product_category.hbm.xml"/>  
     
     </session-factory>
 

@@ -28,7 +28,7 @@ public class ProductService {
 		//改成下面三行轉存進去
 		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
 		product_categoryVO.setCat_no(cat_no);
-		productVO.setCat_no(product_categoryVO);
+		productVO.setProduct_categoryVO(product_categoryVO);
 		
 		dao.insert(productVO);
 
@@ -48,7 +48,7 @@ public class ProductService {
 		
 		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
 		product_categoryVO.setCat_no(cat_no);
-		productVO.setCat_no(product_categoryVO);
+		productVO.setProduct_categoryVO(product_categoryVO);
 		
 		dao.update(productVO);
 

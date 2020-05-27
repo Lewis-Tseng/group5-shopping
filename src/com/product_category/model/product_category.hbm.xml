@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class>
+    <class name="com.product_category.model.Product_CategoryVO" table="product_category">
         
         <id name="cat_no" column="cat_no">
             <generator class="sequence">

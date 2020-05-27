@@ -15,8 +15,8 @@
 <%  ProductVO productVO = (ProductVO)request.getAttribute("productVO");%>
 <%-- 取出 對應的DeptVO物件--%>
 <%
-Product_CategoryService product_categorySvc = new Product_CategoryService();
-Product_CategoryVO product_categoryVO = product_categorySvc.getOneProduct_Category(productVO.getCat_no());
+	Product_CategoryService product_categorySvc = new Product_CategoryService();
+Product_CategoryVO product_categoryVO = product_categorySvc.getOneProduct_Category(productVO.getProduct_categoryVO());
 %>
 <jsp:useBean id="product_imageSvc" scope="page" class="com.product_image.model.Product_ImageService" />
 <!DOCTYPE html>
@@ -156,17 +156,20 @@ Product_CategoryVO product_categoryVO = product_categorySvc.getOneProduct_Catego
 <!-- ****************************功能項目開始************************************************************************** -->
 <hr class="sidebar-divider">
 <div class="sidebar-heading">功能項目</div>
-<% 
-EaService eaSvc=new EaService();
+<%
+	EaService eaSvc=new EaService();
 Set<EaVO> empAuth=eaSvc.getAuthsByEmp(empVO.getEmp_id());
 for(EaVO set:empAuth){
 String Auth=set.getAuth_id();
 System.out.println(Auth);
-pageContext.setAttribute("Auth",Auth);%>
+pageContext.setAttribute("Auth",Auth);
+%>
 
 <!-- Nav Item - Pages Collapse Menu -->
 
-<%if(Auth.equals("AU00003")){ %>
+<%
+	if(Auth.equals("AU00003")){
+%>
 
 	<li class="nav-item" value="AU00003">
 	<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> 
@@ -179,7 +182,9 @@ pageContext.setAttribute("Auth",Auth);%>
 			</div>
 			</div>
 	</li>
-<%	}else if(Auth.equals("AU00004")){%>
+<%
+	}else if(Auth.equals("AU00004")){
+%>
  		<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item" value="AU00004">
 			<a class="nav-link collapsed" href="#"data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities"> 
@@ -194,7 +199,9 @@ pageContext.setAttribute("Auth",Auth);%>
 				</div>
 				</div>
 			</li>
-<%}else if(Auth.equals("AU00005")) {%>
+<%
+	}else if(Auth.equals("AU00005")) {
+%>
 
 		 <li class="nav-item"value="AU00005">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
@@ -212,7 +219,9 @@ pageContext.setAttribute("Auth",Auth);%>
               </div>
             </div>
           </li>
-  <%}else if(Auth.equals("AU00001")) { %> 
+  <%
+  	}else if(Auth.equals("AU00001")) {
+  %> 
 		
 			<!-- Nav Item - Charts -->
 		
@@ -230,7 +239,9 @@ pageContext.setAttribute("Auth",Auth);%>
 					</div>
 				</div>
 			</li>
-	<%}else if(Auth.equals("AU00002")) { %> 
+	<%
+		}else if(Auth.equals("AU00002")) {
+	%> 
 	 <li class="nav-item" value="AU00002">
 			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport"
 				aria-expanded="true" aria-controls="collapseReport"> 
@@ -245,9 +256,13 @@ pageContext.setAttribute("Auth",Auth);%>
  				</div>
  			</li>
 
-<%}else{}%>
+<%
+	}else{}
+%>
 
-<%}%>
+<%
+	}
+%>
 <!-- Nav Item - Tables -->
 		<li class="nav-item"><a class="nav-link collapsed" href="#"data-toggle="collapse" data-target="#collapseAd" aria-expanded="true" aria-controls="collapseAd">
 		 <i class="fas fa-fw fa-table"></i> <span>前台管理</span></a>
@@ -464,13 +479,13 @@ pageContext.setAttribute("Auth",Auth);%>
 																	<tr>
 																		<td><%=productVO.getPro_no()%></td>
 																		<td><%=productVO.getPro_nam()%></td>
-																		<td><%=productVO.getCat_no()%></td>
+																		<td><%=productVO.getProduct_categoryVO()%></td>
 																		<td><%=productVO.getPro_con()%></td>
 																		<td><%=productVO.getPro_pri()%></td>
 																		<td><c:if test="${productVO.pro_sta == 0}">上架</c:if>
 																		<c:if test="${productVO.pro_sta == 1}">下架</c:if></td>
 																		<td><%=productVO.getPro_sto()%></td>
-																		<td><%=productVO.getCat_no()%>【<%=product_categoryVO.getCat_nam()%>】</td>
+																		<td><%=productVO.getProduct_categoryVO()%>【<%=product_categoryVO.getCat_nam()%>】</td>
 																		<td>
 																			<c:forEach var="product_imageVO" items="${product_imageSvc.all}">
 																			<c:if test="${productVO.pro_no==product_imageVO.pro_no}">

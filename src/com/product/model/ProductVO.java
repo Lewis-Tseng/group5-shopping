@@ -11,16 +11,18 @@ public class ProductVO implements java.io.Serializable {
 	private Integer pro_pri;
 	private String pro_sta;
 	private Integer pro_sto;
-	private Product_CategoryVO cat_no;
+	private Product_CategoryVO product_categoryVO;
 	
 	public ProductVO(){
 		
 	}
 	
-	public ProductVO(String pro_no, Product_CategoryVO cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
+	public ProductVO(String pro_no, String cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
 			Integer pro_sto) {
 		this.pro_no = pro_no;
-		this.cat_no = cat_no;
+		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+		product_categoryVO.setCat_no(cat_no);
+		this.product_categoryVO = product_categoryVO;
 		this.pro_nam = pro_nam;
 		this.pro_con = pro_con;
 		this.pro_pri = pro_pri;
@@ -76,12 +78,12 @@ public class ProductVO implements java.io.Serializable {
 		this.pro_sto = pro_sto;
 	}
 	
-	public Product_CategoryVO getCat_no() {
-		return cat_no;
+	public Product_CategoryVO getProduct_categoryVO() {
+		return product_categoryVO;
 	}
 
-	public void setCat_no(Product_CategoryVO cat_no) {
-		this.cat_no = cat_no;
+	public void setProduct_categoryVO(Product_CategoryVO cat_no) {
+		this.product_categoryVO = cat_no;
 	}
 
 	@Override
@@ -107,7 +109,7 @@ public class ProductVO implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "ProductVO [pro_no=" + pro_no + ", cat_no=" + cat_no + ", pro_nam=" + pro_nam + ", pro_con=" + pro_con +
+		return "ProductVO [pro_no=" + pro_no + ", cat_no=" + product_categoryVO + ", pro_nam=" + pro_nam + ", pro_con=" + pro_con +
 				", pro_pri=" + pro_pri + ", pro_sta=" + pro_sta + ", pro_sto=" + pro_sto + "]";
 	}
 

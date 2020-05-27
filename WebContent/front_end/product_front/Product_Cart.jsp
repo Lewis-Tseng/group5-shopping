@@ -504,8 +504,8 @@ CoaVO coaVO = (CoaVO) session.getAttribute("coaVO");
                                 Order_Details_ProductVO order_details = (Order_Details_ProductVO) buylist.get(index);
                                 %>
                                 <%
-                                Product_CategoryService product_categorySvc = new Product_CategoryService();
-                                Product_CategoryVO product_categoryVO = product_categorySvc.getOneProduct_Category(order_details.getCat_no());
+                                	Product_CategoryService product_categorySvc = new Product_CategoryService();
+                                                                Product_CategoryVO product_categoryVO = product_categorySvc.getOneProduct_Category(order_details.getProduct_categoryVO());
                                 %>
                                 <tbody>
                                     <tr>

@@ -54,7 +54,7 @@ public class ProductJDBCDAO implements ProductDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setString(1, productVO.getCat_no());
+			pstmt.setString(1, productVO.getProduct_categoryVO());
 			pstmt.setString(2, productVO.getPro_nam());           
 			pstmt.setString(3, productVO.getPro_con());
 			pstmt.setInt(4, productVO.getPro_pri());
@@ -95,7 +95,7 @@ public class ProductJDBCDAO implements ProductDAO_interface {
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, productVO.getPro_nam());
-			pstmt.setString(2, productVO.getCat_no());
+			pstmt.setString(2, productVO.getProduct_categoryVO());
 			pstmt.setString(3, productVO.getPro_con());
 			pstmt.setInt(4, productVO.getPro_pri());
 			pstmt.setString(5, productVO.getPro_sta());
@@ -180,7 +180,7 @@ public class ProductJDBCDAO implements ProductDAO_interface {
 
 				productVO = new ProductVO();
 				productVO.setPro_no(rs.getString("pro_no"));
-				productVO.setCat_no(rs.getString("cat_no"));
+				productVO.setProduct_categoryVO(rs.getString("cat_no"));
 				productVO.setPro_nam(rs.getString("pro_nam"));
 
 				Reader reader = rs.getCharacterStream("pro_con");
@@ -240,7 +240,7 @@ public class ProductJDBCDAO implements ProductDAO_interface {
 
 				productVO = new ProductVO();
 				productVO.setPro_no(rs.getString("pro_no"));
-				productVO.setCat_no(rs.getString("cat_no"));
+				productVO.setProduct_categoryVO(rs.getString("cat_no"));
 				productVO.setPro_nam(rs.getString("pro_nam"));
 
 				Reader reader = rs.getCharacterStream("pro_con");
@@ -309,7 +309,7 @@ public class ProductJDBCDAO implements ProductDAO_interface {
 
 				productVO = new ProductVO();
 				productVO.setPro_no(rs.getString("pro_no"));
-				productVO.setCat_no(rs.getString("cat_no"));
+				productVO.setProduct_categoryVO(rs.getString("cat_no"));
 				productVO.setPro_nam(rs.getString("pro_nam"));
 				productVO.setPro_con(rs.getString("pro_con"));
 				productVO.setPro_pri(rs.getInt("pro_pri"));
@@ -368,7 +368,7 @@ public class ProductJDBCDAO implements ProductDAO_interface {
 
 				productVO = new ProductVO();
 				productVO.setPro_no(rs.getString("pro_no"));
-				productVO.setCat_no(rs.getString("cat_no"));
+				productVO.setProduct_categoryVO(rs.getString("cat_no"));
 				productVO.setPro_nam(rs.getString("pro_nam"));
 
 				Reader reader = rs.getCharacterStream("pro_con");

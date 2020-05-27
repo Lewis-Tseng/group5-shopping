@@ -173,17 +173,18 @@ public class ProductDAO implements ProductDAO_interface {
 //        String str = getLongString("E:\\product1.txt");
 
 		//新增 
-		ProductVO productVO1 = new ProductVO();
-		productVO1.setPro_nam("啞鈴");
+//		ProductVO productVO1 = new ProductVO();
+//	//	productVO1.setPro_nam("啞鈴");
 //		productVO1.setCat_no("PR00001");
+//		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+//		product_categoryVO.setCat_no("PR00001");
+//		productVO1.setProduct_categoryVO(product_categoryVO);
 //		productVO1.setPro_con("");
-		productVO1.setPro_pri(10000);
-		productVO1.setPro_sta("0");
-		productVO1.setPro_sto(111);
-		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
-		product_categoryVO.setCat_no("PR00001");
-		productVO1.setCat_no(product_categoryVO);
-		dao.insert(productVO1);
+//		productVO1.setPro_pri(10000);
+//		productVO1.setPro_sta("0");
+//		productVO1.setPro_sto(111);
+//		
+//		dao.insert(productVO1);
 //
 //		//修改
 //		ProductVO productVO2 = new ProductVO();
@@ -197,12 +198,14 @@ public class ProductDAO implements ProductDAO_interface {
 //		dao.update(productVO2);
 //
 //		//刪除
-//		dao.delete("PT00021");
+//		dao.delete("PT00020");
 //
 //		//單查詢
 //		ProductVO productVO3 = dao.findByPrimaryKey("PT00020");
 //		System.out.print(productVO3.getPro_no() + ",");
-//		System.out.print(productVO3.getCat_no() + ",");
+//	//	System.out.print(productVO3.getCat_no() + ",");
+//		System.out.println(productVO3.getProduct_categoryVO().getCat_nam() + ",");
+//		System.out.println(productVO3.getProduct_categoryVO().getCat_no()+ ",");
 //		System.out.print(productVO3.getPro_nam() + ",");
 //		System.out.print(productVO3.getPro_con() + ",");
 //		System.out.print(productVO3.getPro_pri() + ",");
@@ -214,12 +217,14 @@ public class ProductDAO implements ProductDAO_interface {
 //		List<ProductVO> list = dao.getAll();
 //		for (ProductVO aProduct : list) {
 //			System.out.print(aProduct.getPro_no() + ",");
-//			System.out.print(aProduct.getCat_no() + ",");
+//		//	System.out.print(aProduct.getCat_no() + ",");
 //			System.out.print(aProduct.getPro_nam() + ",");
 //			System.out.print(aProduct.getPro_con() + ",");
 //			System.out.print(aProduct.getPro_pri() + ",");
 //			System.out.print(aProduct.getPro_sta() + ",");
 //			System.out.print(aProduct.getPro_sto() + ",");
+//			System.out.println(aProduct.getProduct_categoryVO().getCat_nam() + ",");
+//			System.out.println(aProduct.getProduct_categoryVO().getCat_no()+ ",");
 //		}
 
 	}

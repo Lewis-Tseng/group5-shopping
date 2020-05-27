@@ -13,7 +13,7 @@ public class Order_Details_ProductVO extends ProductVO{
 	}
 
 	public Order_Details_ProductVO(ProductVO productVO, Integer pro_quantity) {
-		this(productVO.getPro_no(), productVO.getCat_no(), productVO.getPro_nam(), productVO.getPro_con(), productVO.getPro_pri(), productVO.getPro_sta(), productVO.getPro_sto(), pro_quantity);
+		this(productVO.getPro_no(), productVO.getProduct_categoryVO(), productVO.getPro_nam(), productVO.getPro_con(), productVO.getPro_pri(), productVO.getPro_sta(), productVO.getPro_sto(), pro_quantity);
 	    this.pro_quantity = pro_quantity;
 	}
 

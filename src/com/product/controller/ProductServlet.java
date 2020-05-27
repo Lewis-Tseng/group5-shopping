@@ -185,7 +185,7 @@ public class ProductServlet extends HttpServlet {
 				//原本set cat_no的方式改成下面三行
 				Product_CategoryVO product_categoryVO = new Product_CategoryVO();
 				product_categoryVO.setCat_no(cat_no);
-				productVO.setCat_no(product_categoryVO);
+				productVO.setProduct_categoryVO(product_categoryVO);
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -271,7 +271,7 @@ public class ProductServlet extends HttpServlet {
 				
 				Product_CategoryVO product_categoryVO = new Product_CategoryVO();
 				product_categoryVO.setCat_no(cat_no);
-				productVO.setCat_no(product_categoryVO);
+				productVO.setProduct_categoryVO(product_categoryVO);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {

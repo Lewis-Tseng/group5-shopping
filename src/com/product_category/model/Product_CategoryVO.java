@@ -7,8 +7,7 @@ import com.product.model.ProductVO;
 
 public class Product_CategoryVO {
     private String cat_no;
-    private String cat_nam;
-   
+    private String cat_nam;  
 	private Set<ProductVO> products = new HashSet<ProductVO>();
     		
 	public String getCat_no() {
