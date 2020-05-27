@@ -52,9 +52,9 @@ public class ProductServlet extends HttpServlet {
 					return;// 程式中斷
 				}
 
-				String pro_no = null;
+				Integer pro_no = null;
 				try {
-					pro_no = new String(str);
+					pro_no = new Integer(str);
 				} catch (Exception e) {
 					errorMsgs.add("產品編號格式不正確");
 				}
@@ -101,7 +101,7 @@ public class ProductServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
-				String pro_no = new String(req.getParameter("pro_no"));
+				Integer pro_no = new Integer(req.getParameter("pro_no"));
 
 				/*************************** 2.開始查詢資料 ****************************************/
 				ProductService productSvc = new ProductService();
@@ -130,16 +130,17 @@ public class ProductServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String pro_no = new String(req.getParameter("pro_no").trim());
+				Integer pro_no = new Integer(req.getParameter("pro_no").trim());
 				
 				String pro_nam = req.getParameter("pro_nam");
 				if (pro_nam == null || pro_nam.trim().length() == 0) {
 					errorMsgs.add("商品名稱請勿空白");
 				} 
 
-
-				String cat_no = req.getParameter("cat_no").trim();
-				if (cat_no == null || cat_no.trim().length() == 0) {
+				Integer cat_no = null;
+				try{
+					cat_no = new Integer(req.getParameter("cat_no").trim());				
+				} catch(NumberFormatException e) {
 					errorMsgs.add("類別編號請勿空白");
 				}
 
@@ -160,7 +161,7 @@ public class ProductServlet extends HttpServlet {
 
 				// 狀態
 				String pro_sta = req.getParameter("pro_sta").trim();
-				if (cat_no == null || cat_no.trim().length() == 0) {
+				if (pro_sta == null || pro_sta.trim().length() == 0) {
 					errorMsgs.add("商品狀態請勿空白");
 				}
 
@@ -226,9 +227,10 @@ public class ProductServlet extends HttpServlet {
 					errorMsgs.add("商品名稱: 請勿空白");
 				}
 
-
-				String cat_no = req.getParameter("cat_no").trim();
-				if (cat_no == null || cat_no.trim().length() == 0) {
+				Integer cat_no = null;
+				try{
+					cat_no = new Integer(req.getParameter("cat_no").trim());				
+				} catch(NumberFormatException e) {
 					errorMsgs.add("類別編號請勿空白");
 				}
 				
@@ -306,7 +308,7 @@ public class ProductServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 ***************************************/
-				String pro_no = new String(req.getParameter("pro_no").trim());
+				Integer pro_no = new Integer(req.getParameter("pro_no").trim());
 
 				/*************************** 2.開始刪除資料 ***************************************/
 				ProductService productSvc = new ProductService();
@@ -347,9 +349,9 @@ public class ProductServlet extends HttpServlet {
 					return;// 程式中斷
 				}
 
-				String pro_no = null;
+				Integer pro_no = null;
 				try {
-					pro_no = new String(str);
+					pro_no = new Integer(str);
 				} catch (Exception e) {
 					errorMsgs.add("產品編號格式不正確");
 				}

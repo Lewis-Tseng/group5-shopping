@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -66,7 +67,7 @@ public class ProductDAO implements ProductDAO_interface {
 	}
 
 	@Override
-	public void delete(String pro_no) {
+	public void delete(Integer pro_no) {
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
@@ -86,7 +87,7 @@ public class ProductDAO implements ProductDAO_interface {
 	}
 
 	@Override
-	public ProductVO findByPrimaryKey(String pro_no) {
+	public ProductVO findByPrimaryKey(Integer pro_no) {
 
 		ProductVO productVO = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -161,30 +162,30 @@ public class ProductDAO implements ProductDAO_interface {
 	}
 	
 	@Override
-	public void updatePro_Sto(String pro_no, Integer pro_sto) {
+	public void updatePro_Sto(Integer pro_no, Integer pro_sto) {
 		
 	}
 	
 	
 	public static void main(String[] args) throws IOException {
 
-//		ProductDAO dao = new ProductDAO();
+		ProductDAO dao = new ProductDAO();
 		
 //        String str = getLongString("E:\\product1.txt");
 
 		//新增 
-//		ProductVO productVO1 = new ProductVO();
-//	//	productVO1.setPro_nam("啞鈴");
-//		productVO1.setCat_no("PR00001");
-//		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
-//		product_categoryVO.setCat_no("PR00001");
-//		productVO1.setProduct_categoryVO(product_categoryVO);
-//		productVO1.setPro_con("");
-//		productVO1.setPro_pri(10000);
-//		productVO1.setPro_sta("0");
-//		productVO1.setPro_sto(111);
-//		
-//		dao.insert(productVO1);
+		ProductVO productVO1 = new ProductVO();
+		productVO1.setPro_nam("啞鈴");
+	//	productVO1.setCat_no("PR00001");
+		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+		product_categoryVO.setCat_no(5000020);
+		productVO1.setProduct_categoryVO(product_categoryVO);
+		productVO1.setPro_con("");
+		productVO1.setPro_pri(10000);
+		productVO1.setPro_sta("0");
+		productVO1.setPro_sto(111);
+		
+		dao.insert(productVO1);
 //
 //		//修改
 //		ProductVO productVO2 = new ProductVO();
@@ -212,6 +213,20 @@ public class ProductDAO implements ProductDAO_interface {
 //		System.out.print(productVO3.getPro_sta() + ",");
 //		System.out.print(productVO3.getPro_sto() + ",");
 //		System.out.println("---------------------");
+//		
+//		//複合查詢
+//		Map<String, String[]> map = new HashMap<String, String[]>();
+//		map.put("pro_no", new String[] { "PT00020" });
+//		List<ProductVO> list = dao.getAll_CompositeQuery(map);
+//		for(ProductVO aProduct : list) {
+//			System.out.print(aProduct.getPro_nam() + ",");
+//			System.out.print(aProduct.getPro_con() + ",");
+//			System.out.print(aProduct.getPro_pri() + ",");
+//			System.out.print(aProduct.getPro_sta() + ",");
+//			System.out.print(aProduct.getPro_sto() + ",");
+//			System.out.println(aProduct.getProduct_categoryVO().getCat_nam() + ",");
+//			System.out.println(aProduct.getProduct_categoryVO().getCat_no()+ ",");
+//		}
 //
 //		//查詢全部
 //		List<ProductVO> list = dao.getAll();

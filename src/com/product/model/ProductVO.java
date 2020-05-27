@@ -5,7 +5,7 @@ import com.product_category.model.Product_CategoryVO;
 public class ProductVO implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private String pro_no;
+	private Integer pro_no;
 	private String pro_nam;
 	private String pro_con;
 	private Integer pro_pri;
@@ -17,7 +17,7 @@ public class ProductVO implements java.io.Serializable {
 		
 	}
 	
-	public ProductVO(String pro_no, Product_CategoryVO product_categoryVO, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
+	public ProductVO(Integer pro_no, Product_CategoryVO product_categoryVO, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
 			Integer pro_sto) {
 		this.pro_no = pro_no;	
 		this.product_categoryVO = product_categoryVO;
@@ -28,11 +28,11 @@ public class ProductVO implements java.io.Serializable {
 		this.pro_sto = pro_sto;
 	}
 
-	public String getPro_no() {
+	public Integer getPro_no() {
 		return pro_no;
 	}
 
-	public void setPro_no(String pro_no) {
+	public void setPro_no(Integer pro_no) {
 		this.pro_no = pro_no;
 	}
 

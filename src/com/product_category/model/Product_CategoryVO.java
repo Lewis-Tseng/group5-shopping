@@ -6,14 +6,14 @@ import java.util.Set;
 import com.product.model.ProductVO;
 
 public class Product_CategoryVO {
-    private String cat_no;
+    private Integer cat_no;
     private String cat_nam;  
 	private Set<ProductVO> products = new HashSet<ProductVO>();
     		
-	public String getCat_no() {
+	public Integer getCat_no() {
 		return cat_no;
 	}
-	public void setCat_no(String cat_no) {
+	public void setCat_no(Integer cat_no) {
 		this.cat_no = cat_no;
 	}
 	public String getCat_nam() {

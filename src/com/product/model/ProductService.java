@@ -15,7 +15,7 @@ public class ProductService {
 		dao = new ProductDAO();
 	}
 
-	public ProductVO addProduct(String cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
+	public ProductVO addProduct(Integer cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,
 			Integer pro_sto) {
 
 		ProductVO productVO = new ProductVO();
@@ -35,7 +35,7 @@ public class ProductService {
 		return productVO;
 	}
 
-	public ProductVO updateProduct(String pro_no, String cat_no, String pro_nam, String pro_con, Integer pro_pri,
+	public ProductVO updateProduct(Integer pro_no, Integer cat_no, String pro_nam, String pro_con, Integer pro_pri,
 			String pro_sta, Integer pro_sto) {
 
 		ProductVO productVO = new ProductVO();
@@ -55,15 +55,15 @@ public class ProductService {
 		return productVO;
 	}
 
-	public void deleteProduct(String pro_no) {
+	public void deleteProduct(Integer pro_no) {
 		dao.delete(pro_no);
 	}
 
-	public ProductVO getOneProduct(String pro_no) {
+	public ProductVO getOneProduct(Integer pro_no) {
 		return dao.findByPrimaryKey(pro_no);
 	}
 	
-	public void updateProductStock(String pro_no, Integer pro_sto) {
+	public void updateProductStock(Integer pro_no, Integer pro_sto) {
 	    dao.updatePro_Sto(pro_no, pro_sto);
 	}
 

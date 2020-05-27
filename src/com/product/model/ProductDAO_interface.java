@@ -9,9 +9,9 @@ public interface ProductDAO_interface {
 
 	public void update(ProductVO productVO);
 
-	public void delete(String pro_no);
+	public void delete(Integer pro_no);
 
-	public ProductVO findByPrimaryKey(String pro_no);
+	public ProductVO findByPrimaryKey(Integer pro_no);
 
 	public List<ProductVO> getAll();
 	
@@ -19,6 +19,6 @@ public interface ProductDAO_interface {
 	
 	public List<ProductVO> getAllPro_StaisZero();
 	
-	public void updatePro_Sto(String pro_no, Integer pro_sto);
+	public void updatePro_Sto(Integer pro_no, Integer pro_sto);
 
 }
