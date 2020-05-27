@@ -59,7 +59,7 @@ public class ProductDAO implements ProductDAO_interface {
 		try {
             session.beginTransaction();
             session.saveOrUpdate(productVO);
-            session.beginTransaction().commit();
+            session.getTransaction().commit();
 		} catch (RuntimeException ex) {
 			session.getTransaction().rollback();
 			throw ex;
@@ -170,8 +170,8 @@ public class ProductDAO implements ProductDAO_interface {
 	public static void main(String[] args) throws IOException {
 
 		ProductDAO dao = new ProductDAO();
-//		com.product_category.model.Product_CategoryVO product_categoryVO = new com.product_category.model.Product_CategoryVO(); // 部門POJO
-//		product_categoryVO.setCat_no(5000030);
+		com.product_category.model.Product_CategoryVO product_categoryVO = new com.product_category.model.Product_CategoryVO(); // 部門POJO
+		product_categoryVO.setCat_no(5000030);
 //        String str = getLongString("E:\\product1.txt");
 
 		//新增 
@@ -189,21 +189,21 @@ public class ProductDAO implements ProductDAO_interface {
 //		dao.insert(productVO1);
 //
 //		//修改
-//		ProductVO productVO2 = new ProductVO();
-//		productVO2.setPro_no(6000020);
-//	//	productVO2.setCat_no("PR00004");
-//	//	Product_CategoryVO product_categoryVO = new Product_CategoryVO();
-//	//	product_categoryVO.setCat_no(5000030);
-//		productVO2.setProduct_categoryVO(product_categoryVO);
-//		productVO2.setPro_nam("安安");
-//		productVO2.setPro_con("");
-//		productVO2.setPro_pri(5000);
-//		productVO2.setPro_sta("0");
-//		productVO2.setPro_sto(50);
-//		dao.update(productVO2);
+		ProductVO productVO = new ProductVO();
+		productVO.setPro_no(6000020);
+	//	productVO2.setCat_no("PR00004");
+	//	Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+	//	product_categoryVO.setCat_no(5000030);
+		productVO.setProduct_categoryVO(product_categoryVO);
+		productVO.setPro_nam("安安");
+		productVO.setPro_con("");
+		productVO.setPro_pri(5000);
+		productVO.setPro_sta("0");
+		productVO.setPro_sto(50);
+		dao.update(productVO);
 //
 //		//刪除
-		dao.delete(6000021);
+//		dao.delete(6000021);
 //
 //		//單查詢
 //		ProductVO productVO3 = dao.findByPrimaryKey("PT00020");
