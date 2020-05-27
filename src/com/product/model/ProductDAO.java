@@ -74,7 +74,7 @@ public class ProductDAO implements ProductDAO_interface {
 		try {
             session.beginTransaction();
 
-            Query<ProductVO> query = session.createQuery("delete ProductVO where pro_no=?0",ProductVO.class);
+            Query<ProductVO> query = session.createQuery("delete ProductVO where pro_no=?0");
             query.setParameter(0, pro_no);
             System.out.println("刪除的比數=" + query.executeUpdate());
             
@@ -170,36 +170,40 @@ public class ProductDAO implements ProductDAO_interface {
 	public static void main(String[] args) throws IOException {
 
 		ProductDAO dao = new ProductDAO();
-		
+//		com.product_category.model.Product_CategoryVO product_categoryVO = new com.product_category.model.Product_CategoryVO(); // 部門POJO
+//		product_categoryVO.setCat_no(5000030);
 //        String str = getLongString("E:\\product1.txt");
 
 		//新增 
-		ProductVO productVO1 = new ProductVO();
-		productVO1.setPro_nam("啞鈴");
-	//	productVO1.setCat_no("PR00001");
-		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
-		product_categoryVO.setCat_no(5000020);
-		productVO1.setProduct_categoryVO(product_categoryVO);
-		productVO1.setPro_con("");
-		productVO1.setPro_pri(10000);
-		productVO1.setPro_sta("0");
-		productVO1.setPro_sto(111);
-		
-		dao.insert(productVO1);
+//		ProductVO productVO1 = new ProductVO();
+//	//	productVO1.setPro_no(6000021);
+//		productVO1.setPro_nam("啞鈴");
+//	//	productVO1.setCat_no("PR00001");
+//	//	Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+//	//	product_categoryVO.setCat_no(5000020);
+//		productVO1.setProduct_categoryVO(product_categoryVO);
+//		productVO1.setPro_con("");
+//		productVO1.setPro_pri(10000);
+//		productVO1.setPro_sta("0");
+//		productVO1.setPro_sto(11);	
+//		dao.insert(productVO1);
 //
 //		//修改
 //		ProductVO productVO2 = new ProductVO();
-//		productVO2.setPro_no("PT00020");
-//		productVO2.setCat_no("PR00004");
-//		productVO2.setPro_nam("�j��3");
-//		productVO2.setPro_con("D:\\product1.txt");
+//		productVO2.setPro_no(6000020);
+//	//	productVO2.setCat_no("PR00004");
+//	//	Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+//	//	product_categoryVO.setCat_no(5000030);
+//		productVO2.setProduct_categoryVO(product_categoryVO);
+//		productVO2.setPro_nam("安安");
+//		productVO2.setPro_con("");
 //		productVO2.setPro_pri(5000);
 //		productVO2.setPro_sta("0");
-//		productVO2.setPro_sto(111);
+//		productVO2.setPro_sto(50);
 //		dao.update(productVO2);
 //
 //		//刪除
-//		dao.delete("PT00020");
+		dao.delete(6000021);
 //
 //		//單查詢
 //		ProductVO productVO3 = dao.findByPrimaryKey("PT00020");
