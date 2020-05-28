@@ -7,9 +7,9 @@ public interface Product_ImageDAO_interface {
 
 	public void update(Product_ImageVO product_ImageVO);
 
-	public void delete(String pro_img_no);
+	public void delete(Integer pro_img_no);
 
-	public Product_ImageVO findByPrimaryKey(String pro_img_no);
+	public Product_ImageVO findByPrimaryKey(Integer pro_img_no);
 
 	public List<Product_ImageVO> getAll();
 }

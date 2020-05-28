@@ -1,6 +1,10 @@
 package com.product.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.product_category.model.Product_CategoryVO;
+import com.product_image.model.Product_ImageVO;
 
 public class ProductVO implements java.io.Serializable {
 
@@ -12,6 +16,7 @@ public class ProductVO implements java.io.Serializable {
 	private String pro_sta;
 	private Integer pro_sto;
 	private Product_CategoryVO product_categoryVO;
+	private Set<Product_ImageVO> product_images = new HashSet<Product_ImageVO>();
 	
 	public ProductVO(){
 		
@@ -84,6 +89,14 @@ public class ProductVO implements java.io.Serializable {
 		this.product_categoryVO = product_categoryVO;
 	}
 
+	public Set<Product_ImageVO> getProduct_images() {
+		return product_images;
+	}
+
+	public void setProduct_images(Set<Product_ImageVO> product_images) {
+		this.product_images = product_images;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

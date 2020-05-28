@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import com.product.model.ProductVO;
 import com.product_image.model.Product_ImageService;
 import com.product_image.model.Product_ImageVO;
 
@@ -51,9 +52,9 @@ public class Product_ImageServlet extends HttpServlet {
 						return;// 程式中斷
 					}
 
-					String pro_img_no = null;
+					Integer pro_img_no = null;
 					try {
-						pro_img_no = new String(str);
+						pro_img_no = new Integer(str);
 					} catch (Exception e) {
 						errorMsgs.add("商品圖片編號格式不正確");
 					}
@@ -100,7 +101,7 @@ public class Product_ImageServlet extends HttpServlet {
                    
 				try {
 					/*************************** 1.接收請求參數 ****************************************/
-					String pro_img_no = new String(req.getParameter("pro_img_no"));
+					Integer  pro_img_no = new Integer(req.getParameter("pro_img_no"));
 					
 					/*************************** 2.開始查詢資料 ****************************************/
 					Product_ImageService product_imageSvc = new Product_ImageService();
@@ -129,12 +130,14 @@ public class Product_ImageServlet extends HttpServlet {
 
 				try {
 					/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				    String pro_img_no = new String(req.getParameter("pro_img_no").trim());
+					Integer pro_img_no = new Integer(req.getParameter("pro_img_no").trim());
 
-				    String pro_no = req.getParameter("pro_no").trim();
-				    if (pro_no == null || pro_no.trim().length() == 0) {
-				     	errorMsgs.add("商品編號請勿空白");
-				    }
+					Integer pro_no = null;
+					try{
+						pro_no = new Integer(req.getParameter("pro_no").trim());				
+					} catch(NumberFormatException e) {
+						errorMsgs.add("商品編號請勿空白");
+					}
 
 				    String img_nam = req.getParameter("img_nam");
 				    if (img_nam == null || img_nam.trim().length() == 0) {
@@ -154,7 +157,9 @@ public class Product_ImageServlet extends HttpServlet {
 					
 					Product_ImageVO product_imageVO = new Product_ImageVO();
 					product_imageVO.setPro_img_no(pro_img_no);
-					product_imageVO.setPro_no(pro_no);
+					ProductVO productVO = new ProductVO();
+					productVO.setPro_no(pro_no);
+					product_imageVO.setProductVO(productVO);
 					product_imageVO.setImg_nam(img_nam);
 					product_imageVO.setImg(img);
 				
@@ -196,10 +201,12 @@ public class Product_ImageServlet extends HttpServlet {
 
 				try {
 					/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-					String pro_no = req.getParameter("pro_no");
 					
-					if (pro_no == null || pro_no.trim().length() == 0) {
-						errorMsgs.add("商品名稱: 請勿空白");
+					Integer pro_no = null;
+					try {
+						pro_no = new Integer(req.getParameter("pro_no").trim());
+					} catch (NumberFormatException e) {
+						errorMsgs.add("商品編號: 請勿空白");
 					}
         
 					String img_nam = req.getParameter("img_nam").trim();
@@ -219,9 +226,11 @@ public class Product_ImageServlet extends HttpServlet {
 					}
 	
 					Product_ImageVO product_imageVO = new Product_ImageVO();
-					product_imageVO.setPro_no(pro_no);
 					product_imageVO.setImg_nam(img_nam);
 					product_imageVO.setImg(img);
+					ProductVO productVO = new ProductVO();
+					productVO.setPro_no(pro_no);
+					product_imageVO.setProductVO(productVO);
 					
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
@@ -260,7 +269,7 @@ public class Product_ImageServlet extends HttpServlet {
 
 				try {
 					/*************************** 1.接收請求參數 ***************************************/
-					String pro_img_no = new String(req.getParameter("pro_img_no").trim());
+					Integer pro_img_no = new Integer(req.getParameter("pro_img_no").trim());
 
 					/*************************** 2.開始刪除資料 ***************************************/
 					Product_ImageService productSvc = new Product_ImageService();

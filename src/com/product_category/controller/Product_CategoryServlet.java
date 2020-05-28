@@ -100,7 +100,7 @@ public class Product_CategoryServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
-				String cat_no = new String(req.getParameter("cat_no"));
+				Integer cat_no = new Integer(req.getParameter("cat_no"));
 
 				/*************************** 2.開始查詢資料 ****************************************/
 				Product_CategoryService product_categorySvc = new Product_CategoryService();
@@ -128,7 +128,7 @@ public class Product_CategoryServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String cat_no = new String(req.getParameter("cat_no"));
+				Integer cat_no = new Integer(req.getParameter("cat_no"));
 				
 				String cat_nam = req.getParameter("cat_nam");
 				if (cat_nam == null || cat_nam.trim().length() == 0) {
@@ -214,7 +214,7 @@ public class Product_CategoryServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 ***************************************/
-				String cat_no = req.getParameter("cat_no");
+				Integer cat_no = new Integer(req.getParameter("cat_no"));
 
 				/*************************** 2.開始刪除資料 ***************************************/
 				Product_CategoryService product_categorySvc = new Product_CategoryService();

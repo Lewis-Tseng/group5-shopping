@@ -3,6 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
+
     <class name="com.product.model.ProductVO" table="product">
     
         <id name="pro_no" column="pro_no">
@@ -20,8 +21,16 @@
         <many-to-one name="product_categoryVO" class="com.product_category.model.Product_CategoryVO" lazy="false">
             <column name="cat_no"/>
         </many-to-one>
-
-    
+        
+        <set name="product_images" table="product_image" lazy="false"
+             cascade="none" inverse="true" order-by="pro_img_no asc">
+             <key>
+                 <column name="pro_no"/>
+             </key>
+             <one-to-many class="com.product_image.model.Product_ImageVO"/>
+        </set>
+         
+        
     </class>
 
 </hibernate-mapping>

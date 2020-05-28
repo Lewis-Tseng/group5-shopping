@@ -76,7 +76,7 @@ public class ProductDAO implements ProductDAO_interface {
 
             Query<ProductVO> query = session.createQuery("delete ProductVO where pro_no=?0");
             query.setParameter(0, pro_no);
-            System.out.println("刪除的比數=" + query.executeUpdate());
+            System.out.println("刪除的筆數=" + query.executeUpdate());
             
             session.getTransaction().commit();
 		} catch (RuntimeException ex) {

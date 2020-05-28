@@ -2,6 +2,8 @@ package com.product_image.model;
 
 import java.util.List;
 
+import com.product.model.ProductVO;
+
 public class Product_ImageService {
 
 	private Product_ImageDAO_interface dao;
@@ -21,46 +23,52 @@ public class Product_ImageService {
 		return product_imageVO;
 	}
 	
-	public Product_ImageVO addProduct_Image(String pro_no, byte[] img, String img_nam) {
+	public Product_ImageVO addProduct_Image(Integer pro_no, byte[] img, String img_nam) {
 
 		Product_ImageVO product_imageVO = new Product_ImageVO();
 
-		product_imageVO.setPro_no(pro_no);
 		product_imageVO.setImg(img);
 		product_imageVO.setImg_nam(img_nam);
+		ProductVO productVO = new ProductVO();
+		productVO.setPro_no(pro_no);
+		product_imageVO.setProductVO(productVO);
 		dao.insert(product_imageVO);
 
 		return product_imageVO;
 	}
 	
-	public Product_ImageVO updateProduct_Image(String pro_no) {
+	public Product_ImageVO updateProduct_Image(Integer pro_no) {
 
 		Product_ImageVO product_imageVO = new Product_ImageVO();
 		
-		product_imageVO.setPro_no(pro_no);
+		ProductVO productVO = new ProductVO();
+		productVO.setPro_no(pro_no);
+		product_imageVO.setProductVO(productVO);
 		dao.update(product_imageVO);
 
 		return product_imageVO;
 	}
 
-	public Product_ImageVO updateProduct_Image(String pro_img_no, String pro_no, byte[] img, String img_nam) {
+	public Product_ImageVO updateProduct_Image(Integer pro_img_no, Integer pro_no, byte[] img, String img_nam) {
 
 		Product_ImageVO product_imageVO = new Product_ImageVO();
 
 		product_imageVO.setPro_img_no(pro_img_no);
-		product_imageVO.setPro_no(pro_no);
 		product_imageVO.setImg(img);
 		product_imageVO.setImg_nam(img_nam);
+		ProductVO productVO = new ProductVO();
+		productVO.setPro_no(pro_no);
+		product_imageVO.setProductVO(productVO);
 		dao.update(product_imageVO);
 
 		return product_imageVO;
 	}
 
-	public void deleteProduct_Image(String pro_img_no) {
+	public void deleteProduct_Image(Integer pro_img_no) {
 		dao.delete(pro_img_no);
 	}
 	
-	public Product_ImageVO getOneProduct_Image(String pro_img_no) {
+	public Product_ImageVO getOneProduct_Image(Integer pro_img_no) {
 		return dao.findByPrimaryKey(pro_img_no);
 	}
 

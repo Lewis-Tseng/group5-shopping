@@ -29,7 +29,7 @@ public class Product_CategoryService {
 		return product_categoryVO;
 	}
 	
-	public Product_CategoryVO updateProduct_Category(String cat_no, String cat_nam) {
+	public Product_CategoryVO updateProduct_Category(Integer cat_no, String cat_nam) {
 		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
 
 		product_categoryVO.setCat_no(cat_no);
@@ -39,11 +39,11 @@ public class Product_CategoryService {
 		return product_categoryVO;
 	}
 
-	public void deleteProduct_Category(String cat_no) {
+	public void deleteProduct_Category(Integer cat_no) {
 		dao.delete(cat_no);
 	}
 
-	public Product_CategoryVO getOneProduct_Category(String cat_no) {
+	public Product_CategoryVO getOneProduct_Category(Integer cat_no) {
 		return dao.findByPrimaryKey(cat_no);
 	}
 

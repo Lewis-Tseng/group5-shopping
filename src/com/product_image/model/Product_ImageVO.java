@@ -1,25 +1,20 @@
 package com.product_image.model;
 
-public class Product_ImageVO {
-	private String pro_img_no;
-	private String pro_no;
+import com.product.model.ProductVO;
+
+public class Product_ImageVO implements java.io.Serializable {
+	
+	private Integer pro_img_no;
 	private byte[] img;
 	private String img_nam;
-
-	public String getPro_img_no() {
+	private ProductVO productVO;
+	
+	public Integer getPro_img_no() {
 		return pro_img_no;
 	}
 
-	public void setPro_img_no(String pro_img_no) {
+	public void setPro_img_no(Integer pro_img_no) {
 		this.pro_img_no = pro_img_no;
-	}
-
-	public String getPro_no() {
-		return pro_no;
-	}
-
-	public void setPro_no(String pro_no) {
-		this.pro_no = pro_no;
 	}
 
 	public byte[] getImg() {
@@ -36,6 +31,14 @@ public class Product_ImageVO {
 
 	public void setImg_nam(String img_nam) {
 		this.img_nam = img_nam;
+	}
+	
+	public ProductVO getProductVO() {
+		return productVO;
+	}
+
+	public void setProductVO(ProductVO productVO) {
+		this.productVO = productVO;
 	}
 	
 }

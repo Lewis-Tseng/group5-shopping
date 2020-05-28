@@ -37,7 +37,8 @@
         <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
     
         <mapping resource="com/product/model/product.hbm.xml"/>
-        <mapping resource="com/product_category/model/product_category.hbm.xml"/>  
+        <mapping resource="com/product_category/model/product_category.hbm.xml"/>
+        <mapping resource="com/product_image/model/product_image.hbm.xml"/>  
     
     </session-factory>
 
