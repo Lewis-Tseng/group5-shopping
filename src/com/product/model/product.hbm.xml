@@ -30,6 +30,13 @@
              <one-to-many class="com.product_image.model.Product_ImageVO"/>
         </set>
          
+         <set name="order_detailss" table="order_details" lazy="false"
+              cascade="none" inverse="true" order-by="pro_no asc">
+              <key>
+                  <column name="pro_no"/>
+              </key> 
+              <one-to-many class="com.order_details.model.Order_DetailsVO"/>
+          </set>
         
     </class>
 

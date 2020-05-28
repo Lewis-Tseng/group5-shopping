@@ -3,6 +3,7 @@ package com.product.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.order_details.model.Order_DetailsVO;
 import com.product_category.model.Product_CategoryVO;
 import com.product_image.model.Product_ImageVO;
 
@@ -17,6 +18,7 @@ public class ProductVO implements java.io.Serializable {
 	private Integer pro_sto;
 	private Product_CategoryVO product_categoryVO;
 	private Set<Product_ImageVO> product_images = new HashSet<Product_ImageVO>();
+	private Set<Order_DetailsVO> order_detailss = new HashSet<Order_DetailsVO>();
 	
 	public ProductVO(){
 		
@@ -97,6 +99,14 @@ public class ProductVO implements java.io.Serializable {
 		this.product_images = product_images;
 	}
 	
+	public Set<Order_DetailsVO> getOrder_detailss() {
+		return order_detailss;
+	}
+
+	public void setOrder_detailss(Set<Order_DetailsVO> order_detailss) {
+		this.order_detailss = order_detailss;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -120,7 +130,7 @@ public class ProductVO implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "ProductVO [pro_no=" + pro_no + ", cat_no=" + product_categoryVO + ", pro_nam=" + pro_nam + ", pro_con=" + pro_con +
+		return "ProductVO [pro_no=" + pro_no + ", cat_no=" + product_categoryVO.getCat_no() + ", pro_nam=" + pro_nam + ", pro_con=" + pro_con +
 				", pro_pri=" + pro_pri + ", pro_sta=" + pro_sta + ", pro_sto=" + pro_sto + "]";
 	}
 

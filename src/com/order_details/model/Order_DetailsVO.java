@@ -1,28 +1,31 @@
 package com.order_details.model;
 
+import com.product.model.ProductVO;
+import com.product_order.model.Product_OrderVO;
+
 public class Order_DetailsVO implements java.io.Serializable{
 
-	private String ord_no;
-	private String pro_no;
+	private Product_OrderVO product_orderVO;
+	private ProductVO productVO;
 	private Integer quantity;
 	private Integer uni_pri;
 
-	public String getOrd_no() {
-		return ord_no;
+	public Product_OrderVO getProduct_orderVO() {
+		return product_orderVO;
 	}
 
-	public void setOrd_no(String ord_no) {
-		this.ord_no = ord_no;
+	public void setProduct_orderVO(Product_OrderVO product_orderVO) {
+		this.product_orderVO = product_orderVO;
 	}
 
-	public String getPro_no() {
-		return pro_no;
+	public ProductVO getProductVO() {
+		return productVO;
 	}
 
-	public void setPro_no(String pro_no) {
-		this.pro_no = pro_no;
+	public void setProductVO(ProductVO productVO) {
+		this.productVO = productVO;
 	}
-
+	
 	public Integer getQuantity() {
 		return quantity;
 	}
@@ -38,10 +41,12 @@ public class Order_DetailsVO implements java.io.Serializable{
 	public void setUni_pri(Integer uni_pri) {
 		this.uni_pri = uni_pri;
 	}
+	
+
 
 	@Override
 	public String toString() {
-		return "[訂單明細= 訂單編號:" + ord_no + ", 商品編號:" + pro_no + ", 單項商品總數量:" + quantity + 
+		return "[訂單明細= 訂單編號:" + product_orderVO.getOrd_no() + ", 商品編號:" + productVO.getPro_no() + ", 單項商品總數量:" + quantity + 
 				", 單項商品價格:" + uni_pri + "]";
 	}
 	
