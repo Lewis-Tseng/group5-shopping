@@ -13,189 +13,83 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class Product_CateGoryDAO implements Product_CategoryDAO_interface{
-	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA103G5");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private static final String INSERT_STMT =
-			"INSERT INTO product_category (cat_no, cat_nam) VALUES ('PR'||LPAD(to_char(product_seq.NEXTVAL), 5, '0'), ?)";
-	private static final String GET_ALL_STMT =
-			"SELECT cat_no, cat_nam FROM product_category order by cat_no";
-	private static final String GET_ONE_STMT =
-			"SELECT cat_no, cat_nam FROM product_category where cat_no = ?";
-	private static final String DELETE =
-			"DELETE FROM product_category where cat_no = ?";
-	private static final String UPDATE =
-			"UPDATE product_category set cat_nam=? where cat_no = ?";
+import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
+import org.hibernate.Session;
+import hibernate.util.HibernateUtil;
+
+public class Product_CategoryDAO implements Product_CategoryDAO_interface{
+
+	private static final String GET_ALL_STMT = "from Product_CategoryVO order by cat_no";
 	
 	
 	@Override
-	public void insert(Product_CategoryVO product_CategoryVO) {
+	public void insert(Product_CategoryVO product_categoryVO) {
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		try {
-			
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
-
-			pstmt.setString(1, product_CategoryVO.getCat_nam());
-
-			pstmt.executeUpdate();
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}	
+			session.beginTransaction();
+			session.saveOrUpdate(product_categoryVO);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 	}
 	
 	
 	@Override
-	public void update(Product_CategoryVO product_CategoryVO) {
+	public void update(Product_CategoryVO product_categoryVO) {
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		try {
-			
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE);
-
-			pstmt.setString(1, product_CategoryVO.getCat_nam());
-			pstmt.setString(2, product_CategoryVO.getCat_no());
-			
-			pstmt.executeUpdate();
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}	
+			session.beginTransaction();
+			session.saveOrUpdate(product_categoryVO);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 	}
 	
 	
 	
 	@Override
-	public void delete(String cat_no) {
+	public void delete(Integer cat_no) {
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(DELETE);
-
-			pstmt.setString(1, cat_no);
-
-			pstmt.executeUpdate();
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+            session.beginTransaction();
+            
+            Query<Product_CategoryVO> query = session.createQuery("delete Product_CategoryVO where cat_no=?0");
+		    query.setParameter(0, cat_no);
+		    System.out.println("刪除的筆數=" + query.executeUpdate());
+            
+		    session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 	}
 	
 	
 	@Override
-	public Product_CategoryVO findByPrimaryKey(String cat_no) {
+	public Product_CategoryVO findByPrimaryKey(Integer cat_no) {
 
 		Product_CategoryVO product_categoryVO = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
 		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ONE_STMT);
-
-			pstmt.setString(1, cat_no);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-
-				product_categoryVO = new Product_CategoryVO();
-				product_categoryVO.setCat_no(rs.getString("cat_no"));
-				product_categoryVO.setCat_nam(rs.getString("cat_nam"));
-
-			}
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+            session.beginTransaction();
+            product_categoryVO = (Product_CategoryVO) session.get(Product_CategoryVO.class, cat_no);
+			session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 		return product_categoryVO;
 	}
 	
@@ -204,52 +98,17 @@ public class Product_CateGoryDAO implements Product_CategoryDAO_interface{
 	public List<Product_CategoryVO> getAll() {
 		
 		List<Product_CategoryVO> list = new ArrayList<Product_CategoryVO>();
-		Product_CategoryVO product_categoryVO = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-
-				product_categoryVO = new Product_CategoryVO();
-				product_categoryVO.setCat_no(rs.getString("cat_no"));
-				product_categoryVO.setCat_nam(rs.getString("cat_nam"));
-				list.add(product_categoryVO);
-
-			}
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+            session.beginTransaction();    
+            Query<Product_CategoryVO> query = session.createQuery(GET_ALL_STMT, Product_CategoryVO.class);
+		    list = query.getResultList();		    
+		    session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 		return list;
 	}
 	
@@ -257,20 +116,21 @@ public class Product_CateGoryDAO implements Product_CategoryDAO_interface{
 	
 	public static void main(String[] args) {
 //
-//		Product_CateGoryDAO dao = new Product_CateGoryDAO();
+//		Product_CategoryDAO dao = new Product_CategoryDAO();
 //		//新增
 //		Product_CategoryVO product_CategoryVO1 = new Product_CategoryVO();
-//		product_CategoryVO1.setCat_nam("手杖");
+//		product_CategoryVO1.setCat_nam("露營");
 //		dao.insert(product_CategoryVO1);
+		
 		//修改
 //		Product_CategoryVO product_CategoryVO2 = new Product_CategoryVO();
-//		product_CategoryVO2.setCat_no("PR00050");
+//		product_CategoryVO2.setCat_no(5000050);
 //		product_CategoryVO2.setCat_nam("測試");
 //		dao.update(product_CategoryVO2);
 //		//刪除
-//		dao.delete("PR00025");
+//		dao.delete(5000070);
 //		//單查詢
-//		Product_CategoryVO product_CategoryVO3 = dao.findByPrimaryKey("PR00004");
+//		Product_CategoryVO product_CategoryVO3 = dao.findByPrimaryKey(5000020);
 //		System.out.println(product_CategoryVO3.getCat_no() + ",");
 //		System.out.println(product_CategoryVO3.getCat_nam() + ",");
 //		System.out.println("----------------------------");

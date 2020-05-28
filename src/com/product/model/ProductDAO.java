@@ -189,18 +189,18 @@ public class ProductDAO implements ProductDAO_interface {
 //		dao.insert(productVO1);
 //
 //		//修改
-		ProductVO productVO = new ProductVO();
-		productVO.setPro_no(6000020);
-	//	productVO2.setCat_no("PR00004");
-	//	Product_CategoryVO product_categoryVO = new Product_CategoryVO();
-	//	product_categoryVO.setCat_no(5000030);
-		productVO.setProduct_categoryVO(product_categoryVO);
-		productVO.setPro_nam("安安");
-		productVO.setPro_con("");
-		productVO.setPro_pri(5000);
-		productVO.setPro_sta("0");
-		productVO.setPro_sto(50);
-		dao.update(productVO);
+//		ProductVO productVO = new ProductVO();
+//		productVO.setPro_no(6000020);
+//	//	productVO2.setCat_no("PR00004");
+//	//	Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+//	//	product_categoryVO.setCat_no(5000030);
+//		productVO.setProduct_categoryVO(product_categoryVO);
+//		productVO.setPro_nam("安安");
+//		productVO.setPro_con("");
+//		productVO.setPro_pri(5000);
+//		productVO.setPro_sta("0");
+//		productVO.setPro_sto(50);
+//		dao.update(productVO);
 //
 //		//刪除
 //		dao.delete(6000021);
