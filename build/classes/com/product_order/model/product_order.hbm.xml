@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.product_order.model.Product_OrderVO" table="product_order">
+        
+        <id name="ord_no" column="ord_no">
+            <generator class="sequence">
+                <param name="sequence_name">product_order_seq</param>
+            </generator>       
+        </id>
+    
+        <property name="mem_id" column="mem_id"/>
+        <property name="ord_dat" column="ord_dat"/>
+        <property name="ord_amo" column="ord_amo"/>
+        <property name="pro_qua" column="pro_qua"/>
+        <property name="ord_sta" column="ord_sta"/>
+        <property name="pay_met" column="pay_met"/>
+        <property name="del_add" column="del_add"/>
+    
+        <set name="order_detailss" table="order_details" lazy="false"
+              cascade="none" inverse="true" order-by="ord_no asc">
+              <key>
+                  <column name="ord_no"/>
+              </key> 
+              <one-to-many class="com.order_details.model.Order_DetailsVO"/>
+         </set>
+
+    </class>
+
+</hibernate-mapping>

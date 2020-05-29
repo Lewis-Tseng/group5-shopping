@@ -36,9 +36,12 @@
         <!-- 目前因為是使用c3p0連線池，才需要加入此設定 -->
         <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
     
-        <mapping resource="com/product/model/product.hbm.xml"/>
         <mapping resource="com/product_category/model/product_category.hbm.xml"/>
+        <mapping resource="com/product/model/product.hbm.xml"/>
         <mapping resource="com/product_image/model/product_image.hbm.xml"/>  
+        <mapping resource="com/product_order/model/product_order.hbm.xml"/>
+        <mapping resource="com/order_details/model/order_details.hbm.xml"/>
+        
     
     </session-factory>
 

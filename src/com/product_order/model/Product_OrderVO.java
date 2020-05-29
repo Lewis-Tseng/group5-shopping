@@ -1,10 +1,14 @@
 package com.product_order.model;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.order_details.model.Order_DetailsVO;
 
 public class Product_OrderVO  implements java.io.Serializable{
 
-	private String ord_no;
+	private Integer ord_no;
 	private String mem_id;
 	private Date ord_dat;
 	private Integer ord_amo;
@@ -12,13 +16,13 @@ public class Product_OrderVO  implements java.io.Serializable{
 	private String ord_sta;
 	private String pay_met;
 	private String del_add;
+	private Set<Order_DetailsVO> order_detailss = new HashSet<Order_DetailsVO>();
 	
-
-	public String getOrd_no() {
+	public Integer getOrd_no() {
 		return ord_no;
 	}
 
-	public void setOrd_no(String ord_no) {
+	public void setOrd_no(Integer ord_no) {
 		this.ord_no = ord_no;
 	}
 
@@ -78,4 +82,12 @@ public class Product_OrderVO  implements java.io.Serializable{
 		this.del_add = del_add;
 	}
 
+	public Set<Order_DetailsVO> getOrder_detailss() {
+		return order_detailss;
+	}
+
+	public void setOrder_detailss(Set<Order_DetailsVO> order_detailss) {
+		this.order_detailss = order_detailss;
+	}
+	
 }

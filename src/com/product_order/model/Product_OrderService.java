@@ -30,7 +30,7 @@ public class Product_OrderService {
 
 	}
 
-	public Product_OrderVO updateProduct_Order(String ord_no, String mem_id, java.sql.Date ord_dat, Integer ord_amo,
+	public Product_OrderVO updateProduct_Order(Integer ord_no, String mem_id, java.sql.Date ord_dat, Integer ord_amo,
 			Integer pro_qua, String ord_sta, String pay_met, String del_add) {
 
 		Product_OrderVO product_OrderVO = new Product_OrderVO();
@@ -48,11 +48,11 @@ public class Product_OrderService {
 		return product_OrderVO;
 	}
 
-	public void deleteProduct_Order(String ord_no) {
+	public void deleteProduct_Order(Integer ord_no) {
 		dao.delete(ord_no);
 	}
 
-	public Product_OrderVO getOneProduct_Order(String ord_no) {
+	public Product_OrderVO getOneProduct_Order(Integer ord_no) {
 		return dao.findByPrimaryKey(ord_no);
 	}
 
@@ -61,7 +61,7 @@ public class Product_OrderService {
 	}
 
 	public List<Product_OrderVO> getAll(Map<String, String[]> map) {
-		return dao.getAll(map);
+		return dao.getAll_CompositeQuery(map);
 	}
 
 	public void insertShopping_Order(Product_OrderVO product_OrderVO, List<Order_DetailsVO> list) {
