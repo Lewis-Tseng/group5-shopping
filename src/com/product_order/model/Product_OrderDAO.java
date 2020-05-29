@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -227,9 +229,30 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 	public static void main(String[] args) {
 
 		Product_OrderDAO dao = new Product_OrderDAO();
-	    //mem_id, ord_dat, ord_amo, ord_qua, ord_sta, pay_met, del_add, phone
+		Order_DetailsVO order_detailsVO1 = new Order_DetailsVO();
+		Order_DetailsVO order_detailsVO2 = new Order_DetailsVO();
+		ProductVO productVO1 = new ProductVO();
+		ProductVO productVO2 = new ProductVO();
+		Set<Order_DetailsVO> set = new LinkedHashSet<Order_DetailsVO>();
+		
+//	    //mem_id, ord_dat, ord_amo, ord_qua, ord_sta, pay_met, del_add, phone
 		//新增
 		Product_OrderVO product_orderVO1 = new Product_OrderVO();
+		
+		order_detailsVO1.setQuantity(70);
+		order_detailsVO1.setUni_pri(5000);
+		productVO1.setPro_no(6000010);
+		order_detailsVO1.setProductVO(productVO1);
+		
+		order_detailsVO2.setQuantity(60);
+		order_detailsVO2.setUni_pri(4000);
+		productVO2.setPro_no(6000002);
+		order_detailsVO2.setProductVO(productVO2);
+		
+		set.add(order_detailsVO1);
+		set.add(order_detailsVO2);
+		
+		product_orderVO1.setOrder_detailss(set);
 		product_orderVO1.setMem_id("ME00001");
 		product_orderVO1.setOrd_dat(java.sql.Date.valueOf("2019-03-12"));
 		product_orderVO1.setOrd_amo(new Integer(40000));
@@ -239,23 +262,23 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 		product_orderVO1.setDel_add("台北市");
 		dao.insert(product_orderVO1);
 
-//		//�ק�
+//		//修改
 //		Product_OrderVO product_orderVO2 = new Product_OrderVO();
-//		product_orderVO2.setOrd_no("PO00001");
+//		product_orderVO2.setOrd_no(8000011);
 //		product_orderVO2.setMem_id("ME00001");
 //		product_orderVO2.setOrd_dat(java.sql.Date.valueOf("2019-03-03"));
 //		product_orderVO2.setOrd_amo(new Integer(40000));
 //		product_orderVO2.setPro_qua(new Integer(30));
 //		product_orderVO2.setOrd_sta("0");
-//		product_orderVO2.setPay_met("�H�Υd");
-//		product_orderVO2.setDel_add("�x�_���H�q��999��");
+//		product_orderVO2.setPay_met("555");
+//		product_orderVO2.setDel_add("777");
 //		dao.update(product_orderVO2);
 
-	// �R��
-//		dao.delete("PO00003");
-	// ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add
-	// �浧�d��
-//		Product_OrderVO product_orderVO3 = dao.findByPrimaryKey("PO00009");
+	    //刪除
+//		dao.delete(8000011);
+//	    //ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add
+//	    //單查詢
+//		Product_OrderVO product_orderVO3 = dao.findByPrimaryKey(8000010);
 //		System.out.print(product_orderVO3.getOrd_no() + ",");
 //		System.out.print(product_orderVO3.getMem_id() + ",");
 //		System.out.print(product_orderVO3.getOrd_dat() + ",");
@@ -265,8 +288,15 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 //		System.out.print(product_orderVO3.getPay_met() + ",");
 //		System.out.print(product_orderVO3.getDel_add() + ",");
 //		System.out.println("---------------------");
+//		set = product_orderVO3.getOrder_detailss();
+//		for(Order_DetailsVO ods : set) {
+//			System.out.println(ods.getQuantity() + ",");
+//			System.out.println(ods.getUni_pri() + ",");
+//		}
 //		
-	// �d�ߥ���
+		
+//		
+	    //查詢全部
 //		List<Product_OrderVO> list = dao.getAll();
 //		for (Product_OrderVO aProduct_Order : list) {
 //			System.out.println(aProduct_Order.getOrd_no());
@@ -277,8 +307,13 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 //			System.out.print(aProduct_Order.getOrd_sta() + ",");
 //			System.out.print(aProduct_Order.getPay_met() + ",");
 //			System.out.print(aProduct_Order.getDel_add() + ",");
+//			set = aProduct_Order.getOrder_detailss();
+//			for(Order_DetailsVO ods : set) {
+//				System.out.println(ods.getQuantity() + ",");
+//				System.out.println(ods.getUni_pri() + ",");
+//			}
 //		}
-
+//
 	}
 
 }

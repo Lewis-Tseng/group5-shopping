@@ -42,7 +42,36 @@ public class Order_DetailsVO implements java.io.Serializable{
 		this.uni_pri = uni_pri;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((productVO == null) ? 0 : productVO.hashCode());
+		result = prime * result + ((product_orderVO == null) ? 0 : product_orderVO.hashCode());
+		return result;
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order_DetailsVO other = (Order_DetailsVO) obj;
+		if (productVO == null) {
+			if (other.productVO != null)
+				return false;
+		} else if (!productVO.equals(other.productVO))
+			return false;
+		if (product_orderVO == null) {
+			if (other.product_orderVO != null)
+				return false;
+		} else if (!product_orderVO.equals(other.product_orderVO))
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {

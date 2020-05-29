@@ -26,7 +26,7 @@ import com.product_order.model.Product_OrderVO;
 
 public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 	
-	private static final String GET_ALL_STMT = "from Order_DetailsVO where ord_no and pro_no order by ord_no";
+	private static final String GET_ALL_STMT = "from Order_DetailsVO order by ord_no";
     private static final String GET_OD_WITH_ORDER_DETAILS_STMT = "from Order_DetailsVO where ord_no=?0";
     private static final String GET_ONE_STMT = "from Order_DetailsVO where ord_no=?0 and pro_no=?1";
     
@@ -70,7 +70,7 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 		try {
             session.beginTransaction();
 
-            Query<ProductVO> query = session.createQuery("delete ProductVO where ord_no=?0 and pro_no=?1");
+            Query<ProductVO> query = session.createQuery("delete Order_DetailsVO where ord_no=?0 and pro_no=?1");
             query.setParameter(0, ord_no);
             query.setParameter(1, pro_no);
             System.out.println("刪除的筆數=" + query.executeUpdate());
@@ -84,10 +84,9 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 	}
 
 	@Override
-	public Set<Order_DetailsVO> getOrder_DetailsByOrd_no(Integer ord_no) {
+	public List<Order_DetailsVO> getOrder_DetailsByOrd_no(Integer ord_no) {
         //使用ord_no編號查訂單時，一次查詢訂單明細
-		Set<Order_DetailsVO> set = new LinkedHashSet<Order_DetailsVO>();
-		Order_DetailsVO order_detailsVO = null;
+		List<Order_DetailsVO> list = new ArrayList<Order_DetailsVO>();
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		
 		try {
@@ -95,7 +94,7 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 			
             Query<Order_DetailsVO> query = session.createQuery(GET_OD_WITH_ORDER_DETAILS_STMT, Order_DetailsVO.class);
             query.setParameter(0, ord_no);
-            set = (Set<Order_DetailsVO>) query.getResultList();
+            list = query.getResultList();
             
 			session.getTransaction().commit();
 
@@ -103,7 +102,7 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 			session.getTransaction().rollback();
 			throw ex;
 		} 
-		return set;
+		return list;
 	}
 
 	@Override
@@ -189,41 +188,50 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 		Order_DetailsDAO dao = new Order_DetailsDAO();
 		Product_OrderVO product_orderVO = new Product_OrderVO();
         ProductVO productVO = new ProductVO();
-	// 新增
-		Order_DetailsVO odVO1 = new Order_DetailsVO();
-		product_orderVO.setOrd_no(8000010);
-		odVO1.setProduct_orderVO(product_orderVO);
-		productVO.setPro_no(6000010);
-		odVO1.setProductVO(productVO);
-		odVO1.setQuantity(50);
-		odVO1.setUni_pri(1000);
-		dao.insert(odVO1);
+        Set<ProductVO> set = new LinkedHashSet<ProductVO>();
+        
+//	// 新增
+//		Order_DetailsVO odVO1 = new Order_DetailsVO();
+//		product_orderVO.setOrd_no(8000010);
+//		odVO1.setProduct_orderVO(product_orderVO);
+//		productVO.setPro_no(6000011);
+//		odVO1.setProductVO(productVO);
+//		odVO1.setQuantity(50);
+//		odVO1.setUni_pri(1000);
+//		dao.insert(odVO1);
 
+		
+		
 //		//修改
 //		Order_DetailsVO odVO2 = new Order_DetailsVO();
-//		odVO2.setOrd_no("PO00001");
-//		odVO2.setPro_no("PT00002");
+//		product_orderVO.setOrd_no(8000010);
+//		odVO2.setProduct_orderVO(product_orderVO);
+//		productVO.setPro_no(6000011);
+//		odVO2.setProductVO(productVO);
 //		odVO2.setQuantity(520);
 //		odVO2.setUni_pri(9999);
 //        dao.update(odVO2);
 
-//        //刪除
-//        dao.delete("PO00001", "PT00002");
+//      //刪除
+//      dao.delete(8000010, 6000011);
 //        
-//        //單查詢
-//        Set<Order_DetailsVO> set = dao.getOrder_DetailsByOrd_no("PO00001");
-//        for(Order_DetailsVO aODVO : set) {
+//      //單查詢
+//      List<Order_DetailsVO> list = dao.getOrder_DetailsByOrd_no(8000010);
+//        for(Order_DetailsVO aODVO : list) {
 //        	System.out.println(aODVO.getQuantity() + ",");
 //        	System.out.println(aODVO.getUni_pri() + ",");
-//        	System.out.println();	
+//        	System.out.println();
+//    		System.out.println(aODVO.getProductVO().getPro_nam()+ ",");
+//    		System.out.println(aODVO.getProductVO().getPro_con() + ",");
+//    	
 //        }
 //        
 //        
-	// 全部查詢
+//	    //全部查詢
 //        List<Order_DetailsVO> list = dao.getAll();
 //        for(Order_DetailsVO aODVO2 : list) {
-//        	System.out.println(aODVO2.getOrd_no() + ",");
-//        	System.out.println(aODVO2.getPro_no() + ",");
+//        	System.out.println(aODVO2.getProduct_orderVO().getOrd_no() + ",");
+//        	System.out.println(aODVO2.getProductVO().getPro_nam() + ",");
 //        	System.out.println(aODVO2.getQuantity() + ",");
 //        	System.out.println(aODVO2.getUni_pri() + ",");
 //        	System.out.println();
