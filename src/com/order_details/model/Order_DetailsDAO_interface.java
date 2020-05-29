@@ -11,11 +11,11 @@ public interface Order_DetailsDAO_interface {
 
 	public void update(Order_DetailsVO order_detailsVO);
 
-	public void delete(String ord_no, String pro_no);
+	public void delete(Integer ord_no, Integer pro_no);
 	
-	public Order_DetailsVO findByPrimaryKey(String ord_no, String pro_no);
+	public Order_DetailsVO findByPrimaryKey(Integer ord_no, Integer pro_no);
 
-	public Set<Order_DetailsVO> getOrder_DetailsByOrd_no(String ord_no);
+	public Set<Order_DetailsVO> getOrder_DetailsByOrd_no(Integer ord_no);
 
 	public List<Order_DetailsVO> getAll();
 	      //新增訂單(一)同時新增訂單明細(多) 

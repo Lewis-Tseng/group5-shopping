@@ -15,346 +15,172 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.hibernate.*;
+import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
+import org.hibernate.Session;
+import hibernate.util.HibernateUtil;
+
+import com.product.model.ProductVO;
 import com.product_order.model.Product_OrderVO;
 
 public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 	
-	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA103G5");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private static final String INSERT_STMT = "INSERT INTO order_details (ord_no, pro_no, quantity, uni_pri) VALUES (?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT ord_no, pro_no, quantity, uni_pri FROM order_details order by ord_no";
-	private static final String GET_ONE_STMT = "SELECT ord_no, pro_no, quantity, uni_pri FROM order_details where ord_no = ? and pro_no = ?";
-	private static final String DELETE = "DELETE FROM order_details where ord_no = ? and pro_no = ?";
-	private static final String UPDATE = "UPDATE order_details set quantity=?, uni_pri=? where ord_no = ? and pro_no = ?";
-	private static final String GET_OD_STMT = "SELECT ord_no, pro_no, quantity, uni_pri FROM order_details where ord_no = ?";
-
+	private static final String GET_ALL_STMT = "from Order_DetailsVO where ord_no and pro_no order by ord_no";
+    private static final String GET_OD_WITH_ORDER_DETAILS_STMT = "from Order_DetailsVO where ord_no=?0";
+    private static final String GET_ONE_STMT = "from Order_DetailsVO where ord_no=?0 and pro_no=?1";
+    
 	@Override
 	public void insert(Order_DetailsVO order_detailsVO) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
+	    
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
-
-			pstmt.setString(1, order_detailsVO.getOrd_no());
-			pstmt.setString(2, order_detailsVO.getPro_no());
-			pstmt.setInt(3, order_detailsVO.getQuantity());
-			pstmt.setInt(4, order_detailsVO.getUni_pri());
-
-			pstmt.executeUpdate();
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
+			session.beginTransaction();
+            session.saveOrUpdate(order_detailsVO);
+            session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+		    session.getTransaction().rollback();
+		    throw ex;
 		}
 
 	}
 
 	@Override
 	public void update(Order_DetailsVO order_detailsVO) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE);
-
-			pstmt.setInt(1, order_detailsVO.getQuantity());
-			pstmt.setInt(2, order_detailsVO.getUni_pri());
-			pstmt.setString(3, order_detailsVO.getOrd_no());
-			pstmt.setString(4, order_detailsVO.getPro_no());
-
-			pstmt.executeUpdate();
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+            session.beginTransaction();
+            session.saveOrUpdate(order_detailsVO);
+            session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 
 	}
 
 	@Override
-	public void delete(String ord_no, String pro_no) {
+	public void delete(Integer ord_no, Integer pro_no) {
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		try {
+            session.beginTransaction();
 
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(DELETE);
-
-			pstmt.setString(1, ord_no);
-			pstmt.setString(2, pro_no);
-
-			pstmt.executeUpdate();
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+            Query<ProductVO> query = session.createQuery("delete ProductVO where ord_no=?0 and pro_no=?1");
+            query.setParameter(0, ord_no);
+            query.setParameter(1, pro_no);
+            System.out.println("刪除的筆數=" + query.executeUpdate());
+            
+            session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 
 	}
 
 	@Override
-	public Set<Order_DetailsVO> getOrder_DetailsByOrd_no(String ord_no) {
-
+	public Set<Order_DetailsVO> getOrder_DetailsByOrd_no(Integer ord_no) {
+        //使用ord_no編號查訂單時，一次查詢訂單明細
 		Set<Order_DetailsVO> set = new LinkedHashSet<Order_DetailsVO>();
 		Order_DetailsVO order_detailsVO = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
 		try {
+            session.beginTransaction();
+			
+            Query<Order_DetailsVO> query = session.createQuery(GET_OD_WITH_ORDER_DETAILS_STMT, Order_DetailsVO.class);
+            query.setParameter(0, ord_no);
+            set = (Set<Order_DetailsVO>) query.getResultList();
+            
+			session.getTransaction().commit();
 
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_OD_STMT);
-			pstmt.setString(1, ord_no);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-
-				order_detailsVO = new Order_DetailsVO();
-				order_detailsVO.setOrd_no(rs.getString("ord_no"));
-				order_detailsVO.setPro_no(rs.getString("pro_no"));
-				order_detailsVO.setQuantity(rs.getInt("quantity"));
-				order_detailsVO.setUni_pri(rs.getInt("uni_pri"));
-
-				set.add(order_detailsVO);
-
-			}
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 		return set;
 	}
 
 	@Override
 	public List<Order_DetailsVO> getAll() {
+		
 		List<Order_DetailsVO> list = new ArrayList<Order_DetailsVO>();
-		Order_DetailsVO order_detailsVO = null;
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
 		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-
-				order_detailsVO = new Order_DetailsVO();
-				order_detailsVO.setOrd_no(rs.getString("ord_no"));
-				order_detailsVO.setPro_no(rs.getString("pro_no"));
-				order_detailsVO.setQuantity(rs.getInt("quantity"));
-				order_detailsVO.setUni_pri(rs.getInt("uni_pri"));
-
-				list.add(order_detailsVO);
-
-			}
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+            session.beginTransaction();
+            Query<Order_DetailsVO> query = session.createQuery(GET_ALL_STMT, Order_DetailsVO.class);
+		    list = query.getResultList();
+		    session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 		return list;
 	}
 
 	@Override
-	public Order_DetailsVO findByPrimaryKey(String ord_no, String pro_no) {
+	public Order_DetailsVO findByPrimaryKey(Integer ord_no, Integer pro_no) {
 
 		Order_DetailsVO order_detailsVO = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		
 		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ONE_STMT);
-
-			pstmt.setString(1, ord_no);
-			pstmt.setString(2, pro_no);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-
-				order_detailsVO = new Order_DetailsVO();
-				order_detailsVO.setOrd_no(rs.getString("ord_no"));
-				order_detailsVO.setPro_no(rs.getString("pro_no"));
-				order_detailsVO.setQuantity(rs.getInt("quantity"));
-				order_detailsVO.setUni_pri(rs.getInt("uni_pri"));
-
-			}
-
-			// Handle any driver errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
+			 session.beginTransaction();
+	            Query<Order_DetailsVO> query = session.createQuery(GET_ONE_STMT, Order_DetailsVO.class);
+	            query.setParameter(0, ord_no);
+	            query.setParameter(1, pro_no);
+	            order_detailsVO = query.getSingleResult();
+			    session.getTransaction().commit();
+		} catch (RuntimeException ex) {
+			session.getTransaction().rollback();
+			throw ex;
+		} 
 		return order_detailsVO;
 	}
 
 	@Override
 	public void insertCart(Order_DetailsVO order_detailsVO, Connection con) {
 
-		PreparedStatement pstmt = null;
-
-		try {
-
-			pstmt = con.prepareStatement(INSERT_STMT);
-			pstmt.setString(1, order_detailsVO.getOrd_no());
-			pstmt.setString(2, order_detailsVO.getPro_no());
-			pstmt.setInt(3, order_detailsVO.getQuantity());
-			pstmt.setInt(4, order_detailsVO.getUni_pri());
-			pstmt.executeUpdate();
-
-		} catch (SQLException se) {
-			if (con != null) {
-				try {
-					System.out.println("交易正在進行中");
-					System.out.println("rolled back由-訂單明細");
-					con.rollback();
-				} catch (SQLException excep) {
-					excep.printStackTrace(System.err);
-					throw new RuntimeException("rollback error occured. " + excep.getMessage());
-				}
-			}
-			se.printStackTrace(System.err);
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+//		PreparedStatement pstmt = null;
+//
+//		try {
+//
+//			pstmt = con.prepareStatement(INSERT_STMT);
+//			pstmt.setString(1, order_detailsVO.getOrd_no());
+//			pstmt.setString(2, order_detailsVO.getPro_no());
+//			pstmt.setInt(3, order_detailsVO.getQuantity());
+//			pstmt.setInt(4, order_detailsVO.getUni_pri());
+//			pstmt.executeUpdate();
+//
+//		} catch (SQLException se) {
+//			if (con != null) {
+//				try {
+//					System.out.println("交易正在進行中");
+//					System.out.println("rolled back由-訂單明細");
+//					con.rollback();
+//				} catch (SQLException excep) {
+//					excep.printStackTrace(System.err);
+//					throw new RuntimeException("rollback error occured. " + excep.getMessage());
+//				}
+//			}
+//			se.printStackTrace(System.err);
+//			throw new RuntimeException("A database error occured. " + se.getMessage());
+//		} finally {
+//			if (pstmt != null) {
+//				try {
+//					pstmt.close();
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}
 
 	}
 
