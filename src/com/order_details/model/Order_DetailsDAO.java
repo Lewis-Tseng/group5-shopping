@@ -186,18 +186,18 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 
 	public static void main(String[] args) {
 //
-//		Order_DetailsDAO dao = new Order_DetailsDAO();
-//		Product_OrderVO product_orderVO = new Product_OrderVO();
-//        ProductVO productVO = new ProductVO();
-//	// 新增
-//		Order_DetailsVO odVO1 = new Order_DetailsVO();
-//		product_orderVO.setOrd_no(8000010);
-//		odVO1.setProduct_orderVO(product_orderVO);
-//		productVO.setPro_no(6000010);
-//		odVO1.setProductVO(productVO);
-//		odVO1.setQuantity(50);
-//		odVO1.setUni_pri(1000);
-//		dao.insert(odVO1);
+		Order_DetailsDAO dao = new Order_DetailsDAO();
+		Product_OrderVO product_orderVO = new Product_OrderVO();
+        ProductVO productVO = new ProductVO();
+	// 新增
+		Order_DetailsVO odVO1 = new Order_DetailsVO();
+		product_orderVO.setOrd_no(8000010);
+		odVO1.setProduct_orderVO(product_orderVO);
+		productVO.setPro_no(6000010);
+		odVO1.setProductVO(productVO);
+		odVO1.setQuantity(50);
+		odVO1.setUni_pri(1000);
+		dao.insert(odVO1);
 
 //		//修改
 //		Order_DetailsVO odVO2 = new Order_DetailsVO();

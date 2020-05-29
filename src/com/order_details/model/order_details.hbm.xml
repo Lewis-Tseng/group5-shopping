@@ -17,15 +17,7 @@
     
         <property name="quantity" column="quantity"/>
         <property name="uni_pri" column="uni_pri"/>
-        
-        <many-to-one name="product_orderVO" class="com.product.model.Product_OrderVO" lazy="false">
-            <column name="ord_no"/>
-        </many-to-one>
-        
-        <many-to-one name="productVO" class="com.product.model.ProductVO" lazy="false">
-            <column name="pro_no"/>
-        </many-to-one>
-         
+      
     </class>
 
 </hibernate-mapping>
