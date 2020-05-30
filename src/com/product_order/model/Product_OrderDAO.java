@@ -29,8 +29,8 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 			e.printStackTrace();
 		}
 	}
-
-	private static final String INSERT_STMT = "INSERT INTO product_order (ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add) VALUES ('PO'||LPAD(to_char(product_seq.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?, ?)";
+                                                                                                                                                      //'PO'||LPAD(to_char(product_seq.NEXTVAL), 5, '0')          
+	private static final String INSERT_STMT = "INSERT INTO product_order (ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add) VALUES (product_order_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT ord_no, mem_id, to_char(ord_dat, 'yyyy-mm-dd') ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add FROM product_order order by ord_no";
 	private static final String GET_ONE_STMT = "SELECT ord_no, mem_id, to_char(ord_dat, 'yyyy-mm-dd') ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add FROM product_order where ord_no = ?";
 	private static final String DELETE = "DELETE FROM product_order where ord_no = ?";

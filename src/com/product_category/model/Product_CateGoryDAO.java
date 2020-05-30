@@ -13,7 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class Product_CateGoryDAO implements Product_CategoryDAO_interface{
+public class Product_CategoryDAO implements Product_CategoryDAO_interface{
 	private static DataSource ds = null;
 	static {
 		try {

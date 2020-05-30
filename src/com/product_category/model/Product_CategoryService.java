@@ -7,7 +7,7 @@ public class Product_CategoryService {
 	private Product_CategoryDAO_interface dao;
 
 	public Product_CategoryService() {
-		dao = new Product_CateGoryDAO();
+		dao = new Product_CategoryDAO();
 	}
 
 	public Product_CategoryVO addProduct_Category(String cat_nam) {
