@@ -426,7 +426,7 @@ CoaVO coaVO = (CoaVO) session.getAttribute("coaVO");
 						<div class="col-md-12 ">
 							<!--商品圖片-->
 							<c:forEach var="product_imageVO" items="${product_imageSvc.all}">
-							<c:if test="${product_imageVO.pro_no == productVO.pro_no}">
+							<c:if test="${product_imageVO.productVO.pro_no == productVO.pro_no}">
 							<img src="<%=request.getContextPath()%>/Reader_Image?pro_img_no=${product_imageVO.pro_img_no}" class="img-responsive proimg1" alt="商品圖片"/>
 							</c:if>
 							</c:forEach>
