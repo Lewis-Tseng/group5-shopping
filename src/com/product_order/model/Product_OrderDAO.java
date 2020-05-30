@@ -32,7 +32,7 @@ import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product_Order;
 public class Product_OrderDAO implements Product_OrderDAO_interface {
 	
 	private static final String GET_ALL_STMT = "from Product_OrderVO order by ord_no";
-	private static final String INSERT_STMT = "INSERT INTO product_order (ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add) VALUES ('PO'||LPAD(to_char(product_seq.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO product_order (ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add) VALUES (product_order_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 	private static DataSource ds = null;
 	static {
 		try {
@@ -163,7 +163,7 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 			con = ds.getConnection();
 			// 設定於 pstm.executeUpdate()之前
 			con.setAutoCommit(false);
-
+System.out.println("定單一");
 			String cols[] = { "ord_no" };
 			pstmt = con.prepareStatement(INSERT_STMT, cols);
 			pstmt.setString(1, product_OrderVO.getMem_id());
@@ -177,18 +177,19 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 
 			String next_ord_no = null;
 			ResultSet rs = pstmt.getGeneratedKeys();
-			//暫時改成沿用JDBC交易新增
+			////把取得的主鍵值轉成Integer
 			Integer int_next_ord_no = null;
 
 			if (rs.next()) {
 				next_ord_no = rs.getString(1);
-				int_next_ord_no = new Integer(next_ord_no);
-				System.out.println("訂單自增主鍵值= " + int_next_ord_no + "(剛新增成功的訂單編號)");
+				System.out.println("訂單自增主鍵值= " + next_ord_no + "(剛新增成功的訂單編號)");
 			} else {
 				System.out.println("未取得自增主鍵值");
 			}
+System.out.println("定單二");			
 			rs.close();
-
+			//把取得的主鍵值轉成Integer
+			int_next_ord_no = new Integer(next_ord_no);
 			// 再同時新增訂單明細
 			Order_DetailsService order_detailsSvc = new Order_DetailsService();
 			// 確認裡面內容物
@@ -198,7 +199,6 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 
 			System.out.println("list.size()-A=" + list.size());
 			for (Order_DetailsVO aOrd : list) {// 先新增外來鍵
-				//暫時改成沿用JDBC交易新增
 				Product_OrderVO product_orderVO = new Product_OrderVO();
 				product_orderVO.setOrd_no(int_next_ord_no);
 				aOrd.setProduct_orderVO(product_orderVO);;
@@ -209,7 +209,7 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 			con.commit();
 			con.setAutoCommit(true);
 			System.out.println("list.size()-B=" + list.size());
-			System.out.println("新增訂單編號" + next_ord_no + "時，共有" + list.size() + "訂單明細同時被新增");
+			System.out.println("新增訂單編號" + int_next_ord_no + "時，共有" + list.size() + "訂單明細同時被新增");
 
 		} catch (SQLException se) {
 			if (con != null) {

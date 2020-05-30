@@ -154,9 +154,7 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 
 			pstmt = con.prepareStatement(INSERT_STMT);
 			//暫時改成JDBC版本
-			Product_OrderVO product_orderVO = new Product_OrderVO();
 			pstmt.setInt(1, order_detailsVO.getProduct_orderVO().getOrd_no());
-			ProductVO productVO = new ProductVO();
 			pstmt.setInt(2, order_detailsVO.getProductVO().getPro_no());
 			pstmt.setInt(3, order_detailsVO.getQuantity());
 			pstmt.setInt(4, order_detailsVO.getUni_pri());
