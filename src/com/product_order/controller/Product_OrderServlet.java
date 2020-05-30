@@ -513,7 +513,7 @@ public class Product_OrderServlet extends HttpServlet {
 					    memVO = memSvc.getOneMem(mem_id1);
 					    //重新set新的memVO session 為了讓頁面顯示正確的點數
 					    session.setAttribute("memVO", memVO);	
-					    System.out.println(mem_point + " 點扣掉  " + ord_amo + " 點，剩餘點數="+mem_point_Deduction); 
+					    System.out.println(mem_point + " 點扣掉  " + ord_amo + " 點，剩餘點數="+ mem_point_Deduction); 
 					    System.out.println("剩餘點數" + memVO.getMem_point());
 					} else {
 						errorMsgs.add("點數不足，請先儲值");

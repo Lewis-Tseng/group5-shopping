@@ -32,6 +32,16 @@ import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product_Order;
 public class Product_OrderDAO implements Product_OrderDAO_interface {
 	
 	private static final String GET_ALL_STMT = "from Product_OrderVO order by ord_no";
+	private static final String INSERT_STMT = "INSERT INTO product_order (ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add) VALUES ('PO'||LPAD(to_char(product_seq.NEXTVAL), 5, '0'), ?, ?, ?, ?, ?, ?, ?)";
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA103G5");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Override
 	public void insert(Product_OrderVO product_orderVO) {
@@ -145,84 +155,90 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 
 	@Override
 	public void insertWithOrder_Details(Product_OrderVO product_OrderVO, List<Order_DetailsVO> list) {
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//
-//		try {
-//
-//			con = ds.getConnection();
-//			// 設定於 pstm.executeUpdate()之前
-//			con.setAutoCommit(false);
-//
-//			String cols[] = { "ord_no" };
-//			pstmt = con.prepareStatement(INSERT_STMT, cols);
-//			pstmt.setString(1, product_OrderVO.getMem_id());
-//			pstmt.setDate(2, product_OrderVO.getOrd_dat());
-//			pstmt.setInt(3, product_OrderVO.getOrd_amo());
-//			pstmt.setInt(4, product_OrderVO.getPro_qua());
-//			pstmt.setString(5, product_OrderVO.getOrd_sta());
-//			pstmt.setString(6, product_OrderVO.getPay_met());
-//			pstmt.setString(7, product_OrderVO.getDel_add());
-//			pstmt.executeUpdate();
-//
-//			String next_ord_no = null;
-//			ResultSet rs = pstmt.getGeneratedKeys();
-//
-//			if (rs.next()) {
-//				next_ord_no = rs.getString(1);
-//				System.out.println("訂單自增主鍵值= " + next_ord_no + "(剛新增成功的訂單編號)");
-//			} else {
-//				System.out.println("未取得自增主鍵值");
-//			}
-//			rs.close();
-//
-//			// 再同時新增訂單明細
-//			Order_DetailsService order_detailsSvc = new Order_DetailsService();
-//			// 確認裡面內容物
-//			for (Order_DetailsVO aOrd : list) {
-//				System.out.println(aOrd);
-//			}
-//
-//			System.out.println("list.size()-A=" + list.size());
-//			for (Order_DetailsVO aOrd : list) {// 先新增外來鍵
-//				aOrd.setOrd_no(next_ord_no);
-//				order_detailsSvc.insertProduct_Cart(aOrd, con);// 存到多方
-//			}
-//
-//			// 設定於 pstm.executeUpdate()之後
-//			con.commit();
-//			con.setAutoCommit(true);
-//			System.out.println("list.size()-B=" + list.size());
-//			System.out.println("新增訂單編號" + next_ord_no + "時，共有" + list.size() + "訂單明細同時被新增");
-//
-//		} catch (SQLException se) {
-//			if (con != null) {
-//				try {
-//					// 設定於當有exception發生時之catch區塊內
-//					System.out.println("交易正在進行中");
-//					System.out.println("rolled back由-訂單");
-//					con.rollback();
-//				} catch (SQLException excep) {
-//					throw new RuntimeException("rollback error occured." + excep.getMessage());
-//				}
-//			}
-//			throw new RuntimeException("A database error occured. " + se.getMessage());
-//		} finally {
-//			if (pstmt != null) {
-//				try {
-//					pstmt.close();
-//				} catch (SQLException se) {
-//					se.printStackTrace(System.err);
-//				}
-//			}
-//			if (con != null) {
-//				try {
-//					con.close();
-//				} catch (SQLException e) {
-//					e.printStackTrace(System.err);
-//				}
-//			}
-//		}
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			// 設定於 pstm.executeUpdate()之前
+			con.setAutoCommit(false);
+
+			String cols[] = { "ord_no" };
+			pstmt = con.prepareStatement(INSERT_STMT, cols);
+			pstmt.setString(1, product_OrderVO.getMem_id());
+			pstmt.setDate(2, product_OrderVO.getOrd_dat());
+			pstmt.setInt(3, product_OrderVO.getOrd_amo());
+			pstmt.setInt(4, product_OrderVO.getPro_qua());
+			pstmt.setString(5, product_OrderVO.getOrd_sta());
+			pstmt.setString(6, product_OrderVO.getPay_met());
+			pstmt.setString(7, product_OrderVO.getDel_add());
+			pstmt.executeUpdate();
+
+			String next_ord_no = null;
+			ResultSet rs = pstmt.getGeneratedKeys();
+			//暫時改成沿用JDBC交易新增
+			Integer int_next_ord_no = null;
+
+			if (rs.next()) {
+				next_ord_no = rs.getString(1);
+				int_next_ord_no = new Integer(next_ord_no);
+				System.out.println("訂單自增主鍵值= " + int_next_ord_no + "(剛新增成功的訂單編號)");
+			} else {
+				System.out.println("未取得自增主鍵值");
+			}
+			rs.close();
+
+			// 再同時新增訂單明細
+			Order_DetailsService order_detailsSvc = new Order_DetailsService();
+			// 確認裡面內容物
+			for (Order_DetailsVO aOrd : list) {
+				System.out.println(aOrd);
+			}
+
+			System.out.println("list.size()-A=" + list.size());
+			for (Order_DetailsVO aOrd : list) {// 先新增外來鍵
+				//暫時改成沿用JDBC交易新增
+				Product_OrderVO product_orderVO = new Product_OrderVO();
+				product_orderVO.setOrd_no(int_next_ord_no);
+				aOrd.setProduct_orderVO(product_orderVO);;
+				order_detailsSvc.insertProduct_Cart(aOrd, con);// 存到多方
+			}
+
+			// 設定於 pstm.executeUpdate()之後
+			con.commit();
+			con.setAutoCommit(true);
+			System.out.println("list.size()-B=" + list.size());
+			System.out.println("新增訂單編號" + next_ord_no + "時，共有" + list.size() + "訂單明細同時被新增");
+
+		} catch (SQLException se) {
+			if (con != null) {
+				try {
+					// 設定於當有exception發生時之catch區塊內
+					System.out.println("交易正在進行中");
+					System.out.println("rolled back由-訂單");
+					con.rollback();
+				} catch (SQLException excep) {
+					throw new RuntimeException("rollback error occured." + excep.getMessage());
+				}
+			}
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 
 	}
 

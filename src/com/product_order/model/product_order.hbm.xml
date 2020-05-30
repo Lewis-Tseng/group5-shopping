@@ -21,7 +21,7 @@
         <property name="del_add" column="del_add"/>
     
         <set name="order_detailss" table="order_details" lazy="false"
-              cascade="all" inverse="true" order-by="ord_no">
+              cascade="none" inverse="false" order-by="ord_no asc">
               <key>
                   <column name="ord_no"/>
               </key> 
