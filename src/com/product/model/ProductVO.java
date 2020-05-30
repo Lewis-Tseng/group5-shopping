@@ -8,8 +8,8 @@ import com.product_category.model.Product_CategoryVO;
 import com.product_image.model.Product_ImageVO;
 
 public class ProductVO implements java.io.Serializable {
-
 	private static final long serialVersionUID = 1L;
+	
 	private Integer pro_no;
 	private String pro_nam;
 	private String pro_con;
@@ -20,8 +20,7 @@ public class ProductVO implements java.io.Serializable {
 	private Set<Product_ImageVO> product_images = new HashSet<Product_ImageVO>();
 	private Set<Order_DetailsVO> order_detailss = new HashSet<Order_DetailsVO>();
 	
-	public ProductVO(){
-		
+	public ProductVO(){	
 	}
 	
 	public ProductVO(Integer pro_no, Product_CategoryVO product_categoryVO, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,

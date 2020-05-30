@@ -4,11 +4,15 @@ import com.product.model.ProductVO;
 import com.product_order.model.Product_OrderVO;
 
 public class Order_DetailsVO implements java.io.Serializable{
-
+	private static final long serialVersionUID = 1L;
+	
 	private Product_OrderVO product_orderVO;
 	private ProductVO productVO;
 	private Integer quantity;
 	private Integer uni_pri;
+	
+	public Order_DetailsVO() {	
+	}
 
 	public Product_OrderVO getProduct_orderVO() {
 		return product_orderVO;

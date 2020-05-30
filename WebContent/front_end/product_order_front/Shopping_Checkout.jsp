@@ -331,7 +331,7 @@ CoaVO coaVO = (CoaVO) session.getAttribute("coaVO");
 								%>
 								<%
 									Product_CategoryService product_categorySvc = new Product_CategoryService();
-														Product_CategoryVO product_categoryVO = product_categorySvc.getOneProduct_Category(order_details.getProduct_categoryVO());
+														Product_CategoryVO product_categoryVO = order_details.getProduct_categoryVO();
 								%>
 								<tbody>
 									<tr>

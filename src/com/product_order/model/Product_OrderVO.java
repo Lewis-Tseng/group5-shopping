@@ -7,7 +7,8 @@ import java.util.Set;
 import com.order_details.model.Order_DetailsVO;
 
 public class Product_OrderVO  implements java.io.Serializable{
-
+	private static final long serialVersionUID = 1L;
+	
 	private Integer ord_no;
 	private String mem_id;
 	private Date ord_dat;
@@ -17,6 +18,9 @@ public class Product_OrderVO  implements java.io.Serializable{
 	private String pay_met;
 	private String del_add;
 	private Set<Order_DetailsVO> order_detailss = new HashSet<Order_DetailsVO>();
+	
+	public Product_OrderVO() {		
+	}
 	
 	public Integer getOrd_no() {
 		return ord_no;
