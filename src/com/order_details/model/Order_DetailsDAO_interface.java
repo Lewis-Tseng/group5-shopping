@@ -20,4 +20,5 @@ public interface Order_DetailsDAO_interface {
 	public List<Order_DetailsVO> getAll();
 	      //新增訂單(一)同時新增訂單明細(多) 
 	public void insertCart(Order_DetailsVO order_detailsVO, java.sql.Connection con);
+	
 }

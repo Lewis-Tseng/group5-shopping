@@ -3,6 +3,8 @@ package com.product_order.controller;
 import java.io.IOException;
 import java.io.*;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -528,6 +530,12 @@ public class Product_OrderServlet extends HttpServlet {
 					product_orderVO.setOrd_sta(ord_sta); 
 					product_orderVO.setPay_met(pay_met);
 					product_orderVO.setDel_add(del_add);
+					//改成傳入set
+					Set<Order_DetailsVO> od_buyset = new LinkedHashSet<Order_DetailsVO>();
+					od_buyset = od_colist.stream().collect(Collectors.toSet());
+					product_orderVO.setOrder_detailss(od_buyset);
+					
+					
            			// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
 						req.setAttribute("product_orderVO", product_orderVO); // 含有輸入格式錯誤的empVO物件,也存入req
@@ -547,7 +555,7 @@ public class Product_OrderServlet extends HttpServlet {
 //					session.removeAttribute("shoppingcart");
 					/*************************** 2.開始新增訂單資料 ***************************************/
 					Product_OrderService product_orderSvc = new Product_OrderService();
-					product_orderSvc.insertShopping_Order(product_orderVO, od_colist);
+					product_orderSvc.insertShopping_Order(product_orderVO);
 					/*************************** 2.開始新增訂單資料 ***************************************/
 					req.setAttribute("product_orderVO", product_orderVO);
                     /*************************** 3.新增完成,準備轉交(Send the Success view) ***********/

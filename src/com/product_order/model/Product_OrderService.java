@@ -64,8 +64,12 @@ public class Product_OrderService {
 		return dao.getAll_CompositeQuery(map);
 	}
 
-	public void insertShopping_Order(Product_OrderVO product_OrderVO, List<Order_DetailsVO> list) {
-		dao.insertWithOrder_Details(product_OrderVO, list);
+	public void insertShopping_Order(Product_OrderVO product_OrderVO) {
+		dao.insertWithOrder_Details(product_OrderVO);
 	}
+	
+//	public void insertShopping_Order(Product_OrderVO product_OrderVO, List<Order_DetailsVO> list) {
+//		dao.insertWithOrder_Details(product_OrderVO, list);
+//	}
 
 }
