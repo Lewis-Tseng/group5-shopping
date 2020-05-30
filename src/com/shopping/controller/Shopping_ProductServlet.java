@@ -85,16 +85,23 @@ public class Shopping_ProductServlet extends HttpServlet {
 				
 				
 				
-				String str = req.getParameter("pro_no");
-				if (str == null || (str.trim()).length() == 0) {
+				Integer pro_no = null;
+				try {
+					pro_no = new Integer(req.getParameter("pro_no").trim());
+				} catch (NumberFormatException e) {
 //					errorMsgs.add("請輸入產品編號");
 				}
-				String pro_no = null;
-				try {
-					pro_no = new String(str);
-				} catch (Exception e) {
-//					errorMsgs.add("產品編號格式不正確");
-				}
+				
+//				String str = req.getParameter("pro_no");
+//				if (str == null || (str.trim()).length() == 0) {
+////					errorMsgs.add("請輸入產品編號");
+//				}
+//				String pro_no = null;
+//				try {
+//					pro_no = new String(str);
+//				} catch (Exception e) {
+////					errorMsgs.add("產品編號格式不正確");
+//				}
 				
 				Integer pro_quantity = null;	
 				try {

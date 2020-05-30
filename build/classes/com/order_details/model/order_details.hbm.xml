@@ -7,13 +7,12 @@
     <class name="com.order_details.model.Order_DetailsVO" table="order_details">
       
         <composite-id>
-          
-            <key-many-to-one name="productVO" class="com.product.model.ProductVO" lazy="false">
-                <column name="pro_no"/>                  
-            </key-many-to-one>
-              <key-many-to-one name="product_orderVO" class="com.product_order.model.Product_OrderVO" lazy="false">
+            <key-many-to-one name="product_orderVO" class="com.product_order.model.Product_OrderVO" lazy="false">
                 <column name="ord_no"/>                       
             </key-many-to-one>
+            <key-many-to-one name="productVO" class="com.product.model.ProductVO" lazy="false">
+                <column name="pro_no"/>                 
+            </key-many-to-one>  
         </composite-id>
     
         <property name="quantity" column="quantity"/>

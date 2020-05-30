@@ -57,7 +57,7 @@ public class Order_DetailsService {
 		dao.delete(ord_no, pro_no);
 	}
 
-	public Set<Order_DetailsVO> getAllOrder_DetailsByOrd_no(Integer ord_no) {
+	public List<Order_DetailsVO> getAllOrder_DetailsByOrd_no(Integer ord_no) {
 		return dao.getOrder_DetailsByOrd_no(ord_no);
 	}
 

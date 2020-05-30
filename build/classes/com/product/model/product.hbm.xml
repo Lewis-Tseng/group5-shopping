@@ -31,7 +31,7 @@
         </set>
          
          <set name="order_detailss" table="order_details" lazy="false"
-              cascade="none" inverse="true" order-by="pro_no asc">
+              cascade="none" inverse="false" order-by="pro_no asc">
               <key>
                   <column name="pro_no"/>
               </key> 

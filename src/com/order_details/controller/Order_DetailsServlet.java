@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.order_details.model.Order_DetailsService;
 import com.order_details.model.Order_DetailsVO;
+import com.product.model.ProductVO;
 import com.product_order.model.Product_OrderService;
 import com.product_order.model.Product_OrderVO;
 
@@ -43,8 +44,8 @@ public class Order_DetailsServlet extends HttpServlet {
 			
 			try {
 				/***************************1.接收請求參數****************************************/
-				String ord_no = new String(req.getParameter("ord_no"));				
-				String pro_no = new String(req.getParameter("pro_no"));		
+				Integer ord_no = new Integer(req.getParameter("ord_no"));				
+				Integer pro_no = new Integer(req.getParameter("pro_no"));		
 				/***************************2.開始查詢資料****************************************/
 				Order_DetailsService order_detailsSvc = new Order_DetailsService();
 				Order_DetailsVO order_detailsVO = order_detailsSvc.getOneOrder_Details(ord_no, pro_no);
@@ -76,17 +77,19 @@ public class Order_DetailsServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String ord_no = new String(req.getParameter("ord_no"));
+				Integer ord_no = new Integer(req.getParameter("ord_no"));
 				
-				String pro_no = req.getParameter("pro_no");
-				if (pro_no == null || pro_no.trim().length() == 0) {
-					errorMsgs.add("商品類別名稱: 請勿空白");
+				
+				Integer pro_no = null;
+				try {
+					pro_no = new Integer(req.getParameter("pro_no").trim());	
+				} catch (NumberFormatException e) {
+					errorMsgs.add("數量請填數字");
 				}
 				
 				Integer quantity = null;
 				try {
-					quantity = new Integer(req.getParameter("quantity").trim());
-					
+					quantity = new Integer(req.getParameter("quantity").trim());	
 				} catch (NumberFormatException e) {
 					quantity = 0;
 					errorMsgs.add("數量請填數字");
@@ -103,8 +106,12 @@ public class Order_DetailsServlet extends HttpServlet {
 				
 
 				Order_DetailsVO order_detailsVO = new Order_DetailsVO();
-				order_detailsVO.setOrd_no(ord_no);
-				order_detailsVO.setPro_no(pro_no);
+				Product_OrderVO product_orderVO1 = new Product_OrderVO();
+				product_orderVO1.setOrd_no(ord_no);
+				order_detailsVO.setProduct_orderVO(product_orderVO1);
+				ProductVO productVO = new ProductVO();
+				productVO.setPro_no(pro_no);
+				order_detailsVO.setProductVO(productVO);
 				order_detailsVO.setQuantity(quantity);
 				order_detailsVO.setUni_pri(uni_pri);
 
@@ -122,10 +129,10 @@ public class Order_DetailsServlet extends HttpServlet {
 				//轉跳回update_product_order_input.jsp頁面時，需要重新req.setAttribute("product_orderVO", product_orderVO);
 				//不然頁面抓不到product_orderVO，會出現空值例外
 				Product_OrderService product_orderSvc = new Product_OrderService();
-				Product_OrderVO product_orderVO = product_orderSvc.getOneProduct_Order(ord_no);
+				Product_OrderVO product_orderVO2 = product_orderSvc.getOneProduct_Order(ord_no);
 			    /*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("order_detailsVO", order_detailsVO); // 資料庫update成功後,正確的的empVO物件,存入req
-				req.setAttribute("product_orderVO", product_orderVO);
+				req.setAttribute("product_orderVO", product_orderVO2);
 				String url = "/back_end/product_order/update_product_order_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
@@ -147,14 +154,18 @@ public class Order_DetailsServlet extends HttpServlet {
 
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-				String ord_no = req.getParameter("ord_no");
-				if (ord_no == null || ord_no.trim().length() == 0) {
-					errorMsgs.add("訂單編號: 請勿空白");
+				Integer ord_no = null;
+				try {
+					ord_no = new Integer(req.getParameter("ord_no").trim());	
+				} catch (NumberFormatException e) {
+					errorMsgs.add("編號請填數字");
 				}
 				
-				String pro_no = req.getParameter("pro_no");
-				if (pro_no == null || pro_no.trim().length() == 0) {
-					errorMsgs.add("商品編號: 請勿空白");
+				Integer pro_no = null;
+				try {
+					pro_no = new Integer(req.getParameter("pro_no").trim());	
+				} catch (NumberFormatException e) {
+					errorMsgs.add("數量請填數字");
 				}
                 
 				Integer quantity = null;
@@ -176,8 +187,12 @@ public class Order_DetailsServlet extends HttpServlet {
 				}
 				
 				Order_DetailsVO order_detailsVO = new Order_DetailsVO();
-				order_detailsVO.setOrd_no(ord_no);
-				order_detailsVO.setPro_no(pro_no);
+				Product_OrderVO product_orderVO1 = new Product_OrderVO();
+				product_orderVO1.setOrd_no(ord_no);
+				order_detailsVO.setProduct_orderVO(product_orderVO1);
+				ProductVO productVO = new ProductVO();
+				productVO.setPro_no(pro_no);
+				order_detailsVO.setProductVO(productVO);
 				order_detailsVO.setQuantity(quantity);
 				order_detailsVO.setUni_pri(uni_pri);
 				
@@ -214,10 +229,9 @@ public class Order_DetailsServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 ***************************************/
-				String ord_no = req.getParameter("ord_no");
+				Integer ord_no = new Integer (req.getParameter("ord_no").trim());
 				
-				String pro_no = req.getParameter("pro_no");
-
+				Integer pro_no = new Integer (req.getParameter("pro_no").trim());
 				/*************************** 2.開始刪除資料 ***************************************/
 				Order_DetailsService order_detailsSvc = new Order_DetailsService();
 				order_detailsSvc.deleteOrder_Details(ord_no, pro_no);

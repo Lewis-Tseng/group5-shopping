@@ -12,6 +12,7 @@ import com.mem.model.MemVO;
 import com.order_details.model.Order_DetailsService;
 import com.order_details.model.Order_DetailsVO;
 import com.order_details.model.Order_Details_ProductVO;
+import com.product.model.ProductVO;
 import com.product_order.model.Product_OrderService;
 import com.product_order.model.Product_OrderVO;
 
@@ -37,23 +38,12 @@ public class Product_OrderServlet extends HttpServlet {
 				req.setAttribute("errorMsgs", errorMsgs);
 
 				try {
-					/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-					String str = req.getParameter("ord_no");
-					if (str == null || (str.trim()).length() == 0) {
-						errorMsgs.add("請輸入訂單編號");
-					}
-					// Send the use back to the form, if there were errors
-					if (!errorMsgs.isEmpty()) {
-						RequestDispatcher failureView = req
-								.getRequestDispatcher("/back_end/product/select_Product.jsp");
-						failureView.forward(req, res);
-						return;//程式中斷
-					}
+					/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/			
 					
-					String ord_no = null;
+					Integer ord_no = null;
 					try {
-						ord_no = new String(str);
-					} catch (Exception e) {
+						ord_no = new Integer(req.getParameter("ord_no").trim());
+					} catch (NumberFormatException e) {
 						errorMsgs.add("訂單編號格式不正確");
 					}
 					// Send the use back to the form, if there were errors
@@ -105,7 +95,7 @@ public class Product_OrderServlet extends HttpServlet {
 				
 				try {
 					/***************************1.接收請求參數****************************************/
-					String ord_no = new String(req.getParameter("ord_no"));
+					Integer ord_no = new Integer(req.getParameter("ord_no"));
 					
 					/***************************2.開始查詢資料****************************************/
 					Product_OrderService product_orderSvc = new Product_OrderService();
@@ -137,7 +127,7 @@ public class Product_OrderServlet extends HttpServlet {
 			
 				try {
 					/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-					String ord_no = new String(req.getParameter("ord_no").trim());
+					Integer ord_no = new Integer(req.getParameter("ord_no").trim());
 					
 					String mem_id = req.getParameter("mem_id");
 					String mem_idReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
@@ -344,7 +334,7 @@ public class Product_OrderServlet extends HttpServlet {
 
 				try {
 					/***************************1.接收請求參數***************************************/
-					String ord_no = new String(req.getParameter("ord_no"));
+					Integer ord_no = new Integer(req.getParameter("ord_no"));
 					
 					/***************************2.開始刪除資料***************************************/
 					Product_OrderService product_orderSvc = new Product_OrderService();
@@ -444,7 +434,10 @@ public class Product_OrderServlet extends HttpServlet {
 						for (Order_Details_ProductVO odpVO : od_buylist) {
 							/* 從購物車商品取值給訂單明細用 */
 							Order_DetailsVO order_detailsVO = new Order_DetailsVO();
-							order_detailsVO.setPro_no(odpVO.getPro_no());
+							//更改為下面三行(Hibernate版)
+							ProductVO productVO = new ProductVO();
+							productVO.setPro_no(odpVO.getPro_no());
+							order_detailsVO.setProductVO(productVO);
 							order_detailsVO.setQuantity(odpVO.getPro_quantity());
 							order_detailsVO.setUni_pri(odpVO.getPro_pri());
 							od_colist.add(order_detailsVO);

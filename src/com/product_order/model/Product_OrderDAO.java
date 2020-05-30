@@ -237,30 +237,30 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 		
 //	    //mem_id, ord_dat, ord_amo, ord_qua, ord_sta, pay_met, del_add, phone
 		//新增
-		Product_OrderVO product_orderVO1 = new Product_OrderVO();
-		
-		order_detailsVO1.setQuantity(70);
-		order_detailsVO1.setUni_pri(5000);
-		productVO1.setPro_no(6000010);
-		order_detailsVO1.setProductVO(productVO1);
-		
-		order_detailsVO2.setQuantity(60);
-		order_detailsVO2.setUni_pri(4000);
-		productVO2.setPro_no(6000002);
-		order_detailsVO2.setProductVO(productVO2);
-		
-		set.add(order_detailsVO1);
-		set.add(order_detailsVO2);
-		
-		product_orderVO1.setOrder_detailss(set);
-		product_orderVO1.setMem_id("ME00001");
-		product_orderVO1.setOrd_dat(java.sql.Date.valueOf("2019-03-12"));
-		product_orderVO1.setOrd_amo(new Integer(40000));
-		product_orderVO1.setPro_qua(new Integer(300));
-		product_orderVO1.setOrd_sta("1");
-		product_orderVO1.setPay_met("信用卡");
-		product_orderVO1.setDel_add("台北市");
-		dao.insert(product_orderVO1);
+//		Product_OrderVO product_orderVO1 = new Product_OrderVO();
+//		
+//		order_detailsVO1.setQuantity(70);
+//		order_detailsVO1.setUni_pri(5000);
+//		productVO1.setPro_no(6000010);
+//		order_detailsVO1.setProductVO(productVO1);
+//		
+//		order_detailsVO2.setQuantity(60);
+//		order_detailsVO2.setUni_pri(4000);
+//		productVO2.setPro_no(6000002);
+//		order_detailsVO2.setProductVO(productVO2);
+//		
+//		set.add(order_detailsVO1);
+//		set.add(order_detailsVO2);
+//		
+//		product_orderVO1.setOrder_detailss(set);
+//		product_orderVO1.setMem_id("ME00001");
+//		product_orderVO1.setOrd_dat(java.sql.Date.valueOf("2019-03-12"));
+//		product_orderVO1.setOrd_amo(new Integer(40000));
+//		product_orderVO1.setPro_qua(new Integer(300));
+//		product_orderVO1.setOrd_sta("1");
+//		product_orderVO1.setPay_met("信用卡");
+//		product_orderVO1.setDel_add("台北市");
+//		dao.insert(product_orderVO1);
 
 //		//修改
 //		Product_OrderVO product_orderVO2 = new Product_OrderVO();
@@ -275,7 +275,7 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 //		dao.update(product_orderVO2);
 
 	    //刪除
-//		dao.delete(8000011);
+//		dao.delete(8000010);
 //	    //ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add
 //	    //單查詢
 //		Product_OrderVO product_orderVO3 = dao.findByPrimaryKey(8000010);
