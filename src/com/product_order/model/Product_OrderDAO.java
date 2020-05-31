@@ -296,7 +296,7 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 		product_orderVO1.setOrd_sta("1");
 		product_orderVO1.setPay_met("信用卡");
 		product_orderVO1.setDel_add("台北市");
-//		dao.insert(product_orderVO1);
+		dao.insert(product_orderVO1);
 
 //		//修改
 //		Product_OrderVO product_orderVO2 = new Product_OrderVO();
