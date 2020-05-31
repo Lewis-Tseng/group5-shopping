@@ -3,9 +3,13 @@ package com.order_details.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.product.model.ProductVO;
@@ -29,8 +33,11 @@ public class Order_DetailsVO implements java.io.Serializable{
 //		    @JoinColumn(name = "ord_no", referencedColumnName = "ord_no"),
 //			@JoinColumn(name = "pro_no", referencedColumnName = "pro_no") 
 //		    })
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "ord_no")
+//	@SequenceGenerator(name="name1", sequenceName="product_order_seq", allocationSize=1) //1.先用@SequenceGenerator建立一個generator
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="name1") 
 	public Product_OrderVO getProduct_orderVO() {
 		return product_orderVO;
 	}
@@ -38,7 +45,7 @@ public class Order_DetailsVO implements java.io.Serializable{
 	public void setProduct_orderVO(Product_OrderVO product_orderVO) {
 		this.product_orderVO = product_orderVO;
 	}
-	
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "pro_no")
 	public ProductVO getProductVO() {
