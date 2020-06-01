@@ -293,16 +293,18 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 		order_detailsVO1.setQuantity(70);
 		order_detailsVO1.setUni_pri(5000);
 		productVO1.setPro_no(6000010);
-//		product_orderVO2.setOrd_no(8000010);
+//		product_orderVO1.setOrd_no(null);
+		product_orderVO2.setOrd_no(8000010);
 		order_detailsVO1.setProductVO(productVO1);
 		
 		order_detailsVO2.setQuantity(60);
 		order_detailsVO2.setUni_pri(4000);
 		productVO2.setPro_no(6000002);
+//		product_orderVO2.setOrd_no(null);
 		order_detailsVO2.setProductVO(productVO2);
 		
 		set.add(order_detailsVO1);
-		set.add(order_detailsVO2);
+//		set.add(order_detailsVO2);
 		
 		product_orderVO1.setOrder_detailss(set);
 		product_orderVO1.setMem_id("ME00001");
