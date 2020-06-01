@@ -52,7 +52,7 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 		try {
 			session.beginTransaction();
             session.saveOrUpdate(product_orderVO);
-            session.getTransaction().commit();
+            session.getTransaction().commit();           
 		} catch (RuntimeException ex) {
 		    session.getTransaction().rollback();
 		    throw ex;
@@ -269,6 +269,22 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 		ProductVO productVO2 = new ProductVO();
 		Product_OrderVO product_orderVO2 = new Product_OrderVO();
 		Set<Order_DetailsVO> set = new LinkedHashSet<Order_DetailsVO>();
+		
+		//下面為嘗試拆開分別新增的code--失敗
+//		Product_OrderVO po = new Product_OrderVO();
+//        Order_DetailsVO b = new Order_DetailsVO();
+//        Set<Order_DetailsVO> set = new LinkedHashSet<Order_DetailsVO>();
+//        set = po.getOrder_detailss();
+//        for(Order_DetailsVO a : set) {
+//        	b.setOrd_no(a.getProduct_orderVO().getOrd_no());
+//        	b.setPro_no(a.getProductVO().getPro_no());
+//        	b.setQuantity(a.getQuantity());
+//        	b.setUni_pri(a.getUni_pri());
+//        	set.add(b);
+//        }
+//        for(Order_DetailsVO a : set) {
+//        	session.saveOrUpdate(a);
+//        }
 			
 //	    //mem_id, ord_dat, ord_amo, ord_qua, ord_sta, pay_met, del_add, phone
 		//新增
