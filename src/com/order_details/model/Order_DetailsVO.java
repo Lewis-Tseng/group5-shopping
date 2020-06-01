@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
@@ -17,8 +18,18 @@ import com.product_order.model.Product_OrderVO;
 
 @Entity  //要加上@Entity才能成為JPA的一個Entity類別
 @Table(name = "order_details") //代表這個class是對應到資料庫的實體table，目前對應的table是EMP2
+//@IdClass(Order_DetailsVO_PK_FK.class)
 public class Order_DetailsVO implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
+	
+//	@Id
+//    @Column(name = "ord_no")
+////	@SequenceGenerator(name="name1", sequenceName="product_order_seq", allocationSize=1) //1.先用@SequenceGenerator建立一個generator
+//	@GeneratedValue   //(strategy = GenerationType.SEQUENCE, generator="name1") 
+    private Integer ord_no;
+//	@Id
+//    @Column(name = "pro_no")
+	private Integer pro_no;
 	
 	private Product_OrderVO product_orderVO;
 	private ProductVO productVO;
@@ -26,9 +37,25 @@ public class Order_DetailsVO implements java.io.Serializable{
 	private Integer uni_pri;
 	
 	public Order_DetailsVO() {	
+	}	
+	
+    public Integer getOrd_no() {
+		return ord_no;
 	}
 
-//	@ManyToOne
+	public void setOrd_no(Integer ord_no) {
+		this.ord_no = ord_no;
+	}
+
+	public Integer getPro_no() {
+		return pro_no;
+	}
+
+	public void setPro_no(Integer pro_no) {
+		this.pro_no = pro_no;
+	}
+
+	//	@ManyToOne
 //	@JoinColumns({
 //		    @JoinColumn(name = "ord_no", referencedColumnName = "ord_no"),
 //			@JoinColumn(name = "pro_no", referencedColumnName = "pro_no") 
@@ -36,6 +63,7 @@ public class Order_DetailsVO implements java.io.Serializable{
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "ord_no")
+	@GeneratedValue
 //	@SequenceGenerator(name="name1", sequenceName="product_order_seq", allocationSize=1) //1.先用@SequenceGenerator建立一個generator
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="name1") 
 	public Product_OrderVO getProduct_orderVO() {

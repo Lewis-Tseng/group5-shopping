@@ -314,21 +314,22 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 //		dao.delete(8000010);
 //	    //ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add
 //	    //單查詢
-//		Product_OrderVO product_orderVO3 = dao.findByPrimaryKey(8000010);
-//		System.out.print(product_orderVO3.getOrd_no() + ",");
-//		System.out.print(product_orderVO3.getMem_id() + ",");
-//		System.out.print(product_orderVO3.getOrd_dat() + ",");
-//		System.out.print(product_orderVO3.getOrd_amo() + ",");
-//		System.out.print(product_orderVO3.getPro_qua() + ",");
-//		System.out.print(product_orderVO3.getOrd_sta() + ",");
-//		System.out.print(product_orderVO3.getPay_met() + ",");
-//		System.out.print(product_orderVO3.getDel_add() + ",");
-//		System.out.println("---------------------");
-//		set = product_orderVO3.getOrder_detailss();
-//		for(Order_DetailsVO ods : set) {
-//			System.out.println(ods.getQuantity() + ",");
-//			System.out.println(ods.getUni_pri() + ",");
-//		}
+		Product_OrderVO product_orderVO3 = dao.findByPrimaryKey(8000010);
+		System.out.print(product_orderVO3.getOrd_no() + ",");
+		System.out.print(product_orderVO3.getMem_id() + ",");
+		System.out.print(product_orderVO3.getOrd_dat() + ",");
+		System.out.print(product_orderVO3.getOrd_amo() + ",");
+		System.out.print(product_orderVO3.getPro_qua() + ",");
+		System.out.print(product_orderVO3.getOrd_sta() + ",");
+		System.out.print(product_orderVO3.getPay_met() + ",");
+		System.out.print(product_orderVO3.getDel_add() + ",");
+		System.out.println("---------------------");
+		set = product_orderVO3.getOrder_detailss();
+		for(Order_DetailsVO ods : set) {
+			System.out.println(ods.getProductVO().getPro_nam() + "Pro_nam,");
+			System.out.println(ods.getQuantity() + "Quantity,");
+			System.out.println(ods.getUni_pri() + "Uni_pri,");
+		}
 //		
 		
 //		
