@@ -294,16 +294,18 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 		order_detailsVO1.setUni_pri(5000);
 		productVO1.setPro_no(6000010);
 //		product_orderVO1.setOrd_no(null);
-		product_orderVO2.setOrd_no(8000010);
+//		product_orderVO2.setOrd_no(8000010);
 		order_detailsVO1.setProductVO(productVO1);
+//		order_detailsVO1.setPro_no(6000010);
 		
 		order_detailsVO2.setQuantity(60);
 		order_detailsVO2.setUni_pri(4000);
 		productVO2.setPro_no(6000002);
 //		product_orderVO2.setOrd_no(null);
 		order_detailsVO2.setProductVO(productVO2);
+//        order_detailsVO2.setPro_no(6000002);
 		
-		set.add(order_detailsVO1);
+//		set.add(order_detailsVO1);
 		set.add(order_detailsVO2);
 		
 		product_orderVO1.setOrder_detailss(set);
@@ -332,22 +334,22 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 //		dao.delete(8000010);
 //	    //ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add
 //	    //單查詢
-		Product_OrderVO product_orderVO3 = dao.findByPrimaryKey(8000010);
-		System.out.print(product_orderVO3.getOrd_no() + ",");
-		System.out.print(product_orderVO3.getMem_id() + ",");
-		System.out.print(product_orderVO3.getOrd_dat() + ",");
-		System.out.print(product_orderVO3.getOrd_amo() + ",");
-		System.out.print(product_orderVO3.getPro_qua() + ",");
-		System.out.print(product_orderVO3.getOrd_sta() + ",");
-		System.out.print(product_orderVO3.getPay_met() + ",");
-		System.out.print(product_orderVO3.getDel_add() + ",");
-		System.out.println("---------------------");
-		set = product_orderVO3.getOrder_detailss();
-		for(Order_DetailsVO ods : set) {
-			System.out.println(ods.getProductVO().getPro_nam() + "Pro_nam,");
-			System.out.println(ods.getQuantity() + "Quantity,");
-			System.out.println(ods.getUni_pri() + "Uni_pri,");
-		}
+//		Product_OrderVO product_orderVO3 = dao.findByPrimaryKey(8000010);
+//		System.out.print(product_orderVO3.getOrd_no() + ",");
+//		System.out.print(product_orderVO3.getMem_id() + ",");
+//		System.out.print(product_orderVO3.getOrd_dat() + ",");
+//		System.out.print(product_orderVO3.getOrd_amo() + ",");
+//		System.out.print(product_orderVO3.getPro_qua() + ",");
+//		System.out.print(product_orderVO3.getOrd_sta() + ",");
+//		System.out.print(product_orderVO3.getPay_met() + ",");
+//		System.out.print(product_orderVO3.getDel_add() + ",");
+//		System.out.println("---------------------");
+//		set = product_orderVO3.getOrder_detailss();
+//		for(Order_DetailsVO ods : set) {
+//			System.out.println(ods.getProductVO().getPro_nam() + "Pro_nam,");
+//			System.out.println(ods.getQuantity() + "Quantity,");
+//			System.out.println(ods.getUni_pri() + "Uni_pri,");
+//		}
 //		
 		
 //		

@@ -18,27 +18,27 @@ import com.product_order.model.Product_OrderVO;
 
 @Entity  //要加上@Entity才能成為JPA的一個Entity類別
 @Table(name = "order_details") //代表這個class是對應到資料庫的實體table，目前對應的table是EMP2
-//@IdClass(Order_DetailsVO_PK_FK.class)
+@IdClass(Order_DetailsVO_PK_FK.class)
 public class Order_DetailsVO implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	
-//	@Id
-//    @Column(name = "ord_no", insertable = false, updatable = false)//, insertable = false, updatable = false)nullable = true)
-////	@GeneratedValue
-////	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-////	@SequenceGenerator(name="name1", sequenceName="product_order_seq", allocationSize=1) //1.先用@SequenceGenerator建立一個generator
-////	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="name1") //(strategy = GenerationType.SEQUENCE, generator="name1") 
+
 //    private Integer ord_no;
-//	@Id
-//    @Column(name = "pro_no", insertable = false, updatable = false)
-//	private Integer pro_no;
-	
+//	private Integer pro_no;	
 	private Product_OrderVO product_orderVO;
 	private ProductVO productVO;
 	private Integer quantity;
 	private Integer uni_pri;
 	
-	
+	public Order_DetailsVO() {
+	}
+
+//	@Id
+//    @Column(name = "ord_no")//, insertable = false, updatable = false)nullable = true)
+//	@GeneratedValue
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+//	@SequenceGenerator(name="name1", sequenceName="product_order_seq", allocationSize=1) //1.先用@SequenceGenerator建立一個generator
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="name1") //(strategy = GenerationType.SEQUENCE, generator="name1") 	
 //    public Integer getOrd_no() {
 //		return ord_no;
 //	}
@@ -46,7 +46,8 @@ public class Order_DetailsVO implements java.io.Serializable{
 //	public void setOrd_no(Integer ord_no) {
 //		this.ord_no = ord_no;
 //	}
-//
+//	@Id
+//    @Column(name = "pro_no")	
 //	public Integer getPro_no() {
 //		return pro_no;
 //	}
