@@ -14,11 +14,11 @@ public class Order_DetailsVO_PK_FK implements Serializable{
 	
 //	private Product_OrderVO product_orderVO;
 //	private ProductVO productVO;
-	
-	private Order_DetailsVO_PK_FK(){
-		
-	}
-
+//	
+//	private Order_DetailsVO_PK_FK(){
+//		
+//	}
+//
 //	public Order_DetailsVO_PK_FK(Product_OrderVO product_orderVO, ProductVO productVO) {
 //		this.product_orderVO = product_orderVO;
 //		this.productVO = productVO;
@@ -56,8 +56,8 @@ public class Order_DetailsVO_PK_FK implements Serializable{
 //		Order_DetailsVO_PK_FK other = (Order_DetailsVO_PK_FK) obj;
 //		return Objects.equals(product_orderVO, other.product_orderVO) && Objects.equals(productVO, other.productVO);
 //	}
-    
-	
+//    
+//	
 	
 	
 	

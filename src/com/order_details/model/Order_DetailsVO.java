@@ -23,13 +23,14 @@ public class Order_DetailsVO implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	
 //	@Id
-//    @Column(name = "ord_no")//insertable = false, updatable = false)nullable = true)
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    @Column(name = "ord_no", insertable = false, updatable = false)//, insertable = false, updatable = false)nullable = true)
+////	@GeneratedValue
+////	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 ////	@SequenceGenerator(name="name1", sequenceName="product_order_seq", allocationSize=1) //1.先用@SequenceGenerator建立一個generator
 ////	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="name1") //(strategy = GenerationType.SEQUENCE, generator="name1") 
 //    private Integer ord_no;
 //	@Id
-//    @Column(name = "pro_no")
+//    @Column(name = "pro_no", insertable = false, updatable = false)
 //	private Integer pro_no;
 	
 	private Product_OrderVO product_orderVO;
@@ -61,10 +62,10 @@ public class Order_DetailsVO implements java.io.Serializable{
 //		    })
 	@Id
 	@ManyToOne
-	@JoinColumn(name = "ord_no",referencedColumnName="ord_no")
+	@JoinColumn(name = "ord_no")//,referencedColumnName="ord_no")
 //	@GeneratedValue
-	@SequenceGenerator(name="name1", sequenceName="product_order_seq", allocationSize=1) //1.先用@SequenceGenerator建立一個generator
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="name1") //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="name1")  
+//	@SequenceGenerator(name="name1", sequenceName="product_order_seq", allocationSize=1) //1.先用@SequenceGenerator建立一個generator
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="name1") //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="name1")  
 	public Product_OrderVO getProduct_orderVO() {
 		return product_orderVO;
 	}
@@ -74,7 +75,7 @@ public class Order_DetailsVO implements java.io.Serializable{
 	}
 	@Id
 	@ManyToOne
-	@JoinColumn(name = "pro_no",referencedColumnName="pro_no")
+	@JoinColumn(name = "pro_no")
 	public ProductVO getProductVO() {
 		return productVO;
 	}

@@ -38,8 +38,9 @@
         
         <mapping resource="com/product_category/model/product_category.hbm.xml"/>
         <mapping resource="com/product/model/product.hbm.xml"/>
-        <mapping resource="com/product_image/model/product_image.hbm.xml"/>  
-        <mapping resource="com/product_order/model/product_order.hbm.xml"/>
+        <mapping resource="com/product_image/model/product_image.hbm.xml"/>
+        <mapping class="com.product_order.model.Product_OrderVO"/>  
+    <!--<mapping resource="com/product_order/model/product_order.hbm.xml"/>-->
         <mapping class="com.order_details.model.Order_DetailsVO"/>
     <!--<mapping resource="com/order_details/model/order_details.hbm.xml"/>-->
     
