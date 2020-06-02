@@ -34,11 +34,13 @@ public class Order_DetailsVO implements java.io.Serializable{
 	}
 
 //	@Id
-//    @Column(name = "ord_no")//, insertable = false, updatable = false)nullable = true)
+//    @Column(name = "ord_no")//, insertable = false, updatable = false)nullable = true)	
+//	@ManyToOne
+//	@JoinColumn(name = "ord_no")
 //	@GeneratedValue
 //	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 //	@SequenceGenerator(name="name1", sequenceName="product_order_seq", allocationSize=1) //1.先用@SequenceGenerator建立一個generator
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="name1") //(strategy = GenerationType.SEQUENCE, generator="name1") 	
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seq1") //(strategy = GenerationType.SEQUENCE, generator="name1") 	
 //    public Integer getOrd_no() {
 //		return ord_no;
 //	}
@@ -103,37 +105,7 @@ public class Order_DetailsVO implements java.io.Serializable{
 		this.uni_pri = uni_pri;
 	}
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((productVO == null) ? 0 : productVO.hashCode());
-		result = prime * result + ((product_orderVO == null) ? 0 : product_orderVO.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Order_DetailsVO other = (Order_DetailsVO) obj;
-		if (productVO == null) {
-			if (other.productVO != null)
-				return false;
-		} else if (!productVO.equals(other.productVO))
-			return false;
-		if (product_orderVO == null) {
-			if (other.product_orderVO != null)
-				return false;
-		} else if (!product_orderVO.equals(other.product_orderVO))
-			return false;
-		return true;
-	}
-
+               //product_orderVO.getOrd_no()
 	@Override
 	public String toString() {
 		return "[訂單明細= 訂單編號:" + product_orderVO.getOrd_no() + ", 商品編號:" + productVO.getPro_no() + ", 單項商品總數量:" + quantity + 
