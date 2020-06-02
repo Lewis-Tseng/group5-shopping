@@ -304,7 +304,7 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 		order_detailsVO2.setProductVO(productVO2);
 		
 		set.add(order_detailsVO1);
-//		set.add(order_detailsVO2);
+		set.add(order_detailsVO2);
 		
 		product_orderVO1.setOrder_detailss(set);
 		product_orderVO1.setMem_id("ME00001");
