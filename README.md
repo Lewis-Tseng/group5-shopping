@@ -1,15 +1,9 @@
 # group5-shopping
 
-
-
-| [Code目錄位置](# 1.Code目錄位置) | [前台網頁](# 2.前台網頁) | 後台網頁 | ER Model | DB欄位 | Git版控 |
-| ------------------------ |:----------------:| ---- | -------- | ---- | ----- |
+| [Code目錄位置](#1.Code目錄位置) | [前台網頁](#2.前台網頁) | 後台網頁 | ER Model | DB欄位 | Git版控 |
+| ----------------------- |:---------------:| ---- | -------- | ---- | ----- |
 
 ## 1.Code目錄位置
-
-
-
-
 
 ## 2.前台網頁
 
@@ -28,32 +22,30 @@
 ```js
 $('button[class*="send"]').click(function(){
 
-								var prono = $(this).attr('prono');
-								var select = "input[class=\""+prono+"\"]";
-								var quantity =$(select).val();
-								
-							$.ajax({
-								url:"<%=request.getContextPath()%>/front_end/shopping_product/shopping_product.do",
-								type:"post",
-								data:{
-									action : "ADD",
-									pro_quantity : quantity,
-									pro_no : prono
-								},
-								success:function(){
-									Swal.fire(
-											"\""+ quantity +"\"個商品加入購物車成功!",
-											"Thank you",
-											'success'
-											)
-								    }
-							});
-							});
+                                var prono = $(this).attr('prono');
+                                var select = "input[class=\""+prono+"\"]";
+                                var quantity =$(select).val();
+
+                            $.ajax({
+                                url:"<%=request.getContextPath()%>/front_end/shopping_product/shopping_product.do",
+                                type:"post",
+                                data:{
+                                    action : "ADD",
+                                    pro_quantity : quantity,
+                                    pro_no : prono
+                                },
+                                success:function(){
+                                    Swal.fire(
+                                            "\""+ quantity +"\"個商品加入購物車成功!",
+                                            "Thank you",
+                                            'success'
+                                            )
+                                    }
+                            });
+                            });
 ```
 
 #### [購物車codelink]()
-
-
 
 #### 進入商品頁面，調整數量加入購物車
 
