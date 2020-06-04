@@ -464,7 +464,7 @@ CoaVO coaVO = (CoaVO) session.getAttribute("coaVO");
 											"Thank you",
 											'success'
 											)
-								}
+								    }
 							});
 							});
 							
