@@ -1,13 +1,14 @@
 # group5-shopping
-
+<div align="center">
 | [Code目錄位置](#1) | [前台網頁](#2) | 後台網頁 | ER Model | DB欄位 | Git版控 |
 | ----------------------- |:---------------:| ---- | -------- | ---- | ----- |
+</div>
 
 ## <span id="1">1.Code目錄位置</span>
 
-## 2.前台網頁
+## <span id="2">2.前台網頁</span>
 
-#### <span id="2">購物商城首頁</span>
+#### 購物商城首頁
 
 `<div align="center"> <img src=""/> </div>`
 
