@@ -14,6 +14,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.mem.model.MemService;
+import com.mem.model.MemVO;
 import com.order_details.model.Order_DetailsService;
 import com.order_details.model.Order_DetailsVO;
 
@@ -367,7 +369,7 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 			pstmt.setString(6, product_OrderVO.getPay_met());
 			pstmt.setString(7, product_OrderVO.getDel_add());
 			pstmt.executeUpdate();
-
+			
 			String next_ord_no = null;
 			ResultSet rs = pstmt.getGeneratedKeys();
 
@@ -391,6 +393,23 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 				aOrd.setOrd_no(next_ord_no);
 				order_detailsSvc.insertProduct_Cart(aOrd, con);// 存到多方
 			}
+			
+			/*扣除點數*/
+			MemService memSvc = new MemService();
+			MemVO memVO = new MemVO();
+			//取得會員資訊物件
+			memVO = memSvc.getOneMem(product_OrderVO.getMem_id());
+			String mem_id = memVO.getMem_id();
+			Integer mem_point = memVO.getMem_point();		
+	
+			Integer mem_point_Deduction = 0;//設定一個變數來儲存扣除完後的點數	
+			if(mem_point != 0 && mem_point >= product_OrderVO.getOrd_amo()) {
+			    mem_point_Deduction = (mem_point - product_OrderVO.getOrd_amo());
+			    memSvc.updatePoint(mem_id, mem_point_Deduction);
+			    System.out.println(mem_point + " 點扣掉  " + product_OrderVO.getOrd_amo() + " 點，剩餘點數="+mem_point_Deduction); 
+			    System.out.println("剩餘點數" + memVO.getMem_point());
+			} 	
+			/*扣除點數*/
 
 			// 設定於 pstm.executeUpdate()之後
 			con.commit();

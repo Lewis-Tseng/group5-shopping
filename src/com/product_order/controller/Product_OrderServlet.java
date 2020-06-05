@@ -508,27 +508,16 @@ public class Product_OrderServlet extends HttpServlet {
 						errorMsgs.add("請輸入地址");
 					}
 					
-					/*扣除點數*/
-					MemService memSvc = new MemService();
+					/*判定點數是否足夠*/
 					MemVO memVO = (MemVO) session.getAttribute("memVO");
-					String mem_id1 = memVO.getMem_id();
 					Integer mem_point = memVO.getMem_point();
-					Integer mem_point_Deduction = 0;
-					if(mem_point != 0 && mem_point >= ord_amo) {
-					    mem_point_Deduction = (mem_point - ord_amo);
-					    memSvc.updatePoint(mem_id1, mem_point_Deduction);
-					    memVO = memSvc.getOneMem(mem_id1);
-					    //重新set新的memVO session 為了讓頁面顯示正確的點數
-					    session.setAttribute("memVO", memVO);	
-					    System.out.println(mem_point + " 點扣掉  " + ord_amo + " 點，剩餘點數="+mem_point_Deduction); 
-					    System.out.println("剩餘點數" + memVO.getMem_point());
-					} else {
-						errorMsgs.add("點數不足，請先儲值");
-					}					
-					/*扣除點數*/
+					if(mem_point <= 0 && mem_point < ord_amo) { 
+					    errorMsgs.add("點數不足，請先儲值"); 
+					}				
+					/*判定點數是否足夠*/
 										
 					Product_OrderVO product_orderVO = new Product_OrderVO();
-					product_orderVO.setMem_id(mem_id1);
+					product_orderVO.setMem_id(mem_id);
 					product_orderVO.setOrd_dat(ord_dat);
 					product_orderVO.setOrd_amo(ord_amo);
 					product_orderVO.setPro_qua(pro_qua);
@@ -549,16 +538,20 @@ public class Product_OrderServlet extends HttpServlet {
 						failureView.forward(req, res);
 						return;
 					}
-					/* 清空購物車List */
-					od_buylist.removeAll(od_buylist);
 //					session.removeAttribute("shoppingcart");
 					/*************************** 2.開始新增訂單資料 ***************************************/
 					Product_OrderService product_orderSvc = new Product_OrderService();
-					product_orderSvc.insertShopping_Order(product_orderVO, od_colist);
-					/*************************** 2.開始新增訂單資料 ***************************************/
-					req.setAttribute("product_orderVO", product_orderVO);
+					product_orderSvc.insertShopping_Order(product_orderVO, od_colist);		
                     /*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-//					res.sendRedirect("/front_end/product_front/shopping_mall_home.jsp");				
+					/* 清空購物車List */
+					od_buylist.removeAll(od_buylist);
+					req.setAttribute("product_orderVO", product_orderVO);
+					
+					//重新set新的memVO session 為了讓頁面顯示正確的點數  有問題還是不會正確顯示
+					Integer now_mem_point = memVO.getMem_point();
+					memVO.setMem_point(now_mem_point);
+				    session.setAttribute("memVO", memVO);	
+				    
 					String url = "/front_end/product_order_front/Member_Order.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 					successView.forward(req, res);				

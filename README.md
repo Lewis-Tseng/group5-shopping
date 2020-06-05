@@ -61,50 +61,48 @@ $('button[class*="send"]').click(function(){
 
 ```java
 int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
-		if(buylist != null ) {
-			oldbuylist = buylist.size();
-		} 
-		
-		if (!action.equals("CHECKOUT")) {
+        if(buylist != null ) {
+            oldbuylist = buylist.size();
+        } 
 
-			// 刪除購物車中的書籍
-			if (action.equals("DELETE")) {
-				String del = req.getParameter("del");
-				int d = Integer.parseInt(del);
-				buylist.remove(d);
-			}
-			// 新增書籍至購物車中
-			else if (action.equals("ADD")) {
+        if (!action.equals("CHECKOUT")) {
+
+            // 刪除購物車中的書籍
+            if (action.equals("DELETE")) {
+                String del = req.getParameter("del");
+                int d = Integer.parseInt(del);
+                buylist.remove(d);
+            }
+            // 新增書籍至購物車中
+            else if (action.equals("ADD")) {
                 /*購物車內修改數量 抓到index數值*/
-				String add = req.getParameter("add");
-				if(add != null) {
-				int ad = Integer.parseInt(add);
-				
-				Integer pro_quantity_new = null;
-				try {
-					pro_quantity_new = new Integer(req.getParameter("pro_quantity_new").trim());
-				} catch (NumberFormatException e) {
-					pro_quantity_new = 0;
+                String add = req.getParameter("add");
+                if(add != null) {
+                int ad = Integer.parseInt(add);
 
-				}
-				
-				Order_Details_ProductVO od_productVO_change = (Order_Details_ProductVO) buylist.get(ad);
-				od_productVO_change.setPro_quantity(pro_quantity_new);
-				buylist.remove(ad);
-				buylist.add(ad, od_productVO_change);
-				
-				session.setAttribute("shoppingcart", buylist);
-				String url = "/front_end/product_front/Product_Cart.jsp";
-				RequestDispatcher rd = req.getRequestDispatcher(url);
-				rd.forward(req, res);
-				return;
-				}
-				/*購物車內修改數量 抓到index數值*/
+                Integer pro_quantity_new = null;
+                try {
+                    pro_quantity_new = new Integer(req.getParameter("pro_quantity_new").trim());
+                } catch (NumberFormatException e) {
+                    pro_quantity_new = 0;
+
+                }
+
+                Order_Details_ProductVO od_productVO_change = (Order_Details_ProductVO) buylist.get(ad);
+                od_productVO_change.setPro_quantity(pro_quantity_new);
+                buylist.remove(ad);
+                buylist.add(ad, od_productVO_change);
+
+                session.setAttribute("shoppingcart", buylist);
+                String url = "/front_end/product_front/Product_Cart.jsp";
+                RequestDispatcher rd = req.getRequestDispatcher(url);
+                rd.forward(req, res);
+                return;
+                }
+                /*購物車內修改數量 抓到index數值*/
 ```
 
 #### [購物車完整CodeLink](https://github.com/Lewis-Tseng/group5-shopping/blob/master/src/com/shopping/controller/Shopping_ProductServlet.java)
-
-
 
 ###### 2-5.商品結帳頁面
 
@@ -117,8 +115,6 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 ```java
 
 ```
-
-
 
 #### [交易行為新增訂單與明細完整CodeLink](https://github.com/Lewis-Tseng/group5-shopping/blob/master/src/com/product_order/controller/Product_OrderServlet.java)
 
