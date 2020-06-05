@@ -67,7 +67,7 @@ public class Shopping_ProductServlet extends HttpServlet {
 					pro_quantity_new = new Integer(req.getParameter("pro_quantity_new").trim());
 				} catch (NumberFormatException e) {
 					pro_quantity_new = 0;
-//					errorMsgs.add("售價請填數字");
+
 				}
 				
 				Order_Details_ProductVO od_productVO_change = (Order_Details_ProductVO) buylist.get(ad);
@@ -82,28 +82,26 @@ public class Shopping_ProductServlet extends HttpServlet {
 				return;
 				}
 				/*購物車內修改數量 抓到index數值*/
-				
-				
-				
+					
 				String str = req.getParameter("pro_no");
 				if (str == null || (str.trim()).length() == 0) {
-//					errorMsgs.add("請輸入產品編號");
+					errorMsgs.add("請輸入產品編號");
 				}
 				String pro_no = null;
 				try {
 					pro_no = new String(str);
 				} catch (Exception e) {
-//					errorMsgs.add("產品編號格式不正確");
+					errorMsgs.add("產品編號格式不正確");
 				}
 				
 				Integer pro_quantity = null;	
 				try {
 					pro_quantity = new Integer(req.getParameter("pro_quantity").trim());
-					String quantity_check = String.valueOf(pro_quantity);					
+					String quantity_check = String.valueOf(pro_quantity);//以下練習正則(規)表示式(regular-expression)					
 					String pro_quantityReg = "^[(0-9)]{1,2}$";
 					if (quantity_check == null || quantity_check.trim().length() == 0) {
 						errorMsgs.add("加入購物車數量請勿空白");
-					} else if(!quantity_check.trim().matches(pro_quantityReg) || pro_quantity == 0) { //以下練習正則(規)表示式(regular-expression)
+					} else if(!quantity_check.trim().matches(pro_quantityReg) || pro_quantity == 0) { 
 						errorMsgs.add("購物車數量錯誤，每次輸入購買量只能為1~99");
 		            }
 				} catch (NumberFormatException e) {
@@ -112,7 +110,6 @@ public class Shopping_ProductServlet extends HttpServlet {
 				}
 
 				if (!errorMsgs.isEmpty()) {
-//					req.setAttribute("product_orderVO", product_orderVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/front_end/product_front/Product_Cart.jsp");
 					failureView.forward(req, res);
@@ -143,12 +140,8 @@ public class Shopping_ProductServlet extends HttpServlet {
 
 			session.setAttribute("shoppingcart", buylist);
 			
-//			PrintWriter out = res.getWriter();
-//			Integer cartcount = buylist.size();
-//			out.print(cartcount);
-//			String requestURL = req.getParameter("requestURL");
-			int removebulist = buylist.size();
-			if(oldbuylist > removebulist) {
+			int removebuylist = buylist.size();
+			if(oldbuylist > removebuylist) {
 				String url = "/front_end/product_front/Product_Cart.jsp";
 				RequestDispatcher rd = req.getRequestDispatcher(url);
 				rd.forward(req, res);
