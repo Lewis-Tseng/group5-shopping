@@ -164,7 +164,7 @@ public class Product_CategoryServlet extends HttpServlet {
 			}
 		}
 
-		if ("insert".equals(action)) { // 來自addEmp.jsp的請求
+		if ("insert".equals(action)) {
           
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -183,7 +183,7 @@ public class Product_CategoryServlet extends HttpServlet {
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("product_categoryVO", product_categoryVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					req.setAttribute("product_categoryVO", product_categoryVO); 
 					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product_category/addProduct_Category.jsp");
 					failureView.forward(req, res);
 					return;

@@ -434,7 +434,7 @@ public class Product_OrderServlet extends HttpServlet {
 				try {
 					/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 
-					/* 開始新增訂單明細取值且加入List */
+					/*開始新增訂單明細取值且加入List*/
 					List<Order_DetailsVO> od_colist = new ArrayList<Order_DetailsVO>();
 
 					Integer total = 0;
@@ -457,7 +457,7 @@ public class Product_OrderServlet extends HttpServlet {
 					} else {
 						errorMsgs.add("購物車沒有東西");
 					}
-					/* 訂單明細新增完成 */
+					/*開始新增訂單明細取值且加入List*/
 
 					/* 訂單從jsp網頁取值且新增 */
 					String mem_id = req.getParameter("mem_id");
