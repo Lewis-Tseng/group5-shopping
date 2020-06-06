@@ -1,0 +1,10 @@
+diff a/README.md b/README.md	(rejected hunks)
+@@ -11,7 +11,7 @@
+ 
+ 
+ 
+-## <span id="2">2.ER Model</span>
++## <span id="2">2.購物ER Model</span>
+ 
+ <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/ERModel_shopping/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8EER%20Model.JPG" width="800"/> </div>
+ 
