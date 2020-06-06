@@ -548,8 +548,8 @@ public class Product_OrderServlet extends HttpServlet {
 					req.setAttribute("product_orderVO", product_orderVO);
 					
 					//重新set新的memVO session 為了讓頁面顯示正確的點數  有問題還是不會正確顯示
-					Integer now_mem_point = memVO.getMem_point();
-					memVO.setMem_point(now_mem_point);
+					MemService memSvc = new MemService();
+					memVO = memSvc.getOneMem(mem_id);
 				    session.setAttribute("memVO", memVO);	
 				    
 					String url = "/front_end/product_order_front/Member_Order.jsp";
