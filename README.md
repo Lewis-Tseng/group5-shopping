@@ -13,15 +13,15 @@
 
 ## <span id="2">2.ER Model</span>
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/ERModel_shopping/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8EER%20Model.JPG" width="800"/> </div>
 
 
 
 ## <span id="3">3.DB欄位</span>
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/DBColumn_shopping/%E5%95%86%E5%93%81%20%E8%A8%82%E5%96%AE%20%E8%A8%82%E5%96%AE%E6%98%8E%E7%B4%B0%E6%AC%84%E4%BD%8D.JPG" width="800"/> </div>
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/DBColumn_shopping/%E5%95%86%E5%93%81%E5%9C%96%E7%89%87%20%E5%95%86%E5%93%81%E9%A1%9E%E5%88%A5%E6%AC%84%E4%BD%8D.JPG" width="800"/> </div>
 
 
 
@@ -199,13 +199,13 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 
 ###### 5-1.購物商城管理首頁
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E7%AE%A1%E7%90%86.JPG" width="800"/> </div>
 
 ###### 5-2.新增商品類別
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81%E9%A1%9E%E5%88%A5.JPG" width="800"/> </div>
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81%E9%A1%9E%E5%88%A5%E6%88%90%E5%8A%9F.JPG" width="800"/> </div>
 
 - 新增商品類別Code片段
 
@@ -256,19 +256,15 @@ if ("insert".equals(action)) {
 
 ###### 5-3.新增商品(商品狀態為下架)
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
-
-
-
-
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81%E7%8B%80%E6%85%8B%E4%B8%8B%E6%9E%B6.JPG" width="800"/> </div>
 
 ###### 5-4.新增商品圖片
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81%E5%9C%96%E7%89%87%E9%A0%90%E8%A6%BD.JPG" width="800"/> </div>
 
 ###### 5-5.將商品上架
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E5%95%86%E5%93%81%E4%B8%8A%E6%9E%B6.JPG" width="800"/> </div>
 
 #### [後台Code連結]()
 
@@ -276,9 +272,9 @@ if ("insert".equals(action)) {
 
 ###### 5-6.回前台商城首頁確認已上架且可購買
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E5%95%86%E5%93%81%E5%B7%B2%E4%B8%8A%E6%9E%B6%E8%87%B3%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E7%A2%BA%E8%AA%8D%E6%96%B0%E4%B8%8A%E6%9E%B6%E5%95%86%E5%93%81%E4%B9%9F%E8%83%BD%E8%B3%BC%E8%B2%B7%E7%94%A2%E7%94%9F%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0.JPG" width="800"/> </div>
 
 
 
