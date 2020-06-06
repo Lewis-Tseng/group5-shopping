@@ -5,27 +5,15 @@
 
 ## <span id="1">1.Code目錄位置</span>
 
-
-
-
-
-
-
 ## <span id="2">2.ER Model</span>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
-
-
 
 ## <span id="3">3.DB欄位</span>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
-
-
-
-
 
 ## <span id="4">4.前台網頁</span>
 
@@ -138,50 +126,46 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 
 ```java
   /*結帳產生訂單*/
-			if ("payment".equals(action)) {
-				
-				HttpSession session = req.getSession();
-				List<String> errorMsgs = new LinkedList<String>();
-				req.setAttribute("errorMsgs", errorMsgs);
+            if ("payment".equals(action)) {
 
-				@SuppressWarnings("unchecked")
-				List<Order_Details_ProductVO> od_buylist = (Vector<Order_Details_ProductVO>) session
-						.getAttribute("shoppingcart");
+                HttpSession session = req.getSession();
+                List<String> errorMsgs = new LinkedList<String>();
+                req.setAttribute("errorMsgs", errorMsgs);
 
-				try {
-					/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+                @SuppressWarnings("unchecked")
+                List<Order_Details_ProductVO> od_buylist = (Vector<Order_Details_ProductVO>) session
+                        .getAttribute("shoppingcart");
 
-					/*開始新增訂單明細取值且加入List*/
-					List<Order_DetailsVO> od_colist = new ArrayList<Order_DetailsVO>();
+                try {
+                    /*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 
-					Integer total = 0;
-					Integer pro_total = 0;
+                    /*開始新增訂單明細取值且加入List*/
+                    List<Order_DetailsVO> od_colist = new ArrayList<Order_DetailsVO>();
 
-					if (od_buylist.size() != 0) {
-						for (Order_Details_ProductVO odpVO : od_buylist) {
-							/* 從購物車商品取值給訂單明細用 */
-							Order_DetailsVO order_detailsVO = new Order_DetailsVO();
-							order_detailsVO.setPro_no(odpVO.getPro_no());
-							order_detailsVO.setQuantity(odpVO.getPro_quantity());
-							order_detailsVO.setUni_pri(odpVO.getPro_pri());
-							od_colist.add(order_detailsVO);
-							/* 從購物車商品取值給訂單總金額和總數量用 */
-							Integer price = odpVO.getPro_pri();
-							Integer quantity = odpVO.getPro_quantity();
-							total += (price * quantity);
-							pro_total += quantity;
-						}
-					} else {
-						errorMsgs.add("購物車沒有東西");
-					}
-					/*開始新增訂單明細取值且加入List*/車沒有東西");
-					}
-					/* 訂單明細新增完成 */
+                    Integer total = 0;
+                    Integer pro_total = 0;
+
+                    if (od_buylist.size() != 0) {
+                        for (Order_Details_ProductVO odpVO : od_buylist) {
+                            /* 從購物車商品取值給訂單明細用 */
+                            Order_DetailsVO order_detailsVO = new Order_DetailsVO();
+                            order_detailsVO.setPro_no(odpVO.getPro_no());
+                            order_detailsVO.setQuantity(odpVO.getPro_quantity());
+                            order_detailsVO.setUni_pri(odpVO.getPro_pri());
+                            od_colist.add(order_detailsVO);
+                            /* 從購物車商品取值給訂單總金額和總數量用 */
+                            Integer price = odpVO.getPro_pri();
+                            Integer quantity = odpVO.getPro_quantity();
+                            total += (price * quantity);
+                            pro_total += quantity;
+                        }
+                    } else {
+                        errorMsgs.add("購物車沒有東西");
+                    }
+                    /*開始新增訂單明細取值且加入List*/車沒有東西");
+                    }
+                    /* 訂單明細新增完成 */
 ```
-
-
-
-
 
 #### [交易行為新增訂單與明細完整CodeLink](https://github.com/Lewis-Tseng/group5-shopping/blob/master/src/com/product_order/controller/Product_OrderServlet.java)
 
@@ -194,8 +178,6 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 ==================================================================
 
 ## <span id="5">5.後台網頁</span>
-
-
 
 ###### 5-1.購物商城管理首頁
 
@@ -211,56 +193,50 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 
 ```java
 if ("insert".equals(action)) {
-          
-			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);
 
-			try {
-				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-				String cat_nam = req.getParameter("cat_nam");
-				if (cat_nam == null || cat_nam.trim().length() == 0) {
-					errorMsgs.add("商品類別名稱: 請勿空白");
-				}
+            List<String> errorMsgs = new LinkedList<String>();
+            // Store this set in the request scope, in case we need to
+            // send the ErrorPage view.
+            req.setAttribute("errorMsgs", errorMsgs);
 
-				Product_CategoryVO product_categoryVO = new Product_CategoryVO();
-				product_categoryVO.setCat_nam(cat_nam);
-				
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("product_categoryVO", product_categoryVO); 
-					RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product_category/addProduct_Category.jsp");
-					failureView.forward(req, res);
-					return;
-				}
+            try {
+                /*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+                String cat_nam = req.getParameter("cat_nam");
+                if (cat_nam == null || cat_nam.trim().length() == 0) {
+                    errorMsgs.add("商品類別名稱: 請勿空白");
+                }
 
-				/*************************** 2.開始新增資料 ***************************************/
-				Product_CategoryService product_categorySvc = new Product_CategoryService();
-				product_categoryVO = product_categorySvc.addProduct_Category(cat_nam);
-				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/back_end/product_category/listAllProduct_Category.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAll.jsp
-				successView.forward(req, res);
+                Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+                product_categoryVO.setCat_nam(cat_nam);
 
-				/*************************** 其他可能的錯誤處理 **********************************/
-			} catch (Exception e) {
-				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product_category/addProduct_Category.jsp");
-				failureView.forward(req, res);
-			}
-		}
+                // Send the use back to the form, if there were errors
+                if (!errorMsgs.isEmpty()) {
+                    req.setAttribute("product_categoryVO", product_categoryVO); 
+                    RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product_category/addProduct_Category.jsp");
+                    failureView.forward(req, res);
+                    return;
+                }
+
+                /*************************** 2.開始新增資料 ***************************************/
+                Product_CategoryService product_categorySvc = new Product_CategoryService();
+                product_categoryVO = product_categorySvc.addProduct_Category(cat_nam);
+                /*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+                String url = "/back_end/product_category/listAllProduct_Category.jsp";
+                RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAll.jsp
+                successView.forward(req, res);
+
+                /*************************** 其他可能的錯誤處理 **********************************/
+            } catch (Exception e) {
+                errorMsgs.add(e.getMessage());
+                RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product_category/addProduct_Category.jsp");
+                failureView.forward(req, res);
+            }
+        }
 ```
-
-
 
 ###### 5-3.新增商品(商品狀態為下架)
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
-
-
-
-
 
 ###### 5-4.新增商品圖片
 
@@ -272,19 +248,13 @@ if ("insert".equals(action)) {
 
 #### [後台Code連結]()
 
-
-
 ###### 5-6.回前台商城首頁確認已上架且可購買
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
-
-
 =====================================================================
-
-
 
 ## <span id="2">6.Git版控</span>
 
@@ -297,7 +267,5 @@ if ("insert".equals(action)) {
 - 流程走Git-flow
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
-
-
 
 ===========================================================
