@@ -1,7 +1,7 @@
 # group5-shopping
 
-| [專案簡述與Source code目錄位置](#1) | [購物 ER Model](#2) | [DB 欄位](#3) | [前台網頁](#4) | [後台網頁](#5) | [Git 版控](#6) |
-| -------------------------- |:-----------------:| ----------- | ---------- | ---------- | ------------ |
+| [專案簡述與 Source code 目錄位置](#1) | [購物 ER Model](#2) | [DB 欄位](#3) | [前台網頁](#4) | [後台網頁](#5) | [Git 版控](#6) | Hibernate |
+| ---------------------------- |:-----------------:| ----------- | ---------- | ---------- | ------------ | --------- |
 
 ## <span id="1">1.專案簡述與 Source code 位置目錄</span>
 
@@ -35,15 +35,11 @@
   
   - Database - Oracle
 
-
-
 - 專案架構
   
   - 使用 MVC 設計模式
   
   - model 部分使用 Facade 模式
-    
-    
 
 - Source code 位置目錄
   
@@ -105,13 +101,11 @@
       
       - [product_order_front](https://github.com/Lewis-Tseng/group5-shopping/tree/master/WebContent/front_end/product_order_front)
 
-
-
-## <span id="2">2.購物ER Model</span>
+## <span id="2">2.購物 ER Model</span>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/ERModel_shopping/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8EER%20Model.JPG" width="800"/> </div>
 
-## <span id="3">3.DB欄位</span>
+## <span id="3">3. DB 欄位</span>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/DBColumn_shopping/%E5%95%86%E5%93%81%20%E8%A8%82%E5%96%AE%20%E8%A8%82%E5%96%AE%E6%98%8E%E7%B4%B0%E6%AC%84%E4%BD%8D.JPG" width="800"/> </div>
 
@@ -119,17 +113,17 @@
 
 ## <span id="4">4.前台網頁</span>
 
-###### 4-1.購物商城首頁
+#### 4-1.購物商城首頁
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
 
-###### 4-2.點擊加入購物車按鈕，快速加入商品
+#### 4-2.點擊加入購物車按鈕，快速加入商品
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E9%A6%96%E9%A0%81%E9%BB%9E%E6%93%8A%E5%8A%A0%E5%85%A5%E8%B3%BC%E7%89%A9%E8%BB%8A.jpg" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E5%8A%A0%E5%85%A5%E8%B3%BC%E7%89%A9%E8%BB%8A%E6%88%90%E5%8A%9F.JPG" width="800"/> </div>
 
-- 購物商城首頁使用Ajax頁面直接加入購物車
+- 購物商城首頁使用 AJAX 直接加入購物車
 
 ```js
 $('button[class*="send"]').click(function(){
@@ -157,17 +151,17 @@ $('button[class*="send"]').click(function(){
  });
 ```
 
-###### 4-3.進入商品頁面，調整數量加入購物車
+#### 4-3.進入商品頁面，調整數量加入購物車
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E5%95%86%E5%93%81%E9%A0%81%E9%9D%A2%E8%AA%BF%E6%95%B4%E6%95%B8%E9%87%8F%E5%8A%A0%E5%85%A5%E8%B3%BC%E7%89%A9%E8%BB%8A.JPG" witth="800"/> </div>
 
-###### 4-4.修改購物車內商品數量與刪除
+#### 4-4.修改購物車內商品數量與刪除
 
-- 目前最下面商品數量為3
+- 目前最下面商品數量為 3
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E9%80%B2%E5%85%A5%E8%B3%BC%E7%89%A9%E8%BB%8A%E9%A0%81%E9%9D%A2.JPG" width="800"/> </div>
 
-- 修改最下面商品數量為1
+- 修改最下面商品數量為 1
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E4%BF%AE%E6%94%B9%E5%95%86%E5%93%81%E6%95%B8%E9%87%8F.JPG" width="800"/> </div>
 
@@ -175,7 +169,7 @@ $('button[class*="send"]').click(function(){
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E5%88%AA%E9%99%A4%E5%95%86%E5%93%81.JPG" width="800"/> </div>
 
-- 購物車新增刪除Code片段
+- 購物車新增刪除 Code 片段
 
 ```java
 int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
@@ -220,17 +214,17 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
                 /*購物車內修改數量 抓到index數值*/
 ```
 
-#### [購物車完整CodeLink](https://github.com/Lewis-Tseng/group5-shopping/blob/master/src/com/shopping/controller/Shopping_ProductServlet.java)
+- [購物車 controller Shopping_ProductServlet link](https://github.com/Lewis-Tseng/group5-shopping/blob/master/src/com/shopping/controller/Shopping_ProductServlet.java)
 
-###### 4-5.商品結帳頁面
+#### 4-5.商品結帳頁面
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E5%95%86%E5%93%81%E7%B5%90%E5%B8%B3%E9%A0%81%E9%9D%A2-%E4%BD%BF%E7%94%A8%E9%BB%9E%E6%95%B8%E6%89%A3%E6%AC%BE.JPG" width="800"/> </div>
 
-###### 4-6.結帳完成並產生訂單
+#### 4-6.結帳完成並產生訂單
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E7%94%A2%E7%94%9F%E8%B3%BC%E7%89%A9%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
-- 新增訂單與明細片段Code
+- 新增訂單與明細片段 Code
 
 ```java
   /*結帳產生訂單*/
@@ -275,9 +269,11 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
                     /* 訂單明細新增完成 */
 ```
 
-#### [交易行為新增訂單與明細完整CodeLink](https://github.com/Lewis-Tseng/group5-shopping/blob/master/src/com/product_order/controller/Product_OrderServlet.java)
+- [訂單 controller Product_OrderServlet link](https://github.com/Lewis-Tseng/group5-shopping/blob/master/src/com/product_order/controller/Product_OrderServlet.java)
 
-###### 4-7.搜尋訂單
+- [訂單 model Product_OrderDAO link](https://github.com/Lewis-Tseng/group5-shopping/blob/master/src/com/product_order/model/Product_OrderDAO.java)
+
+#### 4-7.搜尋訂單
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
@@ -287,17 +283,17 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 
 ## <span id="5">5.後台網頁</span>
 
-###### 5-1.購物商城管理首頁
+#### 5-1.購物商城管理首頁
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E7%AE%A1%E7%90%86.JPG" width="800"/> </div>
 
-###### 5-2.新增商品類別
+#### 5-2.新增商品類別
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81%E9%A1%9E%E5%88%A5.JPG" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81%E9%A1%9E%E5%88%A5%E6%88%90%E5%8A%9F.JPG" width="800"/> </div>
 
-- 新增商品類別Code片段
+- 新增商品類別 Code 片段
 
 ```java
 if ("insert".equals(action)) {
@@ -342,7 +338,7 @@ if ("insert".equals(action)) {
         }
 ```
 
-###### 5-3.新增商品
+#### 5-3.新增商品
 
 - 輸入商品名稱
 
@@ -352,38 +348,56 @@ if ("insert".equals(action)) {
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
-###### 5-4.新增商品圖片
+#### 5-4.新增商品圖片
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81%E5%9C%96%E7%89%87%E9%A0%90%E8%A6%BD.JPG" width="800"/> </div>
 
-###### 5-5.將商品上架
+#### 5-5.將商品上架
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E5%95%86%E5%93%81%E4%B8%8A%E6%9E%B6.JPG" width="800"/> </div>
 
-
-
-###### 5-6.回前台商城首頁確認已上架且可購買
+#### 5-6.回前台商城首頁確認已上架且可購買
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E5%95%86%E5%93%81%E5%B7%B2%E4%B8%8A%E6%9E%B6%E8%87%B3%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E7%A2%BA%E8%AA%8D%E6%96%B0%E4%B8%8A%E6%9E%B6%E5%95%86%E5%93%81%E4%B9%9F%E8%83%BD%E8%B3%BC%E8%B2%B7%E7%94%A2%E7%94%9F%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0.JPG" width="800"/> </div>
 
-#### [後台Code連結]()
 
 
+## <span id="7">6. Git 版控</span>
 
-## <span id="2">6.Git版控</span>
-
-###### 6-1.目前專案已開始用Git做版本控管
+#### 6-1.目前專案已開始用 Git 做版本控管
 
 - Git Terminal
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/Git_Terminal.JPG" width="800"/> </div>
 
-- GUI使用SourceTree輔助
+- GUI 使用 SourceTree 輔助
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/%E4%BD%BF%E7%94%A8%E7%9A%84GUI_1.JPGgithub_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
-- 流程走Git-flow
+- 流程走 Git-flowhttps://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/%E6%B5%81%E7%A8%8B%E8%B5%B0Git-flow_1.JPG
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/%E4%BD%BF%E7%94%A8%E7%9A%84GUI_1.JPGgithub_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+
+## <span id="7">7. Hibernate</span>
+
+- 目前專案已開始練習改用 Hibernate 框架 (在 feature/  branch)
+  
+  但有碰到問題尚未解決，訂單明細複合主鍵其中一個是資料庫的自增主鍵值，無法用級聯同時新增訂單與明細。
+
+- 實體映射檔部分使用 xml 與  JPA  Annotations 混合練習使用
+
+- Hibernate 部分 Source code 位置
+  
+  - https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/hibernate.cfg.xml
+  
+  - [hibernate/util](https://github.com/Lewis-Tseng/group5-shopping/tree/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/hibernate/util "This path skips through empty directories")
+  
+  - [product.hbm.xml](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/product/model/product.hbm.xml "product.hbm.xml")
+  
+  - [Product_OrderDAO.java](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/product_order/model/Product_OrderDAO.java "Product_OrderDAO.java")
+  
+  - [Product_OrderVO.java](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/product_order/model/Product_OrderVO.java "Product_OrderVO.java")
+  
+  - [Order_DetailsVO.java](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/order_details/model/Order_DetailsVO.java "Order_DetailsVO.java")
