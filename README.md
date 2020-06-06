@@ -1,7 +1,7 @@
 # group5-shopping
 
-| [專案簡述與 Source code 目錄位置](#1) | [購物 ER Model](#2) | [DB 欄位](#3) | [前台網頁](#4) | [後台網頁](#5) | [Git 版控](#6) | Hibernate |
-| ---------------------------- |:-----------------:| ----------- | ---------- | ---------- | ------------ | --------- |
+| [專案簡述與 Source code 目錄位置](#1) | [購物 ER Model](#2) | [DB 欄位](#3) | [前台網頁](#4) | [後台網頁](#5) | [Git 版控](#6) | [Hibernate](#7) |
+| ---------------------------- |:-----------------:| ----------- | ---------- | ---------- | ------------ | --------------- |
 
 ## <span id="1">1.專案簡述與 Source code 位置目錄</span>
 
@@ -362,9 +362,7 @@ if ("insert".equals(action)) {
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E7%A2%BA%E8%AA%8D%E6%96%B0%E4%B8%8A%E6%9E%B6%E5%95%86%E5%93%81%E4%B9%9F%E8%83%BD%E8%B3%BC%E8%B2%B7%E7%94%A2%E7%94%9F%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0.JPG" width="800"/> </div>
 
-
-
-## <span id="7">6. Git 版控</span>
+## <span id="6">6. Git 版控</span>
 
 #### 6-1.目前專案已開始用 Git 做版本控管
 
@@ -374,15 +372,15 @@ if ("insert".equals(action)) {
 
 - GUI 使用 SourceTree 輔助
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/%E4%BD%BF%E7%94%A8%E7%9A%84GUI_1.JPGgithub_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/%E4%BD%BF%E7%94%A8%E7%9A%84GUI_1.JPG" width="800"/> </div>
 
-- 流程走 Git-flowhttps://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/%E6%B5%81%E7%A8%8B%E8%B5%B0Git-flow_1.JPG
+- 流程走 Git-flow
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/%E4%BD%BF%E7%94%A8%E7%9A%84GUI_1.JPGgithub_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
 ## <span id="7">7. Hibernate</span>
 
-- 目前專案已開始練習改用 Hibernate 框架 (在 feature/  branch)
+- 目前專案已開始練習改用 Hibernate 框架 (在 feature/  branch)https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/%E6%B5%81%E7%A8%8B%E8%B5%B0Git-flow_1.JPG
   
   但有碰到問題尚未解決，訂單明細複合主鍵其中一個是資料庫的自增主鍵值，無法用級聯同時新增訂單與明細。
 
@@ -390,7 +388,7 @@ if ("insert".equals(action)) {
 
 - Hibernate 部分 Source code 位置
   
-  - https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/hibernate.cfg.xml
+  - [hibernate.cfg.xml](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/hibernate.cfg.xml "hibernate.cfg.xml")
   
   - [hibernate/util](https://github.com/Lewis-Tseng/group5-shopping/tree/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/hibernate/util "This path skips through empty directories")
   
