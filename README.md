@@ -376,7 +376,7 @@ if ("insert".equals(action)) {
 
 - 流程走 Git-flow
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/%E4%BD%BF%E7%94%A8%E7%9A%84GUI_1.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/%E6%B5%81%E7%A8%8B%E8%B5%B0Git-flow_1.JPG" width="800"/> </div>
 
 ## <span id="7">7. Hibernate</span>
 
