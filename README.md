@@ -1,6 +1,6 @@
 # group5-shopping
 
-| [Code目錄位置](#1) | [ER Model](#2) | [DB欄位](#3) | [前台網頁](#4) | [後台網頁](#5) | [Git版控](#6) |
+| [Code目錄位置](#1) | [購物ER Model](#2) | [DB欄位](#3) | [前台網頁](#4) | [後台網頁](#5) | [Git版控](#6) |
 | -------------- |:--------------:| ---------- | ---------- | ---------- | ----------- |
 
 ## <span id="1">1.Code目錄位置</span>
@@ -11,7 +11,7 @@
 
 
 
-## <span id="2">2.ER Model</span>
+## <span id="2">2.購物ER Model</span>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/ERModel_shopping/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8EER%20Model.JPG" width="800"/> </div>
 
