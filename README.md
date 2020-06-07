@@ -2,9 +2,7 @@
 
 ## 資策會學習與專題開發心得
 
-這是我在資策會與夥伴開發的專案，此養成班主要是聚焦在後端Java技術的實作。
-
-我主要是負責購物商城的功能(不包含會員註冊)，後台商品增刪改查，與前台加入購物車完成訂單。
+這是我在中壢資策會與夥伴開發的專案，養成班主要是聚焦在後端Java技術的實作。我主要是負責購物商城的功能(不包含會員註冊)，後台商品增刪改查，與前台加入購物車完成訂單。
 
 
 
@@ -12,9 +10,9 @@
 
 敏捷式開發、UML、UseCase討論、活動圖討論、KANO問卷調查，到後面討論資料庫的ER Model並將其正規化，後面還有接觸AWS、Git版控與程式測試，所接觸的新資訊實在多到不可思議。
 
+最重要的是還要能將資料庫、前端與後端的技術熟練，對於完全沒接觸過程式與天賦並不出色的我來說，實在是遇到不少挫折。
 
 
-最重要的是還要能將前端與後端的技術熟練，對於完全沒接觸過程式與天賦並不出色的我來說，實在是遇到很多挫折。
 
 到了最後專題專案開發中，有不懂的就請教同學與老師，跌跌撞撞還是完成專題並且順利上台發表報告了(慶幸沒有出現404或500)。
 
@@ -22,9 +20,9 @@
 
 - 下面表格為目錄，可點選連結直接轉跳
 
-|                              | ER Model          | 資料庫         | 畫面展示       | 畫面展示       | 版控           | 框架學習            |
-|:----------------------------:|:-----------------:|:-----------:|:----------:|:----------:|:------------:|:---------------:|
-| [專案簡述與 Source code 目錄位置](#1) | [購物 ER Model](#2) | [DB 欄位](#3) | [前台網頁](#4) | [後台網頁](#5) | [Git 版控](#6) | [Hibernate](#7) |
+| ![-](C:\DA103_Web_workspace\eclipse_workspace\DA103G5\github_useimages\icon\files-and-folders.png) | ER Model          | ![資料庫](C:\Users\RG\Downloads\database.png) | 畫面![展示](C:\Users\RG\Downloads\content.png) | 畫面![展示](C:\Users\RG\Downloads\content.png) | ![版控](C:\Users\RG\Downloads\git.png) | ![框架學習](C:\Users\RG\Downloads\11059458311548141178-128.png) |
+|:--------------------------------------------------------------------------------------------------:|:-----------------:|:------------------------------------------:|:------------------------------------------:|:------------------------------------------:|:------------------------------------:|:-----------------------------------------------------------:|
+| [專案簡述與 Source code 目錄位置](#1)                                                                       | [購物 ER Model](#2) | [DB 欄位](#3)                                | [前台網頁](#4)                                 | [後台網頁](#5)                                 | [Git 版控](#6)                         | [Hibernate](#7)                                             |
 
 ## <span id="1">1.專案簡述與 Source code 位置目錄</span>
 
@@ -146,6 +144,8 @@
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E5%8A%A0%E5%85%A5%E8%B3%BC%E7%89%A9%E8%BB%8A%E6%88%90%E5%8A%9F.JPG" width="800"/> </div>
 
+
+
 - 購物商城首頁使用 AJAX 直接加入購物車
 
 ```js
@@ -247,6 +247,8 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E7%94%A2%E7%94%9F%E8%B3%BC%E7%89%A9%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
+
+
 - 新增訂單與明細片段 Code
 
 ```java
@@ -316,6 +318,8 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81%E9%A1%9E%E5%88%A5%E6%88%90%E5%8A%9F.JPG" width="800"/> </div>
 
+
+
 - 新增商品類別 Code 片段
 
 ```java
@@ -379,9 +383,13 @@ if ("insert".equals(action)) {
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E5%95%86%E5%93%81%E4%B8%8A%E6%9E%B6.JPG" width="800"/> </div>
 
-#### 5-6.回前台商城首頁確認已上架且可購買
+#### 5-6.回前台商城首頁確認已上架
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E5%95%86%E5%93%81%E5%B7%B2%E4%B8%8A%E6%9E%B6%E8%87%B3%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
+
+#### 5-7.也可收搜尋到上架商品且可購買
+
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E7%A2%BA%E8%AA%8D%E6%96%B0%E4%B8%8A%E6%9E%B6%E5%95%86%E5%93%81%E4%B9%9F%E8%83%BD%E8%B3%BC%E8%B2%B7%E7%94%A2%E7%94%9F%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0.JPG" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E7%A2%BA%E8%AA%8D%E6%96%B0%E4%B8%8A%E6%9E%B6%E5%95%86%E5%93%81%E4%B9%9F%E8%83%BD%E8%B3%BC%E8%B2%B7%E7%94%A2%E7%94%9F%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0.JPG" width="800"/> </div>
 
