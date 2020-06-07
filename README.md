@@ -2,15 +2,15 @@
 
 ## 資策會學習與專題開發心得
 
-這是我在中壢資策會與夥伴開發的專案，主要是聚焦在後端Java技術的實作。我主要是負責購物商城的功能(不包含會員註冊)，後台商品對資料庫增刪改查，與前台加入購物車完成訂單。
+這是我在中壢資策會與夥伴開發的專案，主要是聚焦在**後端 Java 技術的實作**。我主要是負責<u>購物商城的功能(不包含會員註冊)</u>，<u>後台商品對資料庫增刪改查</u>，與<u>前台將商品加入購物車完成訂單</u>。
 
 在中壢資策會學習接觸軟體工程師領域後，才發現這個世界非常的大，從規劃專案到開始開發都有其專門依循的方式。
 
-敏捷式開發、UML、UseCase討論、活動圖討論、KANO問卷調查、討論資料庫的ER Model並將其正規化，到後面還有接觸AWS、Git版控與程式測試，所接觸的新資訊實在多到不可思議。
+敏捷式開發、UML、UseCase 討論、活動圖討論、KANO 問卷調查、討論資料庫的 ER Model 並將其正規化，到後面還有接觸 AWS、Git 版控與程式測試，所接觸的新資訊實在多到不可思議。
 
 最重要的是還要能將資料庫、前端與後端的技術熟練，對於完全沒接觸過程式與天賦並不出色的我來說，實在是遇到不少挫折。
 
-到了最後專題專案開發中，只能有不懂的就盡量請教同學與老師，跌跌撞撞還是完成專題並且順利上台發表報告，慶幸並沒有出現404或500。
+到了最後專題專案開發中，只能有不懂的就盡量請教同學與老師，跌跌撞撞還是完成專題並且順利上台發表報告，慶幸並沒有出現 404 或 500。
 
 目前已開始嘗試將專案 model 部分改成 Hibernate，希望能持續學習精進。
 
@@ -128,21 +128,23 @@
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/DBColumn_shopping/%E5%95%86%E5%93%81%E5%9C%96%E7%89%87%20%E5%95%86%E5%93%81%E9%A1%9E%E5%88%A5%E6%AC%84%E4%BD%8D.JPG" width="800"/> </div>
 
-## <span id="4">🖥4.前台網頁</span>
+## <span id="4">🖥4.前台網頁畫面展示</span>
 
 #### 4-1.購物商城首頁
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
 
+
+
 - 練習用 Java 8 寫法使後面加入的商品能在最前面陳列
 
 ```java
 public List<ProductVO> getAllPro_StaisZero() {
-		List<ProductVO> list = dao.getAllPro_StaisZero();
-		list = list.stream().filter(p -> p.getPro_sta().equals("0")).collect(Collectors.toList());
-		Collections.reverse(list);
-		return list;
-	}
+        List<ProductVO> list = dao.getAllPro_StaisZero();
+        list = list.stream().filter(p -> p.getPro_sta().equals("0")).collect(Collectors.toList());
+        Collections.reverse(list);
+        return list;
+    }
 ```
 
 #### 4-2.點擊加入購物車按鈕，快速加入商品
@@ -150,6 +152,8 @@ public List<ProductVO> getAllPro_StaisZero() {
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E9%A6%96%E9%A0%81%E9%BB%9E%E6%93%8A%E5%8A%A0%E5%85%A5%E8%B3%BC%E7%89%A9%E8%BB%8A.jpg" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E5%8A%A0%E5%85%A5%E8%B3%BC%E7%89%A9%E8%BB%8A%E6%88%90%E5%8A%9F.JPG" width="800"/> </div>
+
+
 
 - 購物商城首頁使用 AJAX 直接將商品加入購物車
 
@@ -196,6 +200,8 @@ $('button[class*="send"]').click(function(){
 - 刪除最上方商品
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E5%88%AA%E9%99%A4%E5%95%86%E5%93%81.JPG" width="800"/> </div>
+
+
 
 - 購物車新增刪除 Code 片段
 
@@ -252,6 +258,8 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E7%94%A2%E7%94%9F%E8%B3%BC%E7%89%A9%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
+
+
 - 新增訂單與明細片段 Code
 
 ```java
@@ -293,7 +301,6 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
                         errorMsgs.add("購物車沒有東西");
                     }
                     /*開始新增訂單明細取值且加入List*/
-              
 ```
 
 - [訂單 Code 連結 controller/Product_OrderServlet](https://github.com/Lewis-Tseng/group5-shopping/blob/master/src/com/product_order/controller/Product_OrderServlet.java)
@@ -306,9 +313,9 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE%E5%87%BA%E7%8F%BE%E4%B8%80%E7%AD%86%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
-==================================================================
 
-## <span id="5">🖥5.後台網頁</span>
+
+## <span id="5">🖥5.後台網頁畫面展示</span>
 
 #### 5-1.購物商城管理首頁
 
