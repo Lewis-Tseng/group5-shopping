@@ -12,12 +12,13 @@
 
 到了最後專題專案開發中，有不懂的就請教同學與老師，跌跌撞撞還是完成專題並且順利上台發表報告了(慶幸沒有出現404或500)。
 
-- 下面表格為目錄，可點選連結直接轉跳
+## 📑目錄
 
-| [專案簡述與 Source code 目錄位置](#1) | [購物 ER Model](#2) | [DB 欄位](#3) | [前台網頁畫面展示](#4) | [後台網頁畫面展示](#5) | [Git 版控](#6) | [Hibernate](#7) |
+| 📄                           | 📖                | 🗃          | 🖥             | 🖥             | 📊           | 🔎              |
 |:----------------------------:|:-----------------:|:-----------:|:--------------:|:--------------:|:------------:|:---------------:|
+| [專案簡述與 Source code 目錄位置](#1) | [購物 ER Model](#2) | [DB 欄位](#3) | [前台網頁畫面展示](#4) | [後台網頁畫面展示](#5) | [Git 版控](#6) | [Hibernate](#7) |
 
-## <span id="1">1.專案簡述與 Source code 位置目錄</span>
+## <span id="1">📄1.專案簡述與 Source code 位置目錄</span>
 
 - 專案使用到的技術
   
@@ -115,17 +116,17 @@
       
       - [product_order_front](https://github.com/Lewis-Tseng/group5-shopping/tree/master/WebContent/front_end/product_order_front)
 
-## <span id="2">2.購物 ER Model</span>
+## <span id="2">📖2.購物 ER Model</span>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/ERModel_shopping/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8EER%20Model.JPG" width="800"/> </div>
 
-## <span id="3">3. DB 欄位</span>
+## <span id="3">🗃3. DB 欄位</span>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/DBColumn_shopping/%E5%95%86%E5%93%81%20%E8%A8%82%E5%96%AE%20%E8%A8%82%E5%96%AE%E6%98%8E%E7%B4%B0%E6%AC%84%E4%BD%8D.JPG" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/DBColumn_shopping/%E5%95%86%E5%93%81%E5%9C%96%E7%89%87%20%E5%95%86%E5%93%81%E9%A1%9E%E5%88%A5%E6%AC%84%E4%BD%8D.JPG" width="800"/> </div>
 
-## <span id="4">4.前台網頁</span>
+## <span id="4">🖥4.前台網頁</span>
 
 #### 4-1.購物商城首頁
 
@@ -295,7 +296,7 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 
 ==================================================================
 
-## <span id="5">5.後台網頁</span>
+## <span id="5">🖥5.後台網頁</span>
 
 #### 5-1.購物商城管理首頁
 
@@ -380,7 +381,7 @@ if ("insert".equals(action)) {
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E7%A2%BA%E8%AA%8D%E6%96%B0%E4%B8%8A%E6%9E%B6%E5%95%86%E5%93%81%E4%B9%9F%E8%83%BD%E8%B3%BC%E8%B2%B7%E7%94%A2%E7%94%9F%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0.JPG" width="800"/> </div>
 
-## <span id="6">6. Git 版控</span>
+## <span id="6">📊6. Git 版控</span>
 
 #### 6-1.目前專案已開始用 Git 做版本控管
 
@@ -396,7 +397,7 @@ if ("insert".equals(action)) {
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/%E6%B5%81%E7%A8%8B%E8%B5%B0Git-flow_1.JPG" width="800"/> </div>
 
-## <span id="7">7. Hibernate</span>
+## <span id="7">🔎7. Hibernate</span>
 
 - 目前專案已開始練習改用 Hibernate 框架 (在 feature/  branch)
   
