@@ -14,9 +14,9 @@
 
 - 下面表格為目錄，可點選連結直接轉跳
 
-| ![__](https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/icon/files-and-folders.png) | ER Model          |             | 畫面         | 畫面         |              |                 |
-|:-------------------------------------------------------------------------------------------------------------:|:-----------------:|:-----------:|:----------:|:----------:|:------------:|:---------------:|
-| [專案簡述與 Source code 目錄位置](#1)                                                                                  | [購物 ER Model](#2) | [DB 欄位](#3) | [前台網頁](#4) | [後台網頁](#5) | [Git 版控](#6) | [Hibernate](#7) |
+| [![66]](#1)[66]:https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/icon/files-and-folders.png | ER Model          |             | 畫面         | 畫面         |              |                 |
+|:----------------------------------------------------------------------------------------------------------------------:|:-----------------:|:-----------:|:----------:|:----------:|:------------:|:---------------:|
+| [專案簡述與 Source code 目錄位置](#1)                                                                                           | [購物 ER Model](#2) | [DB 欄位](#3) | [前台網頁](#4) | [後台網頁](#5) | [Git 版控](#6) | [Hibernate](#7) |
 
 ## <span id="1">1.專案簡述與 Source code 位置目錄</span>
 
@@ -377,7 +377,7 @@ if ("insert".equals(action)) {
 
 #### 5-7.也可收搜尋到上架商品且可購買
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E7%A2%BA%E8%AA%8D%E6%96%B0%E4%B8%8A%E6%9E%B6%E5%95%86%E5%93%81%E4%B9%9F%E8%83%BD%E8%B3%BC%E8%B2%B7%E7%94%A2%E7%94%9F%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E6%90%9C%E5%B0%8BJava%E5%95%86%E5%93%81.JPG" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E7%A2%BA%E8%AA%8D%E6%96%B0%E4%B8%8A%E6%9E%B6%E5%95%86%E5%93%81%E4%B9%9F%E8%83%BD%E8%B3%BC%E8%B2%B7%E7%94%A2%E7%94%9F%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0.JPG" width="800"/> </div>
 
