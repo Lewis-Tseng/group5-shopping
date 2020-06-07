@@ -12,17 +12,13 @@
 
 到了最後專題專案開發中，只能有不懂的就盡量請教同學與老師，跌跌撞撞還是完成專題並且順利上台發表報告，慶幸並沒有出現404或500。
 
-
-
 目前已開始嘗試將專案 model 部分改成 Hibernate，希望能持續學習精進。
-
-
 
 ## 📑目錄
 
 | 📄                           | 📖                | 🗃          | 🖥             | 🖥             | 📊           | 🔎              |
 |:----------------------------:|:-----------------:|:-----------:|:--------------:|:--------------:|:------------:|:---------------:|
-| [專案簡述與 Source code 目錄位置](#1) | [購物 ER Model](#2) | [DB 欄位](#3) | [前台網頁畫面展示](#4) | [後台網頁畫面展示](#5) | [Git 版控](#6) | [Hibernate](#7) |
+| [專案簡述與 Source code 位置目錄](#1) | [購物 ER Model](#2) | [DB 欄位](#3) | [前台網頁畫面展示](#4) | [後台網頁畫面展示](#5) | [Git 版控](#6) | [Hibernate](#7) |
 
 ## <span id="1">📄1.專案簡述與 Source code 位置目錄</span>
 
@@ -138,13 +134,24 @@
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
 
+- 練習用 Java 8 寫法使後面加入的商品能在最前面陳列
+
+```java
+public List<ProductVO> getAllPro_StaisZero() {
+		List<ProductVO> list = dao.getAllPro_StaisZero();
+		list = list.stream().filter(p -> p.getPro_sta().equals("0")).collect(Collectors.toList());
+		Collections.reverse(list);
+		return list;
+	}
+```
+
 #### 4-2.點擊加入購物車按鈕，快速加入商品
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E9%A6%96%E9%A0%81%E9%BB%9E%E6%93%8A%E5%8A%A0%E5%85%A5%E8%B3%BC%E7%89%A9%E8%BB%8A.jpg" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E5%8A%A0%E5%85%A5%E8%B3%BC%E7%89%A9%E8%BB%8A%E6%88%90%E5%8A%9F.JPG" width="800"/> </div>
 
-- 購物商城首頁使用 AJAX 直接加入購物車
+- 購物商城首頁使用 AJAX 直接將商品加入購物車
 
 ```js
 $('button[class*="send"]').click(function(){
@@ -286,8 +293,7 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
                         errorMsgs.add("購物車沒有東西");
                     }
                     /*開始新增訂單明細取值且加入List*/
-                    }
-                    /* 訂單明細新增完成 */
+              
 ```
 
 - [訂單 Code 連結 controller/Product_OrderServlet](https://github.com/Lewis-Tseng/group5-shopping/blob/master/src/com/product_order/controller/Product_OrderServlet.java)

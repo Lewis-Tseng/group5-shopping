@@ -65,7 +65,7 @@ public class ProductService {
 	public List<ProductVO> getAll(Map<String, String[]> map) {
 		return dao.getAll(map);
 	}
-    //不知道為甚麼下面方法在jsp頁面會出錯 原本的getAll就可以
+    
 	public List<ProductVO> getAllPro_StaisZero() {
 		List<ProductVO> list = dao.getAllPro_StaisZero();
 		list = list.stream().filter(p -> p.getPro_sta().equals("0")).collect(Collectors.toList());
