@@ -2,15 +2,21 @@
 
 ## 資策會學習與專題開發心得
 
-這是我在中壢資策會與夥伴開發的專案，養成班主要是聚焦在後端Java技術的實作。我主要是負責購物商城的功能(不包含會員註冊)，後台商品增刪改查，與前台加入購物車完成訂單。
+這是我在中壢資策會與夥伴開發的專案，主要是聚焦在後端Java技術的實作。我主要是負責購物商城的功能(不包含會員註冊)，後台商品對資料庫增刪改查，與前台加入購物車完成訂單。
 
-在中壢資策會學習接觸軟體工程師領域後，才發現這個世界非常的大，從規劃專案到開始開發都有其專門的方法來依循。
+在中壢資策會學習接觸軟體工程師領域後，才發現這個世界非常的大，從規劃專案到開始開發都有其專門依循的方式。
 
-敏捷式開發、UML、UseCase討論、活動圖討論、KANO問卷調查，到後面討論資料庫的ER Model並將其正規化，後面還有接觸AWS、Git版控與程式測試，所接觸的新資訊實在多到不可思議。
+敏捷式開發、UML、UseCase討論、活動圖討論、KANO問卷調查、討論資料庫的ER Model並將其正規化，到後面還有接觸AWS、Git版控與程式測試，所接觸的新資訊實在多到不可思議。
 
 最重要的是還要能將資料庫、前端與後端的技術熟練，對於完全沒接觸過程式與天賦並不出色的我來說，實在是遇到不少挫折。
 
-到了最後專題專案開發中，有不懂的就請教同學與老師，跌跌撞撞還是完成專題並且順利上台發表報告了(慶幸沒有出現404或500)。
+到了最後專題專案開發中，只能有不懂的就盡量請教同學與老師，跌跌撞撞還是完成專題並且順利上台發表報告，慶幸並沒有出現404或500。
+
+
+
+目前已開始嘗試將專案 model 部分改成 Hibernate，希望能持續學習精進。
+
+
 
 ## 📑目錄
 
@@ -80,7 +86,7 @@
     
     - [product_order](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/product_order)
       
-      - [controller](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/product_order/controller)
+      - [controller](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/product_order/controller)(結帳產生訂單Code位置)
       
       - [model](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/product_order/model)
     
@@ -90,7 +96,7 @@
       
       - [model](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/order_details/model)
     
-    - [shopping](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/shopping/controller)
+    - [shopping](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/shopping/controller)(購物車Code位置)
       
       - [controller](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/shopping/controller)
 
@@ -112,7 +118,7 @@
     
     - [front_end](https://github.com/Lewis-Tseng/group5-shopping/tree/master/WebContent/front_end)
       
-      - [product_front](https://github.com/Lewis-Tseng/group5-shopping/tree/master/WebContent/front_end/product_front)
+      - [product_front](https://github.com/Lewis-Tseng/group5-shopping/tree/master/WebContent/front_end/product_front)(購物車JSP位置)
       
       - [product_order_front](https://github.com/Lewis-Tseng/group5-shopping/tree/master/WebContent/front_end/product_order_front)
 
@@ -385,6 +391,8 @@ if ("insert".equals(action)) {
 
 #### 6-1.目前專案已開始用 Git 做版本控管
 
+資策會時期並無導入Git版控，此為後續自學練習。
+
 - Git Terminal
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/Git%E7%89%88%E6%8E%A7images/Git_Terminal.JPG" width="800"/> </div>
@@ -399,7 +407,7 @@ if ("insert".equals(action)) {
 
 ## <span id="7">🔎7. Hibernate</span>
 
-- 目前專案已開始練習改用 Hibernate 框架 (在 feature/  branch)
+- 目前專案已開始練習改用 Hibernate 框架 (此版本目前存放在 [feature branch](https://github.com/Lewis-Tseng/group5-shopping/tree/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E) )，
   
   但有碰到問題尚未解決，訂單明細複合主鍵其中一個是資料庫的自增主鍵值，無法用級聯同時新增訂單與明細。
 
