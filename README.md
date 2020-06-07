@@ -10,7 +10,7 @@
 
 最重要的是還要能將資料庫、前端與後端的技術熟練，對於完全沒接觸過程式與天賦並不出色的我來說，實在是遇到不少挫折。
 
-到了最後專題專案開發中，只能有不懂的就盡量請教同學與老師，跌跌撞撞還是完成專題並且順利上台發表報告，慶幸並沒有出現 404 或 500。
+到了最後專題專案開發中，只能有不懂的就盡量請教同學與老師，跌跌撞撞還是完成專題並且順利上台發表報告，所幸並沒有出現 404 或 500。
 
 目前已開始嘗試將專案 model 部分改成 Hibernate，希望能持續學習精進。
 
@@ -134,8 +134,6 @@
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
 
-
-
 - 練習用 Java 8 寫法使後面加入的商品能在最前面陳列
 
 ```java
@@ -152,8 +150,6 @@ public List<ProductVO> getAllPro_StaisZero() {
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E9%A6%96%E9%A0%81%E9%BB%9E%E6%93%8A%E5%8A%A0%E5%85%A5%E8%B3%BC%E7%89%A9%E8%BB%8A.jpg" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E5%8A%A0%E5%85%A5%E8%B3%BC%E7%89%A9%E8%BB%8A%E6%88%90%E5%8A%9F.JPG" width="800"/> </div>
-
-
 
 - 購物商城首頁使用 AJAX 直接將商品加入購物車
 
@@ -200,8 +196,6 @@ $('button[class*="send"]').click(function(){
 - 刪除最上方商品
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E5%88%AA%E9%99%A4%E5%95%86%E5%93%81.JPG" width="800"/> </div>
-
-
 
 - 購物車新增刪除 Code 片段
 
@@ -258,8 +252,6 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E7%94%A2%E7%94%9F%E8%B3%BC%E7%89%A9%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
-
-
 - 新增訂單與明細片段 Code
 
 ```java
@@ -312,8 +304,6 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE%E5%87%BA%E7%8F%BE%E4%B8%80%E7%AD%86%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
-
-
 
 ## <span id="5">🖥5.後台網頁畫面展示</span>
 
@@ -380,7 +370,7 @@ if ("insert".equals(action)) {
 
 - 選擇商品狀態為下架，類別為剛新增成功的類別
 
-<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+<div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E6%96%B0%E5%A2%9E%E5%95%86%E5%93%81%E7%8B%80%E6%85%8B%E4%B8%8B%E6%9E%B6.JPG" width="800"/> </div>
 
 #### 5-4.新增商品圖片
 
@@ -394,7 +384,7 @@ if ("insert".equals(action)) {
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E5%95%86%E5%93%81%E5%B7%B2%E4%B8%8A%E6%9E%B6%E8%87%B3%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
 
-#### 5-7.也可收搜尋到上架商品且可購買
+#### 5-7.也可收搜尋到新上架商品且可購買
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%BE%8C%E5%8F%B0images/%E6%90%9C%E5%B0%8BJava%E5%95%86%E5%93%81.JPG" width="800"/> </div>
 
