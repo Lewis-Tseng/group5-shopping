@@ -526,19 +526,17 @@ public class Product_OrderServlet extends HttpServlet {
 					product_orderVO.setDel_add(del_add);
            			// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
-						req.setAttribute("product_orderVO", product_orderVO); // 含有輸入格式錯誤的empVO物件,也存入req
+						req.setAttribute("product_orderVO", product_orderVO); 
 						session.setAttribute("shoppingcart", od_buylist);
 						String amount = String.valueOf(total);
 						req.setAttribute("amount", amount);
 						String proAllqua = String.valueOf(pro_total);
 						req.setAttribute("proAllqua", proAllqua);
-//						res.sendRedirect("http:/localhost:8081/G5_Shopping_ver4.1/front_end/product_order_front/Shopping_Checkout.jsp");
 						RequestDispatcher failureView = req
 								.getRequestDispatcher("/front_end/product_order_front/Shopping_Checkout.jsp");
 						failureView.forward(req, res);
 						return;
 					}
-//					session.removeAttribute("shoppingcart");
 					/*************************** 2.開始新增訂單資料 ***************************************/
 					Product_OrderService product_orderSvc = new Product_OrderService();
 					product_orderSvc.insertShopping_Order(product_orderVO, od_colist);		
@@ -547,7 +545,7 @@ public class Product_OrderServlet extends HttpServlet {
 					od_buylist.removeAll(od_buylist);
 					req.setAttribute("product_orderVO", product_orderVO);
 					
-					//重新set新的memVO session 為了讓頁面顯示正確的點數  有問題還是不會正確顯示
+					//重新set新的memVO session 為了讓頁面顯示正確的點數 
 					MemService memSvc = new MemService();
 					memVO = memSvc.getOneMem(mem_id);
 				    session.setAttribute("memVO", memVO);	
@@ -558,7 +556,6 @@ public class Product_OrderServlet extends HttpServlet {
 					/*************************** 其他可能的錯誤處理 **********************************/
 				} catch (Exception e) {
 					errorMsgs.add(e.getMessage());
-//					res.sendRedirect("/front_end/product_order_front/Shopping_Checkout.jsp");
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/front_end/product_order_front/Shopping_Checkout.jsp");
 					failureView.forward(req, res);
