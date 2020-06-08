@@ -8,7 +8,7 @@
 
 在中壢資策會學習接觸軟體工程師領域後，才發現這個世界非常的大，從規劃專案到開始開發都有其專門依循的方式。
 
-敏捷式開發、UML、UseCase 討論、活動圖討論、KANO 問卷調查、討論資料庫的 ER Model 並將其正規化，到後面還有接觸 AWS、Git 版控與程式測試，所接觸的新資訊實在多到不可思議。
+敏捷軟體開發、UML、UseCase 討論、活動圖討論、KANO 問卷調查、討論資料庫的 ER Model 並將其正規化，到後面還有接觸 AWS、Git 版控與程式測試，所接觸的新資訊實在多到不可思議。
 
 最重要的是還要能將資料庫、前端與後端的技術熟練，對於完全沒接觸過程式與天賦並不出色的我來說，實在是遇到不少挫折。
 
@@ -142,7 +142,7 @@
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E8%B3%BC%E7%89%A9%E5%95%86%E5%9F%8E%E9%A6%96%E9%A0%81.JPG" width="800"/> </div>
 
-- 練習用 Java 8 寫法使後面加入的商品能在最前面陳列
+- 練習用 Java 8 Lambda 語法使後面加入的商品能在最前面陳列
 
 ```java
 public List<ProductVO> getAllPro_StaisZero() {
