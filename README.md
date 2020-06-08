@@ -1,4 +1,4 @@
-# group5 - shopping
+# group5-shopping
 
 ## 資策會學習與專題開發心得
 
@@ -18,7 +18,7 @@
 
 課程最後階段，也教了框架Hibernate、Spring、Spring MVC、Struts 2，但很可惜這些框架沒有應用在這次專題上。雖然這段上課過程花費不少心力，但接觸到許多新知倒也覺得充實。
 
-目前已開始將專題 model 部分練習應用 Hibernate 技術，繼續學習精進。
+目前已開始將專題 Model 部分練習應用 Hibernate 技術，繼續學習精進。
 
 ---
 
