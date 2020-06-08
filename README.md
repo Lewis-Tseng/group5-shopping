@@ -2,7 +2,7 @@
 
 ## 資策會學習與專題開發心得
 
-這是我在中壢資策會與夥伴開發的專案，主要是聚焦在**後端 Java 技術的實作**。我主要是負責<u>購物商城的功能(不包含會員註冊)</u>，<u>後台商品對資料庫增刪改查</u>，與<u>前台將商品加入購物車完成訂單</u>。
+這是我在中壢資策會與夥伴開發的專案，主要是聚焦在**後端 Java 技術的實作**。我主要是負責**購物商城功能**(不包含會員註冊)，後台網頁對商品進行資料庫增刪改查，與前台網頁將商品加入購物車完成訂單。
 
 ---
 
@@ -16,7 +16,7 @@
 
 ---
 
-課程最後階段，也教了框架Hibernate、Spring、Spring MVC、Struts 2，但很可惜這些框架沒有應用在這次專題上。雖然這段上課過程花費不少心力，但接觸到許多新知倒也覺得充實。
+課程最後階段，也教了框架Hibernate、Spring、Spring MVC、Struts 2，但很可惜這些框架技術並沒有應用在這次專題上。雖然這段上課過程花費不少心力，但接觸到許多新知倒也覺得充實。
 
 目前已開始將專題 Model 部分練習應用 Hibernate 技術，繼續學習精進。
 
@@ -150,7 +150,7 @@ public List<ProductVO> getAllPro_StaisZero() {
         list = list.stream().filter(p -> p.getPro_sta().equals("0")).collect(Collectors.toList());
         Collections.reverse(list);
         return list;
-    }
+}
 ```
 
 #### 4-2.點擊加入購物車按鈕，快速加入商品
@@ -331,8 +331,7 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 if ("insert".equals(action)) {
 
             List<String> errorMsgs = new LinkedList<String>();
-            // Store this set in the request scope, in case we need to
-            // send the ErrorPage view.
+ 
             req.setAttribute("errorMsgs", errorMsgs);
 
             try {
@@ -345,14 +344,12 @@ if ("insert".equals(action)) {
                 Product_CategoryVO product_categoryVO = new Product_CategoryVO();
                 product_categoryVO.setCat_nam(cat_nam);
 
-                // Send the use back to the form, if there were errors
                 if (!errorMsgs.isEmpty()) {
                     req.setAttribute("product_categoryVO", product_categoryVO); 
                     RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product_category/addProduct_Category.jsp");
                     failureView.forward(req, res);
                     return;
                 }
-
                 /*************************** 2.開始新增資料 ***************************************/
                 Product_CategoryService product_categorySvc = new Product_CategoryService();
                 product_categoryVO = product_categorySvc.addProduct_Category(cat_nam);
@@ -360,14 +357,13 @@ if ("insert".equals(action)) {
                 String url = "/back_end/product_category/listAllProduct_Category.jsp";
                 RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAll.jsp
                 successView.forward(req, res);
-
                 /*************************** 其他可能的錯誤處理 **********************************/
             } catch (Exception e) {
                 errorMsgs.add(e.getMessage());
                 RequestDispatcher failureView = req.getRequestDispatcher("/back_end/product_category/addProduct_Category.jsp");
                 failureView.forward(req, res);
             }
-        }
+}
 ```
 
 #### 5-3.新增商品
