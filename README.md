@@ -1,8 +1,8 @@
 # group5-shopping
 
-## 資策會學習與專題開發心得
+## 前言-資策會學習與專題開發心得
 
-這是我在中壢資策會與夥伴開發的專案，主要是聚焦在**後端 Java 技術的實作**。我主要是負責**購物商城功能**(不包含會員註冊)，後台網頁對商品進行資料庫增刪改查，與前台網頁將商品加入購物車完成訂單。
+這是我在中壢資策會與夥伴開發的專案，主要是聚焦在**後端 Java 技術的實作**。我主要是負責**購物商城功能(不包含會員註冊)，後台網頁對商品進行資料庫增刪改查，與前台網頁將商品加入購物車完成訂單。**
 
 ---
 
@@ -16,9 +16,7 @@
 
 ---
 
-課程最後階段，也教了框架Hibernate、Spring、Spring MVC、Struts 2，但很可惜這些框架技術並沒有應用在這次專題上。雖然這段上課過程花費不少心力，但接觸到許多新知倒也覺得充實。
-
-目前已開始將專題 Model 部分練習應用 Hibernate 技術，繼續學習精進。
+課程最後階段，也教了框架Hibernate、Spring、Spring MVC、Struts 2，但很可惜這些框架技術並沒有應用在這次專題上。雖然這段上課過程花費不少心力，但接觸到許多新知倒也覺得充實。目前已開始將專題 Model 部分練習應用 Hibernate 技術，繼續學習精進。
 
 ---
 
@@ -44,7 +42,7 @@
   
   - jQuery
   
-  - HTML 5
+  - HTML
   
   - CSS
   
@@ -52,7 +50,7 @@
   
   - Bootstrap
   
-  - Sublime Text
+  - Sublime Text 3
   
   - IDE - Eclipse
   
@@ -64,7 +62,7 @@
   
   - 使用 MVC 設計模式
   
-  - model 部分使用 Facade 模式
+  - Model 部分使用 Facade 設計模式
 
 - Source code 位置目錄
   
@@ -331,7 +329,7 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 if ("insert".equals(action)) {
 
             List<String> errorMsgs = new LinkedList<String>();
- 
+
             req.setAttribute("errorMsgs", errorMsgs);
 
             try {
