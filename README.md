@@ -12,11 +12,11 @@
 
 最重要的是還要能將資料庫、前端與後端的技術熟練，對於完全沒接觸過程式與天賦並不出色的我來說，實在是遇到不少挫折。
 
-到了專題專案開發時，只能有不懂的就盡量請教同學與老師，跌跌撞撞還是完成專題並且順利上台發表報告，所幸並沒有出現 404 或 500。
+到了專題專案開發階段，有不懂的就盡量請教同學與老師，積極與夥伴互相溝通和鼓勵，最後還是順利完成專題並上台發表報告了，所幸並沒有出現 404 或 500。
 
 ---
 
-課程最後階段，也教了框架Hibernate、Spring、Spring MVC、Struts 2，但很可惜這些框架技術並沒有應用在這次專題上。雖然這段上課過程花費不少心力，但接觸到許多新知倒也覺得充實。目前已開始將專題 Model 部分練習應用 Hibernate 技術，繼續學習精進。
+課程最後階段，也教了框架Hibernate、Spring、Spring MVC、Struts 2，但很可惜這些框架技術並沒有應用在這次專題上。雖然在資策會上課這段過程花費不少心力，但接觸到許多新知識倒也覺得充實。目前已開始將專題 Model 部分練習應用 Hibernate 技術，持續學習精進。
 
 ---
 
@@ -98,9 +98,9 @@
       
       - [model](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/order_details/model)
     
-    - [shopping](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/shopping/controller)(購物車Code位置)
+    - [shopping](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/shopping/controller)
       
-      - [controller](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/shopping/controller)
+      - [controller](https://github.com/Lewis-Tseng/group5-shopping/tree/master/src/com/shopping/controller)(購物車Code位置)
 
 - 網頁位置目錄
   
@@ -308,6 +308,14 @@ int oldbuylist = 0;//判斷要跳回購物車頁面或是商品首頁用
 #### 4-7.搜尋訂單
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
+
+- 用 include 插入搜尋到的訂單
+
+```java
+<%if (request.getAttribute("listMember_Orders_ByCompositeQuery") != null){%>
+                         <jsp:include page="Member_ListOrder_include.jsp" />
+                       <%}%>
+```
 
 <div align="center"> <img src="https://github.com/Lewis-Tseng/group5-shopping/blob/master/github_useimages/%E5%89%8D%E5%8F%B0images/%E6%9F%A5%E8%A9%A2%E8%A8%82%E5%96%AE%E5%87%BA%E7%8F%BE%E4%B8%80%E7%AD%86%E8%A8%82%E5%96%AE.JPG" width="800"/> </div>
 

@@ -447,9 +447,9 @@ CoaVO coaVO = (CoaVO) session.getAttribute("coaVO");
                                           </FORM>
 						</div>
 						<div>
-					<%if (request.getAttribute("listMember_Orders_ByCompositeQuery")!=null){%>
+					<%if (request.getAttribute("listMember_Orders_ByCompositeQuery") != null){%>
                          <jsp:include page="Member_ListOrder_include.jsp" />
-                       <%} %>
+                       <%}%>
                      </div>
 					</div>
 					
