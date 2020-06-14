@@ -10,7 +10,7 @@
 
 敏捷軟體開發、UML、UseCase 討論、活動圖討論、KANO 問卷調查、討論資料庫的 ER Model 並將其正規化，到後面還有接觸 AWS、Git 版控與程式測試，所接觸的新資訊實在多到不可思議。
 
-最重要的是還要能將資料庫、前端與後端的技術熟練，對於完全沒接觸過程式與天賦並不出色的我來說，實在是遇到不少挫折。
+最重要的是還要能將資料庫、前端與後端的技術熟練，過程實在是遇到不少挫折。
 
 到了專題專案開發階段，有不懂的就盡量請教同學與老師，積極與夥伴互相溝通和鼓勵，最後還是順利完成專題並上台發表報告了，所幸並沒有出現 404 或 500。
 
@@ -423,6 +423,8 @@ if ("insert".equals(action)) {
 - 目前專案已開始練習改用 Hibernate 框架 (此版本目前存放在 [feature branch](https://github.com/Lewis-Tseng/group5-shopping/tree/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E) )，
   
   但有碰到問題尚未解決，訂單明細複合主鍵其中一個是資料庫的自增主鍵值，無法用級聯同時新增訂單與明細。
+  
+  網路上搜尋，可能需要使用 Spring 提共的 Map getKeys() 方法，從應用層去抓值？
 
 - 實體映射檔部分使用 xml 與  JPA  Annotations 混合練習使用
 
@@ -439,3 +441,5 @@ if ("insert".equals(action)) {
   - [Product_OrderVO.java](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/product_order/model/Product_OrderVO.java "Product_OrderVO.java")
   
   - [Order_DetailsVO.java](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/order_details/model/Order_DetailsVO.java "Order_DetailsVO.java")
+  
+  

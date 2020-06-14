@@ -67,7 +67,6 @@ public class Shopping_ProductServlet extends HttpServlet {
 					pro_quantity_new = new Integer(req.getParameter("pro_quantity_new").trim());
 				} catch (NumberFormatException e) {
 					pro_quantity_new = 0;
-
 				}
 				
 				Order_Details_ProductVO od_productVO_change = (Order_Details_ProductVO) buylist.get(ad);
@@ -115,9 +114,7 @@ public class Shopping_ProductServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
-				
-				
-				
+						
 				// 取得後來新增的書籍
 				ProductService productSvc = new ProductService();
 				ProductVO aproductVO = productSvc.getOneProduct(pro_no);
