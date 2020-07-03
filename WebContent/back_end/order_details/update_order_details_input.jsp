@@ -367,11 +367,11 @@ Order_DetailsVO order_detailsVO = (Order_DetailsVO) request.getAttribute("order_
                                 <tr>
                                   <tr>
                                     <td>訂單編號</td>
-                                    <td><%=order_detailsVO.getOrd_no()%></td>
+                                    <td><%=order_detailsVO.getProduct_orderVO().getOrd_no()%></td>
                                   </tr>
                                   <tr>
                                     <td>訂單編號</td>
-                                    <td><%=order_detailsVO.getPro_no()%></td>
+                                    <td><%=order_detailsVO.getProductVO().getPro_no()%></td>
                                   </tr>
                                   <tr>
                                     <td>商品數量</td>
@@ -384,8 +384,8 @@ Order_DetailsVO order_detailsVO = (Order_DetailsVO) request.getAttribute("order_
                                 </tr>
                               </table>
                               <input type="hidden" name="action" value="update">
-                              <input type="hidden" name="ord_no"  value="<%=order_detailsVO.getOrd_no()%>">
-                              <input type="hidden" name="pro_no"  value="<%=order_detailsVO.getPro_no()%>">
+                              <input type="hidden" name="ord_no"  value="<%=order_detailsVO.getProduct_orderVO().getOrd_no()%>">
+                              <input type="hidden" name="pro_no"  value="<%=order_detailsVO.getProductVO().getPro_no()%>">
                               <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"> <!--接收原送出修改的來源網頁路徑後,再送給Controller準備轉交之用-->  <!--只用於:istAllEmp.jsp-->
                               <input type="submit" value="送出修改"></FORM>
                             </div>
