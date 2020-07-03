@@ -23,6 +23,9 @@ import javax.sql.DataSource;
 import org.hibernate.*;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
 
@@ -36,17 +39,16 @@ public class ProductDAO implements ProductDAO_interface {
 	
 	private static final String GET_ALL_STMT = "from ProductVO order by pro_no";
 	
+	private HibernateTemplate hibernatetemplate;
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernatetemplate = hibernateTemplate;
+	}
+	
 	@Override
 	public void insert(ProductVO productVO) {
-
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
 		try {
-			session.beginTransaction();
-            session.saveOrUpdate(productVO);
-            session.getTransaction().commit();
+			hibernatetemplate.saveOrUpdate(productVO);
 		} catch (RuntimeException ex) {
-		    session.getTransaction().rollback();
 		    throw ex;
 		}
 	}
@@ -169,24 +171,27 @@ public class ProductDAO implements ProductDAO_interface {
 	
 	public static void main(String[] args) throws IOException {
 
-		ProductDAO dao = new ProductDAO();
+//		ProductDAO dao = new ProductDAO();
 		com.product_category.model.Product_CategoryVO product_categoryVO = new com.product_category.model.Product_CategoryVO(); // 部門POJO
 		product_categoryVO.setCat_no(5000030);
 //        String str = getLongString("E:\\product1.txt");
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		ProductDAO_interface dao = (ProductDAO_interface) context.getBean("productDAO");
 
 		//新增 
-//		ProductVO productVO1 = new ProductVO();
-//	//	productVO1.setPro_no(6000021);
-//		productVO1.setPro_nam("啞鈴");
-//	//	productVO1.setCat_no("PR00001");
-//	//	Product_CategoryVO product_categoryVO = new Product_CategoryVO();
-//	//	product_categoryVO.setCat_no(5000020);
-//		productVO1.setProduct_categoryVO(product_categoryVO);
-//		productVO1.setPro_con("");
-//		productVO1.setPro_pri(10000);
-//		productVO1.setPro_sta("0");
-//		productVO1.setPro_sto(11);	
-//		dao.insert(productVO1);
+		ProductVO productVO1 = new ProductVO();
+	//	productVO1.setPro_no(6000021);
+		productVO1.setPro_nam("啞鈴");
+	//	productVO1.setCat_no("PR00001");
+	//	Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+	//	product_categoryVO.setCat_no(5000020);
+		productVO1.setProduct_categoryVO(product_categoryVO);
+		productVO1.setPro_con("");
+		productVO1.setPro_pri(10000);
+		productVO1.setPro_sta("0");
+		productVO1.setPro_sto(11);	
+		dao.insert(productVO1);
 //
 //		//修改
 //		ProductVO productVO = new ProductVO();

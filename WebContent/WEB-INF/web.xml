@@ -288,6 +288,33 @@
     <url-pattern>/front_end/group/friendList.do</url-pattern>
     <url-pattern>/front_end/chatroom/friendList.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ScheduleServletGro</servlet-name>
+    <servlet-class>com.gro.group.controller.ScheduleGroServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>PointAjaxServlet</servlet-name>
+    <servlet-class>com.deposit.controller.PointAjaxServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PointAjaxServlet</servlet-name>
+    <url-pattern>/front_end/dep/PointAjaxServlet.do</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>MemberLoginFiltter</filter-name>
+    <filter-class>com.mem.controller.MemberLoginFiltter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>MemberLoginFiltter</filter-name>
+    <url-pattern>/front_end/crs/crsEntrance.jsp</url-pattern>
+    <url-pattern>/front_end/group/index_Group.jsp</url-pattern>
+    <url-pattern>/front_end/forum/listAllForum.jsp</url-pattern>
+    <url-pattern>/front_end/forum/listAllForum.jsp</url-pattern>
+    <url-pattern>/front_end/product_front/shopping_mall_home.jsp</url-pattern>
+  </filter-mapping>
+  <!-- 購物部分 -->
   <servlet>
     <servlet-name>ProductServlet</servlet-name>
     <servlet-class>com.product.controller.ProductServlet</servlet-class>
@@ -340,29 +367,6 @@
     <servlet-name>Shopping_ProductServlet</servlet-name>
     <url-pattern>/front_end/shopping_product/shopping_product.do</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>ScheduleServletGro</servlet-name>
-    <servlet-class>com.gro.group.controller.ScheduleGroServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet>
-    <servlet-name>PointAjaxServlet</servlet-name>
-    <servlet-class>com.deposit.controller.PointAjaxServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PointAjaxServlet</servlet-name>
-    <url-pattern>/front_end/dep/PointAjaxServlet.do</url-pattern>
-  </servlet-mapping>
-  <filter>
-    <filter-name>MemberLoginFiltter</filter-name>
-    <filter-class>com.mem.controller.MemberLoginFiltter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>MemberLoginFiltter</filter-name>
-    <url-pattern>/front_end/crs/crsEntrance.jsp</url-pattern>
-    <url-pattern>/front_end/group/index_Group.jsp</url-pattern>
-    <url-pattern>/front_end/forum/listAllForum.jsp</url-pattern>
-    <url-pattern>/front_end/forum/listAllForum.jsp</url-pattern>
-    <url-pattern>/front_end/product_front/shopping_mall_home.jsp</url-pattern>
-  </filter-mapping>
+  
+  
 </web-app>

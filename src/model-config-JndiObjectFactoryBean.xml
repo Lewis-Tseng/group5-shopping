@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd"> 
+        
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> 
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/> 
+        <property name="username" value="DA103G5"/> 
+        <property name="password" value="123456"/> 
+        </bean> 
+        
+        
+        
+<!--    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+            <property name="jndiName" value="java:/comp/env/jdbc/DA103G5"/>
+        </bean>  
+ -->
+        <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" destroy-method="destroy">
+            <property name="dataSource" ref="dataSource"></property>
+            <property name="mappingResources">
+                <list>
+                    <value>com/product_category/model/product_category.hbm.xml</value>
+                    <value>com/product/model/product.hbm.xml</value>
+                    <value>com/product_image/model/product_image.hbm.xml</value>
+                    <value>com.product_order.model.Product_OrderVO</value>
+                    <value>com.order_details.model.Order_DetailsVO</value>
+                </list>
+            </property>
+	     <property name="hibernateProperties">
+		 <props>
+			<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+			<prop key="hibernate.show_sql">true</prop>
+			<prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+			<prop key="hibernate.transaction.coordinator_class">jdbc</prop>
+			<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
+		    </props> 
+          </property>  
+        </bean>
+       
+        <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+            <property name="sessionFactory" ref="sessionFactory"/>
+        </bean>
+ 
+        <bean id="productDAO" class="com.product.model.ProductDAO">
+            <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        </bean>
+        
+        <bean id="product_categoryDAO" class="com.product_category.model.Product_CategoryDAO">
+            <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        </bean>
+ 
+        <bean id="product_imageDAO" class="com.product_image.model.Product_ImageDAO">
+            <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        </bean>
+ 
+        <bean id="product_orderDAO" class="com.product_order.model.Product_OrderDAO">
+            <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        </bean>
+ 
+        <bean id="order_detailsDAO" class="com.order_details.model.Order_DetailsDAO">
+            <property name="hibernateTemplate" ref="hibernateTemplate"/>
+        </bean>
+ 
+ <!-- 交易部分 -->
+        <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+            <property name="sessionFactory" ref="sessionFactory"/>
+        </bean>
+ 
+        <tx:advice id="txAdvice" transaction-manager="transactionManager">
+            <tx:attributes>
+                <tx:method name="insert" propagation="REQUIRED"/>
+                <tx:method name="update" propagation="REQUIRED"/>
+                <tx:method name="delete" propagation="REQUIRED"/>
+                <tx:method name="findByPrimaryKey" read-only="true"/>
+                <tx:method name="getAll" read-only="true"/> 
+            </tx:attributes>
+        </tx:advice>
+        
+        <aop:config>
+            <aop:pointcut id="productDAOPointcut" expression="execution(* com.product.model.ProductDAO_interface.*(..))" />
+            <aop:advisor advice-ref="txAdvice" pointcut-ref="productDAOPointcut"/> 
+        </aop:config>
+ 
+       
+ 
+ 
+ 
+ 
+ 
+        
+</beans>
