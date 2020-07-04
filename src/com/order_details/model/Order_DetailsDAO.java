@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import org.hibernate.*;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
 
@@ -30,6 +31,11 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
     private static final String GET_OD_WITH_ORDER_DETAILS_STMT = "from Order_DetailsVO where ord_no=?0";
     private static final String GET_ONE_STMT = "from Order_DetailsVO where ord_no=?0 and pro_no=?1";
 //  private static final String INSERT_STMT = "INSERT INTO order_details (ord_no, pro_no, quantity, uni_pri) VALUES (?, ?, ?, ?)";
+    
+    private HibernateTemplate hibernatetemplate;
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernatetemplate = hibernateTemplate;
+	}
     
 	@Override
 	public void insert(Order_DetailsVO order_detailsVO) {

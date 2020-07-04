@@ -55,15 +55,9 @@ public class ProductDAO implements ProductDAO_interface {
 
 	@Override
 	public void update(ProductVO productVO) {
-
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
 		try {
-            session.beginTransaction();
-            session.saveOrUpdate(productVO);
-            session.getTransaction().commit();
+            hibernatetemplate.saveOrUpdate(productVO);
 		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
 			throw ex;
 		} 
 	}

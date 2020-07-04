@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
 
@@ -22,6 +23,10 @@ public class Product_CategoryDAO implements Product_CategoryDAO_interface{
 
 	private static final String GET_ALL_STMT = "from Product_CategoryVO order by cat_no";
 	
+	private HibernateTemplate hibernatetemplate;
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernatetemplate = hibernateTemplate;
+	}
 	
 	@Override
 	public void insert(Product_CategoryVO product_categoryVO) {

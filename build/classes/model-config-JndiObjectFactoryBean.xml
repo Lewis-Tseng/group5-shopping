@@ -31,7 +31,12 @@
                     <value>com/product_category/model/product_category.hbm.xml</value>
                     <value>com/product/model/product.hbm.xml</value>
                     <value>com/product_image/model/product_image.hbm.xml</value>
-      
+                </list>
+            </property>
+            <property name="annotatedClasses">
+                <list>
+                    <value>com.product_order.model.Product_OrderVO</value>
+                    <value>com.order_details.model.Order_DetailsVO</value>
                 </list>
             </property>
 	     <property name="hibernateProperties">

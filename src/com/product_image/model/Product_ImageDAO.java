@@ -19,6 +19,7 @@ import javax.sql.DataSource;
 import org.hibernate.*;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 
 import com.product.model.ProductVO;
 
@@ -28,6 +29,11 @@ import hibernate.util.HibernateUtil;
 public class Product_ImageDAO implements Product_ImageDAO_interface {
 	
 	private static final String GET_ALL_STMT = "from Product_ImageVO order by pro_img_no";
+	
+	private HibernateTemplate hibernatetemplate;
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernatetemplate = hibernateTemplate;
+	}
 
 	@Override
 	public void insert(Product_ImageVO product_imageVO) {
