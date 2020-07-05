@@ -29,7 +29,6 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
 
-import com.product_category.model.Product_CategoryVO;
 import com.product_order.model.Product_OrderVO;
 
 import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product;
@@ -39,121 +38,60 @@ public class ProductDAO implements ProductDAO_interface {
 	
 	private static final String GET_ALL_STMT = "from ProductVO order by pro_no";
 	
-	private HibernateTemplate hibernatetemplate;
+	private HibernateTemplate hibernateTemplate;
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-		this.hibernatetemplate = hibernateTemplate;
+		this.hibernateTemplate = hibernateTemplate;
 	}
 	
 	@Override
 	public void insert(ProductVO productVO) {
-		try {
-			hibernatetemplate.saveOrUpdate(productVO);
-		} catch (RuntimeException ex) {
-		    throw ex;
-		}
+			hibernateTemplate.saveOrUpdate(productVO);
 	}
 
 	@Override
 	public void update(ProductVO productVO) {
-		try {
-            hibernatetemplate.saveOrUpdate(productVO);
-		} catch (RuntimeException ex) {
-			throw ex;
-		} 
+            hibernateTemplate.saveOrUpdate(productVO);
 	}
 
 	@Override
 	public void delete(Integer pro_no) {
-
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-
-            Query<ProductVO> query = session.createQuery("delete ProductVO where pro_no=?0");
+			//EmpVO empVO = (EmpVO) hibernateTemplate.get(EmpVO.class, empno);範例
+//			EmpVO empVO = new EmpVO(); //●●●去除關聯關係後，再刪除
+//			empVO.setEmpno(empno);
+//			hibernateTemplate.delete(empVO);
+            Query<ProductVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("delete ProductVO where pro_no=?0");
             query.setParameter(0, pro_no);
             System.out.println("刪除的筆數=" + query.executeUpdate());
-            
-            session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
-		
 	}
 
 	@Override
-	public ProductVO findByPrimaryKey(Integer pro_no) {
-
-		ProductVO productVO = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-            productVO = (ProductVO) session.get(ProductVO.class, pro_no);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+	public ProductVO findByPrimaryKey(Integer pro_no) { 
+			ProductVO productVO = (ProductVO) hibernateTemplate.get(ProductVO.class, pro_no);
 		return productVO;
 	}
 
 	@Override
 	public List<ProductVO> getAll() {
-		
-		List<ProductVO> list = new ArrayList<ProductVO>();
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-            Query<ProductVO> query = session.createQuery(GET_ALL_STMT, ProductVO.class);
-		    list = query.getResultList();
-		    session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+		// 【轉回 Hibernate session】
+		Query<ProductVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery(GET_ALL_STMT,ProductVO.class);
+		List<ProductVO> list = query.getResultList();
 		return list;
 	}
 
 	@Override
-	public List<ProductVO> getAll_CompositeQuery(Map<String, String[]> map) {
-		List<ProductVO> list = new ArrayList<ProductVO>();
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-            
+	public List<ProductVO> getAll_CompositeQuery(Map<String, String[]> map) {         
 			String finalSQL = "select * from product"
 					+ jdbcUtil_CompositeQuery_Product.get_WhereCondition(map) + "order by pro_no";
 		    System.out.println("===finalSQL(by DAO) = " + finalSQL);
-		    
-			NativeQuery<ProductVO> query = session.createNativeQuery(finalSQL, ProductVO.class);
-			list = query.getResultList();
-			 
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+			NativeQuery<ProductVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createNativeQuery(finalSQL, ProductVO.class);
+			List<ProductVO> list = query.getResultList();		
 		return list;
 	}
 	
 	@Override
 	public List<ProductVO> getAllPro_StaisZero() {
-		List<ProductVO> list = new ArrayList<ProductVO>();
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-            Query<ProductVO> query = session.createQuery(GET_ALL_STMT, ProductVO.class);
-            list = query.getResultList();
-            session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+            Query<ProductVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery(GET_ALL_STMT, ProductVO.class);
+            List<ProductVO> list = query.getResultList();
 		return list;
 	}
 	
@@ -174,22 +112,22 @@ public class ProductDAO implements ProductDAO_interface {
 		ProductDAO_interface dao = (ProductDAO_interface) context.getBean("productDAO");
 
 		//新增 
-		ProductVO productVO1 = new ProductVO();
-	//	productVO1.setPro_no(6000021);
-		productVO1.setPro_nam("啞鈴");
-	//	productVO1.setCat_no("PR00001");
-	//	Product_CategoryVO product_categoryVO = new Product_CategoryVO();
-	//	product_categoryVO.setCat_no(5000020);
-		productVO1.setProduct_categoryVO(product_categoryVO);
-		productVO1.setPro_con("");
-		productVO1.setPro_pri(10000);
-		productVO1.setPro_sta("0");
-		productVO1.setPro_sto(11);	
-		dao.insert(productVO1);
+//		ProductVO productVO1 = new ProductVO();
+//	//	productVO1.setPro_no(6000021);
+//		productVO1.setPro_nam("啞鈴");
+//	//	productVO1.setCat_no("PR00001");
+//	//	Product_CategoryVO product_categoryVO = new Product_CategoryVO();
+//	//	product_categoryVO.setCat_no(5000020);
+//		productVO1.setProduct_categoryVO(product_categoryVO);
+//		productVO1.setPro_con("");
+//		productVO1.setPro_pri(10000);
+//		productVO1.setPro_sta("0");
+//		productVO1.setPro_sto(11);	
+//		dao.insert(productVO1);
 //
 //		//修改
 //		ProductVO productVO = new ProductVO();
-//		productVO.setPro_no(6000020);
+//		productVO.setPro_no(6000021);
 //	//	productVO2.setCat_no("PR00004");
 //	//	Product_CategoryVO product_categoryVO = new Product_CategoryVO();
 //	//	product_categoryVO.setCat_no(5000030);
@@ -205,7 +143,7 @@ public class ProductDAO implements ProductDAO_interface {
 //		dao.delete(6000021);
 //
 //		//單查詢
-//		ProductVO productVO3 = dao.findByPrimaryKey("PT00020");
+//		ProductVO productVO3 = dao.findByPrimaryKey(6000022);
 //		System.out.print(productVO3.getPro_no() + ",");
 //	//	System.out.print(productVO3.getCat_no() + ",");
 //		System.out.println(productVO3.getProduct_categoryVO().getCat_nam() + ",");
@@ -219,7 +157,7 @@ public class ProductDAO implements ProductDAO_interface {
 //		
 //		//複合查詢
 //		Map<String, String[]> map = new HashMap<String, String[]>();
-//		map.put("pro_no", new String[] { "PT00020" });
+//		map.put("pro_no", new String[] { "6000020" });
 //		List<ProductVO> list = dao.getAll_CompositeQuery(map);
 //		for(ProductVO aProduct : list) {
 //			System.out.print(aProduct.getPro_nam() + ",");
@@ -281,18 +219,18 @@ public class ProductDAO implements ProductDAO_interface {
 	
 	
 	/*************************** 使用Reader(參考老師JDBC範例) *********************************/
-	public static String readString(Reader reader) throws IOException {
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br = new BufferedReader(reader);
-		String str;
-		while ((str = br.readLine()) != null) {
-			sb.append(str);
-			sb.append("\n");
-		}
-		br.close();
-
-		return sb.toString();
-	}
+//	public static String readString(Reader reader) throws IOException {
+//		StringBuilder sb = new StringBuilder();
+//		BufferedReader br = new BufferedReader(reader);
+//		String str;
+//		while ((str = br.readLine()) != null) {
+//			sb.append(str);
+//			sb.append("\n");
+//		}
+//		br.close();
+//
+//		return sb.toString();
+//	}
 	/**************************************************************************************/
 
 

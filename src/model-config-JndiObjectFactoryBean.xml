@@ -85,7 +85,9 @@
                 <tx:method name="update" propagation="REQUIRED"/>
                 <tx:method name="delete" propagation="REQUIRED"/>
                 <tx:method name="findByPrimaryKey" read-only="true"/>
-                <tx:method name="getAll" read-only="true"/> 
+                <tx:method name="getAll" read-only="true"/>
+                <tx:method name="getAll_CompositeQuery" read-only="true"/>
+                <tx:method name="getAllPro_StaisZero" read-only="true"/> 
             </tx:attributes>
         </tx:advice>
         
