@@ -101,7 +101,10 @@
             <aop:advisor advice-ref="txAdvice" pointcut-ref="product_imageDAOPointcut"/> 
         </aop:config>
  
- 
+        <aop:config>
+            <aop:pointcut id="product_categoryDAOPointcut" expression="execution(* com.product_category.model.Product_CategoryDAO_interface.*(..))" />
+            <aop:advisor advice-ref="txAdvice" pointcut-ref="product_categoryDAOPointcut"/> 
+        </aop:config>
  
  
         

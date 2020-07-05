@@ -35,9 +35,9 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 	
 	private static final String GET_ALL_STMT = "from Product_OrderVO order by ord_no";
 	
-	private HibernateTemplate hibernatetemplate;
+	private HibernateTemplate hibernateTemplate;
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-		this.hibernatetemplate = hibernateTemplate;
+		this.hibernateTemplate = hibernateTemplate;
 	}
 //	private static final String INSERT_STMT = "INSERT INTO product_order (ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add) VALUES (product_order_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 //	private static DataSource ds = null;

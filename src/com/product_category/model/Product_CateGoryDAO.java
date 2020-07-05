@@ -15,7 +15,12 @@ import javax.sql.DataSource;
 
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+
+import com.product_image.model.Product_ImageDAO_interface;
+
 import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
 
@@ -23,105 +28,56 @@ public class Product_CategoryDAO implements Product_CategoryDAO_interface{
 
 	private static final String GET_ALL_STMT = "from Product_CategoryVO order by cat_no";
 	
-	private HibernateTemplate hibernatetemplate;
+	private HibernateTemplate hibernateTemplate;
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-		this.hibernatetemplate = hibernateTemplate;
+		this.hibernateTemplate = hibernateTemplate;
 	}
 	
 	@Override
 	public void insert(Product_CategoryVO product_categoryVO) {
-
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-			session.beginTransaction();
-			session.saveOrUpdate(product_categoryVO);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+		hibernateTemplate.saveOrUpdate(product_categoryVO);
 	}
-	
-	
+
 	@Override
 	public void update(Product_CategoryVO product_categoryVO) {
-
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-			session.beginTransaction();
-			session.saveOrUpdate(product_categoryVO);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+		hibernateTemplate.saveOrUpdate(product_categoryVO);
 	}
-	
 	
 	
 	@Override
 	public void delete(Integer cat_no) {
+		Product_CategoryVO product_categoryVO = (Product_CategoryVO) hibernateTemplate.get(Product_CategoryVO.class,cat_no);
+		hibernateTemplate.delete(product_categoryVO);
 
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-            
-            Query<Product_CategoryVO> query = session.createQuery("delete Product_CategoryVO where cat_no=?0");
-		    query.setParameter(0, cat_no);
-		    System.out.println("刪除的筆數=" + query.executeUpdate());
-            
-		    session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+//            Query<Product_CategoryVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("delete Product_CategoryVO where cat_no=?0");
+//		    query.setParameter(0, cat_no);
+//		    System.out.println("刪除的筆數=" + query.executeUpdate());
 	}
 	
 	
 	@Override
 	public Product_CategoryVO findByPrimaryKey(Integer cat_no) {
-
-		Product_CategoryVO product_categoryVO = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		
-		try {
-            session.beginTransaction();
-            product_categoryVO = (Product_CategoryVO) session.get(Product_CategoryVO.class, cat_no);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+		Product_CategoryVO product_categoryVO = (Product_CategoryVO) hibernateTemplate.get(Product_CategoryVO.class, cat_no);
 		return product_categoryVO;
 	}
 	
 	
 	@Override
 	public List<Product_CategoryVO> getAll() {
-		
-		List<Product_CategoryVO> list = new ArrayList<Product_CategoryVO>();
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();    
-            Query<Product_CategoryVO> query = session.createQuery(GET_ALL_STMT, Product_CategoryVO.class);
-		    list = query.getResultList();		    
-		    session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+		Query<Product_CategoryVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery(GET_ALL_STMT, Product_CategoryVO.class);
+		List<Product_CategoryVO> list = query.getResultList();
 		return list;
 	}
-	
 	
 	
 	public static void main(String[] args) {
 //
 //		Product_CategoryDAO dao = new Product_CategoryDAO();
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		Product_CategoryDAO_interface dao = (Product_CategoryDAO_interface) context.getBean("product_categoryDAO");
+		
+		
 //		//新增
 //		Product_CategoryVO product_CategoryVO1 = new Product_CategoryVO();
 //		product_CategoryVO1.setCat_nam("露營");
