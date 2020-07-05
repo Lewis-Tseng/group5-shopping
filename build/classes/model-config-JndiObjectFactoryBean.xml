@@ -86,7 +86,8 @@
                 <tx:method name="delete" propagation="REQUIRED"/>
                 <tx:method name="findByPrimaryKey" read-only="true"/>
                 <tx:method name="getAll" read-only="true"/>
-                <tx:method name="getAll_CompositeQuery" read-only="true"/> 
+                <tx:method name="getAll_CompositeQuery" read-only="true"/>
+                <tx:method name="getAllPro_StaisZero" read-only="true"/> 
             </tx:attributes>
         </tx:advice>
         
@@ -94,9 +95,11 @@
             <aop:pointcut id="productDAOPointcut" expression="execution(* com.product.model.ProductDAO_interface.*(..))" />
             <aop:advisor advice-ref="txAdvice" pointcut-ref="productDAOPointcut"/> 
         </aop:config>
- 
        
- 
+        <aop:config>
+            <aop:pointcut id="product_imageDAOPointcut" expression="execution(* com.product_image.model.Product_ImageDAO_interface.*(..))" />
+            <aop:advisor advice-ref="txAdvice" pointcut-ref="product_imageDAOPointcut"/> 
+        </aop:config>
  
  
  
