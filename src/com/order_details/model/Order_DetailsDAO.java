@@ -18,11 +18,14 @@ import javax.sql.DataSource;
 import org.hibernate.*;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
 
 import com.product.model.ProductVO;
+import com.product_order.model.Product_OrderDAO_interface;
 import com.product_order.model.Product_OrderVO;
 
 public class Order_DetailsDAO implements Order_DetailsDAO_interface {
@@ -32,122 +35,52 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
     private static final String GET_ONE_STMT = "from Order_DetailsVO where ord_no=?0 and pro_no=?1";
 //  private static final String INSERT_STMT = "INSERT INTO order_details (ord_no, pro_no, quantity, uni_pri) VALUES (?, ?, ?, ?)";
     
-    private HibernateTemplate hibernatetemplate;
+    private HibernateTemplate hibernateTemplate;
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-		this.hibernatetemplate = hibernateTemplate;
+		this.hibernateTemplate = hibernateTemplate;
 	}
     
 	@Override
 	public void insert(Order_DetailsVO order_detailsVO) {
-	    
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-			session.beginTransaction();
-            session.saveOrUpdate(order_detailsVO);
-            session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-		    session.getTransaction().rollback();
-		    throw ex;
-		}
-
+		hibernateTemplate.saveOrUpdate(order_detailsVO);
 	}
 
 	@Override
 	public void update(Order_DetailsVO order_detailsVO) {
-		
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-            session.saveOrUpdate(order_detailsVO);
-            session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
-
+		hibernateTemplate.saveOrUpdate(order_detailsVO);
 	}
 
 	@Override
 	public void delete(Integer ord_no, Integer pro_no) {
-
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-
-            Query<ProductVO> query = session.createQuery("delete Order_DetailsVO where ord_no=?0 and pro_no=?1");
-            query.setParameter(0, ord_no);
-            query.setParameter(1, pro_no);
-            System.out.println("刪除的筆數=" + query.executeUpdate());
-            
-            session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
-
+		Query<ProductVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("delete Order_DetailsVO where ord_no=?0 and pro_no=?1");
+		query.setParameter(0, ord_no);
+		query.setParameter(1, pro_no);
+		System.out.println("刪除的筆數=" + query.executeUpdate());
 	}
 
 	@Override
 	public List<Order_DetailsVO> getOrder_DetailsByOrd_no(Integer ord_no) {
-        //使用ord_no編號查訂單時，一次查詢訂單明細
-		List<Order_DetailsVO> list = new ArrayList<Order_DetailsVO>();
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		
-		try {
-            session.beginTransaction();
-			
-            Query<Order_DetailsVO> query = session.createQuery(GET_OD_WITH_ORDER_DETAILS_STMT, Order_DetailsVO.class);
-            query.setParameter(0, ord_no);
-            list = query.getResultList();
-            
-			session.getTransaction().commit();
-
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+		// 使用ord_no編號查訂單明細
+		Query<Order_DetailsVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery(GET_OD_WITH_ORDER_DETAILS_STMT, Order_DetailsVO.class);
+		query.setParameter(0, ord_no);
+		List<Order_DetailsVO> list = query.getResultList();
 		return list;
 	}
 
 	@Override
 	public List<Order_DetailsVO> getAll() {
-		
-		List<Order_DetailsVO> list = new ArrayList<Order_DetailsVO>();
-		
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-            Query<Order_DetailsVO> query = session.createQuery(GET_ALL_STMT, Order_DetailsVO.class);
-		    list = query.getResultList();
-		    session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+		Query<Order_DetailsVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery(GET_ALL_STMT, Order_DetailsVO.class);
+		List<Order_DetailsVO> list = query.getResultList();
 		return list;
 	}
 
 	@Override
 	public Order_DetailsVO findByPrimaryKey(Integer ord_no, Integer pro_no) {
-
-		Order_DetailsVO order_detailsVO = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		
-		try {
-			 session.beginTransaction();
-	            Query<Order_DetailsVO> query = session.createQuery(GET_ONE_STMT, Order_DetailsVO.class);
-	            query.setParameter(0, ord_no);
-	            query.setParameter(1, pro_no);
-	            order_detailsVO = query.getSingleResult();
-			    session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+		Query<Order_DetailsVO> query = hibernateTemplate.getSessionFactory().getCurrentSession()
+				.createQuery(GET_ONE_STMT, Order_DetailsVO.class);
+		query.setParameter(0, ord_no);
+		query.setParameter(1, pro_no);
+		Order_DetailsVO order_detailsVO = query.getSingleResult();
 		return order_detailsVO;
 	}
 
@@ -193,7 +126,12 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 
 	public static void main(String[] args) {
 //
-		Order_DetailsDAO dao = new Order_DetailsDAO();
+//		Order_DetailsDAO dao = new Order_DetailsDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		Order_DetailsDAO_interface dao = (Order_DetailsDAO_interface) context.getBean("order_detailsDAO");
+		
+		
+		
 		Product_OrderVO product_orderVO = new Product_OrderVO();
         ProductVO productVO = new ProductVO();
         Set<ProductVO> set = new LinkedHashSet<ProductVO>();
@@ -233,6 +171,15 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 //    		System.out.println(aODVO.getProductVO().getPro_con() + ",");
 //    	
 //        }
+        
+//        Order_DetailsVO order_detailsVO = dao.findByPrimaryKey(8000010, 6000011);
+//        System.out.println(order_detailsVO.getQuantity() + ",");
+//    	System.out.println(order_detailsVO.getUni_pri() + ",");
+//    	System.out.println();
+//		System.out.println(order_detailsVO.getProductVO().getPro_nam()+ ",");
+//		System.out.println(order_detailsVO.getProductVO().getPro_con() + ",");
+        
+        
 //        
 //        
 //	    //全部查詢

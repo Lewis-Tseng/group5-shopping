@@ -87,7 +87,8 @@
                 <tx:method name="findByPrimaryKey" read-only="true"/>
                 <tx:method name="getAll" read-only="true"/>
                 <tx:method name="getAll_CompositeQuery" read-only="true"/>
-                <tx:method name="getAllPro_StaisZero" read-only="true"/> 
+                <tx:method name="getAllPro_StaisZero" read-only="true"/>
+                <tx:method name="getOrder_DetailsByOrd_no" read-only="true"/> 
             </tx:attributes>
         </tx:advice>
         
@@ -104,6 +105,16 @@
         <aop:config>
             <aop:pointcut id="product_categoryDAOPointcut" expression="execution(* com.product_category.model.Product_CategoryDAO_interface.*(..))" />
             <aop:advisor advice-ref="txAdvice" pointcut-ref="product_categoryDAOPointcut"/> 
+        </aop:config>
+ 
+        <aop:config>
+            <aop:pointcut id="product_orderDAOPointcut" expression="execution(* com.product_order.model.Product_OrderDAO_interface.*(..))" />
+            <aop:advisor advice-ref="txAdvice" pointcut-ref="product_orderDAOPointcut"/> 
+        </aop:config>
+ 
+        <aop:config>
+            <aop:pointcut id="order_detailsDAOPointcut" expression="execution(* com.order_details.model.Order_DetailsDAO_interface.*(..))" />
+            <aop:advisor advice-ref="txAdvice" pointcut-ref="order_detailsDAOPointcut"/> 
         </aop:config>
  
  

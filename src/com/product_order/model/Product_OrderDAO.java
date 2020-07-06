@@ -19,6 +19,8 @@ import javax.sql.DataSource;
 import org.hibernate.*;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
@@ -27,6 +29,7 @@ import com.order_details.model.Order_DetailsDAO;
 import com.order_details.model.Order_DetailsService;
 import com.order_details.model.Order_DetailsVO;
 import com.product.model.ProductVO;
+import com.product_category.model.Product_CategoryDAO_interface;
 
 import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product;
 import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product_Order;
@@ -52,117 +55,45 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 	
 	@Override
 	public void insert(Product_OrderVO product_orderVO) {
-
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-			session.beginTransaction();
-            session.saveOrUpdate(product_orderVO);
-            session.getTransaction().commit();           
-		} catch (RuntimeException ex) {
-		    session.getTransaction().rollback();
-		    throw ex;
-		}
-		
+		hibernateTemplate.saveOrUpdate(product_orderVO);
 	}
 
 	@Override
 	public void update(Product_OrderVO product_orderVO) {
-
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-			session.beginTransaction();
-            session.saveOrUpdate(product_orderVO);
-            session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-		    session.getTransaction().rollback();
-		    throw ex;
-		}
-
+		hibernateTemplate.saveOrUpdate(product_orderVO);
 	}
 
 	@Override
 	public void delete(Integer ord_no) {
-
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-            
-            Query<Product_OrderVO> query = session.createQuery("delete Product_OrderVO where ord_no=?0 ");
-			query.setParameter(0, ord_no);
-			System.out.println("刪除的筆數=" + query.executeUpdate());
-			
-            session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
-
+		Query<Product_OrderVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("delete Product_OrderVO where ord_no=?0 ");
+		query.setParameter(0, ord_no);
+		System.out.println("刪除的筆數=" + query.executeUpdate());
 	}
 
 	@Override
 	public Product_OrderVO findByPrimaryKey(Integer ord_no) {
-
-		Product_OrderVO product_orderVO = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-            product_orderVO = (Product_OrderVO) session.get(Product_OrderVO.class, ord_no);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+		Product_OrderVO product_orderVO = (Product_OrderVO) hibernateTemplate.get(Product_OrderVO.class, ord_no);
 		return product_orderVO;
 	}
 
 	@Override
 	public List<Product_OrderVO> getAll() {
-
-		List<Product_OrderVO> list = new ArrayList<Product_OrderVO>();
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-            session.beginTransaction();
-            Query<Product_OrderVO> query = session.createQuery(GET_ALL_STMT, Product_OrderVO.class);
-		    list = query.getResultList();
-		    session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+		Query<Product_OrderVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery(GET_ALL_STMT, Product_OrderVO.class);
+		List<Product_OrderVO> list = query.getResultList();
 		return list;
 	}
 
 	@Override
 	public List<Product_OrderVO> getAll_CompositeQuery(Map<String, String[]> map) {
-		List<Product_OrderVO> list = new ArrayList<Product_OrderVO>();
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		String finalSQL = "select * from product" + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map)
+				+ "order by pro_no";
+		System.out.println("===finalSQL(by DAO) = " + finalSQL);
 
-		try {
-            session.beginTransaction();
-            
-			String finalSQL = "select * from product"
-					+ jdbcUtil_CompositeQuery_Product.get_WhereCondition(map) + "order by pro_no";
-		    System.out.println("===finalSQL(by DAO) = " + finalSQL);
-		    
-			NativeQuery<Product_OrderVO> query = session.createNativeQuery(finalSQL, Product_OrderVO.class);
-			list = query.getResultList();
-			 
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		} 
+		NativeQuery<Product_OrderVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createNativeQuery(finalSQL, Product_OrderVO.class);
+		List<Product_OrderVO> list = query.getResultList();
 		return list;
 	}
-
-	
-	
-	
+		
 //	@Override
 //	public void insertWithOrder_Details(Product_OrderVO product_OrderVO, List<Order_DetailsVO> list) {
 //		Connection con = null;
@@ -268,7 +199,11 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 
 	public static void main(String[] args) {
 
-		Product_OrderDAO dao = new Product_OrderDAO();
+//		Product_OrderDAO dao = new Product_OrderDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		Product_OrderDAO_interface dao = (Product_OrderDAO_interface) context.getBean("product_orderDAO");
+		
+		
 		Order_DetailsVO order_detailsVO1 = new Order_DetailsVO();
 		Order_DetailsVO order_detailsVO2 = new Order_DetailsVO();
 		ProductVO productVO1 = new ProductVO();
@@ -294,35 +229,35 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 			
 //	    //mem_id, ord_dat, ord_amo, ord_qua, ord_sta, pay_met, del_add, phone
 		//新增
-		Product_OrderVO product_orderVO1 = new Product_OrderVO();
-		
-		order_detailsVO1.setQuantity(70);
-		order_detailsVO1.setUni_pri(5000);
-		productVO1.setPro_no(6000010);
-//		product_orderVO1.setOrd_no(null);
-//		product_orderVO2.setOrd_no(8000010);
-		order_detailsVO1.setProductVO(productVO1);
-//		order_detailsVO1.setPro_no(6000010);
-		
-		order_detailsVO2.setQuantity(60);
-		order_detailsVO2.setUni_pri(4000);
-		productVO2.setPro_no(6000002);
-//		product_orderVO2.setOrd_no(null);
-		order_detailsVO2.setProductVO(productVO2);
-//        order_detailsVO2.setPro_no(6000002);
-		
-//		set.add(order_detailsVO1);
-		set.add(order_detailsVO2);
-		
-		product_orderVO1.setOrder_detailss(set);
-		product_orderVO1.setMem_id("ME00001");
-		product_orderVO1.setOrd_dat(java.sql.Date.valueOf("2019-03-12"));
-		product_orderVO1.setOrd_amo(new Integer(40000));
-		product_orderVO1.setPro_qua(new Integer(300));
-		product_orderVO1.setOrd_sta("1");
-		product_orderVO1.setPay_met("信用卡");
-		product_orderVO1.setDel_add("台北市");
-		dao.insert(product_orderVO1);
+//		Product_OrderVO product_orderVO1 = new Product_OrderVO();
+//		
+//		order_detailsVO1.setQuantity(70);
+//		order_detailsVO1.setUni_pri(5000);
+//		productVO1.setPro_no(6000010);
+////		product_orderVO1.setOrd_no(null);
+////		product_orderVO2.setOrd_no(8000010);
+//		order_detailsVO1.setProductVO(productVO1);
+////		order_detailsVO1.setPro_no(6000010);
+//		
+//		order_detailsVO2.setQuantity(60);
+//		order_detailsVO2.setUni_pri(4000);
+//		productVO2.setPro_no(6000002);
+////		product_orderVO2.setOrd_no(null);
+//		order_detailsVO2.setProductVO(productVO2);
+////        order_detailsVO2.setPro_no(6000002);
+//		
+////		set.add(order_detailsVO1);
+//		set.add(order_detailsVO2);
+//		
+//		product_orderVO1.setOrder_detailss(set);
+//		product_orderVO1.setMem_id("ME00001");
+//		product_orderVO1.setOrd_dat(java.sql.Date.valueOf("2019-03-12"));
+//		product_orderVO1.setOrd_amo(new Integer(40000));
+//		product_orderVO1.setPro_qua(new Integer(300));
+//		product_orderVO1.setOrd_sta("1");
+//		product_orderVO1.setPay_met("信用卡");
+//		product_orderVO1.setDel_add("台北市");
+//		dao.insert(product_orderVO1);
 
 //		//修改
 //		Product_OrderVO product_orderVO2 = new Product_OrderVO();
