@@ -25,6 +25,7 @@ import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
 
 import com.product.model.ProductVO;
+import com.product_category.model.Product_CategoryVO;
 import com.product_order.model.Product_OrderDAO_interface;
 import com.product_order.model.Product_OrderVO;
 
@@ -42,7 +43,11 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
     
 	@Override
 	public void insert(Order_DetailsVO order_detailsVO) {
+		try {
 		hibernateTemplate.saveOrUpdate(order_detailsVO);
+		}catch(RuntimeException ex) {
+			throw ex;
+		}
 	}
 
 	@Override
@@ -51,11 +56,22 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 	}
 
 	@Override
-	public void delete(Integer ord_no, Integer pro_no) {
-		Query<ProductVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("delete Order_DetailsVO where ord_no=?0 and pro_no=?1");
-		query.setParameter(0, ord_no);
-		query.setParameter(1, pro_no);
-		System.out.println("刪除的筆數=" + query.executeUpdate());
+	public void delete(Integer ord_no) {
+System.out.println(ord_no);
+		try {
+//			Order_DetailsVO ordVO = (Order_DetailsVO) hibernateTemplate.get(Order_DetailsVO.class, ord_no);			
+//			Order_DetailsVO ordVO = new Order_DetailsVO();
+//			Product_OrderVO porVO = new Product_OrderVO();
+//			porVO.setOrd_no(ord_no);
+//			ordVO.setProduct_orderVO(porVO);
+//			hibernateTemplate.delete(ordVO);
+			
+		Query<Order_DetailsVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("delete Order_DetailsVO where ord_no=?0");
+			query.setParameter(0, ord_no);
+			System.out.println("刪除的訂單明細筆數=" + query.executeUpdate());
+		} catch (RuntimeException ex) {
+			throw ex;
+		}
 	}
 
 	@Override
@@ -152,14 +168,14 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 //		Order_DetailsVO odVO2 = new Order_DetailsVO();
 //		product_orderVO.setOrd_no(8000010);
 //		odVO2.setProduct_orderVO(product_orderVO);
-//		productVO.setPro_no(6000011);
+//		productVO.setPro_no(6000010);
 //		odVO2.setProductVO(productVO);
 //		odVO2.setQuantity(520);
 //		odVO2.setUni_pri(9999);
 //        dao.update(odVO2);
 
 //      //刪除
-//      dao.delete(8000010, 6000011);
+//        dao.delete(8000010);
 //        
 //      //單查詢
 //      List<Order_DetailsVO> list = dao.getOrder_DetailsByOrd_no(8000010);

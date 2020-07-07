@@ -58,7 +58,7 @@ public class ProductDAO implements ProductDAO_interface {
 			//EmpVO empVO = (EmpVO) hibernateTemplate.get(EmpVO.class, empno);範例
 //			EmpVO empVO = new EmpVO(); //●●●去除關聯關係後，再刪除
 //			empVO.setEmpno(empno);
-//			hibernateTemplate.delete(empVO);
+//			hibernateTemplate.delete(empVO);	    
             Query<ProductVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("delete ProductVO where pro_no=?0");
             query.setParameter(0, pro_no);
             System.out.println("刪除的筆數=" + query.executeUpdate());

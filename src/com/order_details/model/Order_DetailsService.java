@@ -53,8 +53,8 @@ public class Order_DetailsService {
 		return dao.findByPrimaryKey(ord_no, pro_no);
 	}
 
-	public void deleteOrder_Details(Integer ord_no, Integer pro_no) {
-		dao.delete(ord_no, pro_no);
+	public void deleteOrder_Details(Integer ord_no) {
+		dao.delete(ord_no);
 	}
 
 	public List<Order_DetailsVO> getAllOrder_DetailsByOrd_no(Integer ord_no) {

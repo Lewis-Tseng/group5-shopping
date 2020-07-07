@@ -11,7 +11,7 @@ public interface Order_DetailsDAO_interface {
 
 	public void update(Order_DetailsVO order_detailsVO);
 
-	public void delete(Integer ord_no, Integer pro_no);
+	public void delete(Integer ord_no);
 	
 	public Order_DetailsVO findByPrimaryKey(Integer ord_no, Integer pro_no);
 
