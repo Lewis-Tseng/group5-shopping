@@ -21,6 +21,8 @@ import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
@@ -65,8 +67,8 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 
 	@Override
 	public void delete(Integer ord_no) {
-//		Order_DetailsService order_detailsSvc = new Order_DetailsService();	
-//		order_detailsSvc.deleteOrder_Details(ord_no);
+		Order_DetailsService order_detailsSvc = new Order_DetailsService();	
+		order_detailsSvc.deleteOrder_Details(ord_no);
 		Query<Product_OrderVO> query = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("delete Product_OrderVO where ord_no=?0 ");
 		query.setParameter(0, ord_no);
 		System.out.println("刪除的訂單筆數=" + query.executeUpdate());
@@ -231,35 +233,35 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 			
 //	    //mem_id, ord_dat, ord_amo, ord_qua, ord_sta, pay_met, del_add, phone
 		//新增
-		Product_OrderVO product_orderVO1 = new Product_OrderVO();
-		
-		order_detailsVO1.setQuantity(70);
-		order_detailsVO1.setUni_pri(5000);
-		productVO1.setPro_no(6000010);
-//		product_orderVO1.setOrd_no(null);
-//		product_orderVO2.setOrd_no(8000010);
-		order_detailsVO1.setProductVO(productVO1);
-//		order_detailsVO1.setPro_no(6000010);
-		
-		order_detailsVO2.setQuantity(60);
-		order_detailsVO2.setUni_pri(4000);
-		productVO2.setPro_no(6000002);
-//		product_orderVO2.setOrd_no(null);
-		order_detailsVO2.setProductVO(productVO2);
-//        order_detailsVO2.setPro_no(6000002);
-		
-		set.add(order_detailsVO1);
-		set.add(order_detailsVO2);
+//		Product_OrderVO product_orderVO1 = new Product_OrderVO();
 //		
-		product_orderVO1.setOrder_detailss(set);
-		product_orderVO1.setMem_id("ME00001");
-		product_orderVO1.setOrd_dat(java.sql.Date.valueOf("2019-03-12"));
-		product_orderVO1.setOrd_amo(new Integer(40000));
-		product_orderVO1.setPro_qua(new Integer(300));
-		product_orderVO1.setOrd_sta("1");
-		product_orderVO1.setPay_met("信用卡");
-		product_orderVO1.setDel_add("台北市");
-		dao.insert(product_orderVO1);
+//		order_detailsVO1.setQuantity(70);
+//		order_detailsVO1.setUni_pri(5000);
+//		productVO1.setPro_no(6000010);
+////		product_orderVO1.setOrd_no(null);
+////		product_orderVO2.setOrd_no(8000010);
+//		order_detailsVO1.setProductVO(productVO1);
+////		order_detailsVO1.setPro_no(6000010);
+//		
+//		order_detailsVO2.setQuantity(60);
+//		order_detailsVO2.setUni_pri(4000);
+//		productVO2.setPro_no(6000002);
+////		product_orderVO2.setOrd_no(null);
+//		order_detailsVO2.setProductVO(productVO2);
+////        order_detailsVO2.setPro_no(6000002);
+//		
+//		set.add(order_detailsVO1);
+//		set.add(order_detailsVO2);
+////		
+//		product_orderVO1.setOrder_detailss(set);
+//		product_orderVO1.setMem_id("ME00001");
+//		product_orderVO1.setOrd_dat(java.sql.Date.valueOf("2019-03-12"));
+//		product_orderVO1.setOrd_amo(new Integer(40000));
+//		product_orderVO1.setPro_qua(new Integer(300));
+//		product_orderVO1.setOrd_sta("1");
+//		product_orderVO1.setPay_met("信用卡");
+//		product_orderVO1.setDel_add("台北市");
+//		dao.insert(product_orderVO1);
 
 //		//修改
 //		Product_OrderVO product_orderVO2 = new Product_OrderVO();
@@ -274,7 +276,7 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 //		dao.update(product_orderVO2);
 
 	    //刪除
-//		dao.delete(8000010);
+//		dao.delete(8000009);
 
 //	    //ord_no, mem_id, ord_dat, ord_amo, pro_qua, ord_sta, pay_met, del_add
 //	    //單查詢

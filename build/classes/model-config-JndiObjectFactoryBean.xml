@@ -11,18 +11,19 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd"> 
         
- <!--        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> 
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/> 
         <property name="username" value="DA103G5"/> 
         <property name="password" value="123456"/> 
         </bean> 
- -->        
+       
         
-        
-   <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+  <!--       
+        <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
             <property name="jndiName" value="java:/comp/env/jdbc/DA103G5"/>
         </bean>  
+   -->       
  
         <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" destroy-method="destroy">
             <property name="dataSource" ref="dataSource"></property>

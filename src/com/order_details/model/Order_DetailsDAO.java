@@ -57,7 +57,6 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 
 	@Override
 	public void delete(Integer ord_no) {
-System.out.println(ord_no);
 		try {
 //			Order_DetailsVO ordVO = (Order_DetailsVO) hibernateTemplate.get(Order_DetailsVO.class, ord_no);			
 //			Order_DetailsVO ordVO = new Order_DetailsVO();
@@ -154,9 +153,9 @@ System.out.println(ord_no);
         
 //	// 新增
 //		Order_DetailsVO odVO1 = new Order_DetailsVO();
-//		product_orderVO.setOrd_no(8000010);
+//		product_orderVO.setOrd_no(8000009);
 //		odVO1.setProduct_orderVO(product_orderVO);
-//		productVO.setPro_no(6000011);
+//		productVO.setPro_no(6000012);
 //		odVO1.setProductVO(productVO);
 //		odVO1.setQuantity(50);
 //		odVO1.setUni_pri(1000);
