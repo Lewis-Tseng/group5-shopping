@@ -2,16 +2,21 @@ package com.product_category.model;
 
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class Product_CategoryService {
 
-	private Product_CategoryDAO_interface dao;
-
-	public Product_CategoryService() {
-		dao = new Product_CategoryDAO();
+	private static Product_CategoryDAO_interface dao;
+	
+	static {
+		@SuppressWarnings("resource")
+		ApplicationContext contex = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao = (Product_CategoryDAO_interface) contex.getBean("product_categoryDAO");	
 	}
 
 	public Product_CategoryVO addProduct_Category(String cat_nam) {
-
+		
 		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
 
 		product_categoryVO.setCat_nam(cat_nam);
@@ -21,6 +26,7 @@ public class Product_CategoryService {
 	}
 
 	public Product_CategoryVO updateProduct_Category(String cat_nam) {
+		
 		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
 		
 		product_categoryVO.setCat_nam(cat_nam);
@@ -30,6 +36,7 @@ public class Product_CategoryService {
 	}
 	
 	public Product_CategoryVO updateProduct_Category(Integer cat_no, String cat_nam) {
+		
 		Product_CategoryVO product_categoryVO = new Product_CategoryVO();
 
 		product_categoryVO.setCat_no(cat_no);

@@ -5,14 +5,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.product_category.model.Product_CategoryVO;
 
 public class ProductService {
 
-	private ProductDAO_interface dao;
+	private static ProductDAO_interface dao;
 
-	public ProductService() {
-		dao = new ProductDAO();
+	static {
+		@SuppressWarnings("resource")
+		ApplicationContext contex = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao = (ProductDAO_interface) contex.getBean("productDAO");
 	}
 
 	public ProductVO addProduct(Integer cat_no, String pro_nam, String pro_con, Integer pro_pri, String pro_sta,

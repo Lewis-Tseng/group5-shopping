@@ -4,19 +4,24 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.product.model.ProductVO;
 import com.product_order.model.Product_OrderVO;
 
 public class Order_DetailsService {
 
-	private Order_DetailsDAO_interface dao;
+	private static Order_DetailsDAO_interface dao;
 
-	public Order_DetailsService() {
-		dao = new Order_DetailsDAO();
+	static {
+		@SuppressWarnings("resource")
+		ApplicationContext contex = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao = (Order_DetailsDAO_interface) contex.getBean("order_detailsDAO");
 	}
-
+	
 	public Order_DetailsVO addOrder_Details(Integer ord_no, Integer pro_no, Integer quantity, Integer uni_pri) {
-
+		
 		Order_DetailsVO order_detailsVO = new Order_DetailsVO();
 		
 		Product_OrderVO product_orderVO = new Product_OrderVO();
@@ -33,7 +38,7 @@ public class Order_DetailsService {
 	}
 
 	public Order_DetailsVO updateOrder_Details(Integer ord_no, Integer pro_no, Integer quantity, Integer uni_pri) {
-
+		
 		Order_DetailsVO order_detailsVO = new Order_DetailsVO();
 
 		Product_OrderVO product_orderVO = new Product_OrderVO();

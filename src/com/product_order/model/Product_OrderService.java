@@ -2,14 +2,20 @@ package com.product_order.model;
 
 import java.util.*;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.order_details.model.Order_DetailsVO;
+import com.product_image.model.Product_ImageDAO_interface;
 
 public class Product_OrderService {
 
-	private Product_OrderDAO_interface dao;
+	private static Product_OrderDAO_interface dao;
 
-	public Product_OrderService() {
-		dao = new Product_OrderDAO();
+	static {
+		@SuppressWarnings("resource")
+		ApplicationContext contex = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao = (Product_OrderDAO_interface) contex.getBean("product_orderDAO");
 	}
 
 	public Product_OrderVO addProduct_Order(String mem_id, java.sql.Date ord_dat, Integer ord_amo, Integer pro_qua,

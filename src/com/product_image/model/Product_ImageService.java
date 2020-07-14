@@ -2,16 +2,21 @@ package com.product_image.model;
 
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.product.model.ProductVO;
 
 public class Product_ImageService {
 
-	private Product_ImageDAO_interface dao;
-
-	public Product_ImageService() {
-		dao = new Product_ImageDAO();
+	private static Product_ImageDAO_interface dao;
+	
+	static {
+		@SuppressWarnings("resource")
+		ApplicationContext contex = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao = (Product_ImageDAO_interface) contex.getBean("product_imageDAO");
 	}
-
+	
 	public Product_ImageVO addProduct_Image(byte[] img, String img_nam) {
 
 		Product_ImageVO product_imageVO = new Product_ImageVO();
