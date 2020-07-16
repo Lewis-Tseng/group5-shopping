@@ -600,7 +600,7 @@ pageContext.setAttribute("Auth",Auth);%>
                                             <div class="mb-4"></div>
                                           </td>
                                           <td>
-                                            <a href="<%=request.getContextPath()%>/back_end/product/addProduct.jsp" class="btn btn-light btn-icon-split">
+                                            <a href="<%=request.getContextPath()%>/back_end/product/addProduct" class="btn btn-light btn-icon-split">
                                               <span class="icon text-gray-600">
                                                 <i class="fas fa-arrow-right"></i>
                                               </span>

@@ -3,6 +3,17 @@ package com.product.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import com.order_details.model.Order_DetailsVO;
 import com.product_category.model.Product_CategoryVO;
 import com.product_image.model.Product_ImageVO;
@@ -42,22 +53,29 @@ public class ProductVO implements java.io.Serializable {
 		this.pro_no = pro_no;
 	}
 
+	@NotEmpty(message = "商品名稱請勿空白")
+	@Pattern(regexp = "^[(\\u4e00-\\u9fa5)(a-zA-Z0-9_)]{2,10}$", message = "商品名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間")
 	public String getPro_nam() {
 		return pro_nam;
 	}
 
 	public void setPro_nam(String pro_nam) {
-		this.pro_nam = pro_nam;
+		this.pro_nam = pro_nam.trim();
 	}
-
+    
+	@NotEmpty(message = "商品內容請勿空白")
+	@Size(min = 2, max = 1000, message = "商品內容:長度需在{min}到{max}之間")
 	public String getPro_con() {
 		return pro_con;
 	}
 
 	public void setPro_con(String pro_con) {
-		this.pro_con = pro_con;
+		this.pro_con = pro_con.trim();
 	}
 
+	@NotNull(message = "商品價格請勿空白")
+	@DecimalMin(value = "100", message = "商品價格 不能小於{value}")
+	@DecimalMax(value = "1000000", message = "商品價格 不能超過{value}")
 	public Integer getPro_pri() {
 		return pro_pri;
 	}
@@ -66,6 +84,7 @@ public class ProductVO implements java.io.Serializable {
 		this.pro_pri = pro_pri;
 	}
 
+	@NotNull(message = "商品狀態請勿空白")
 	public String getPro_sta() {
 		return pro_sta;
 	}
@@ -74,6 +93,10 @@ public class ProductVO implements java.io.Serializable {
 		this.pro_sta = pro_sta;
 	}
 
+	@NotNull(message = "商品庫存請勿空白")
+	@Digits(integer = 5, fraction = 0, message = "商品庫存不能超過{integer}")
+	@Min(value = 1, message = "商品庫存 不能小於{value}")
+	@Max(value = 1000, message = "商品庫存 不能小於{value}")
 	public Integer getPro_sto() {
 		return pro_sto;
 	}
@@ -82,6 +105,7 @@ public class ProductVO implements java.io.Serializable {
 		this.pro_sto = pro_sto;
 	}
 	
+	@Valid
 	public Product_CategoryVO getProduct_categoryVO() {
 		return product_categoryVO;
 	}

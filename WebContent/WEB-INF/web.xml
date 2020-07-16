@@ -288,7 +288,6 @@
     <url-pattern>/front_end/group/friendList.do</url-pattern>
     <url-pattern>/front_end/chatroom/friendList.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ScheduleServletGro</servlet-name>
     <servlet-class>com.gro.group.controller.ScheduleGroServlet</servlet-class>
@@ -314,7 +313,10 @@
     <url-pattern>/front_end/forum/listAllForum.jsp</url-pattern>
     <url-pattern>/front_end/product_front/shopping_mall_home.jsp</url-pattern>
   </filter-mapping>
-  <!-- 購物部分 -->
+  
+  
+<!-- 購物部分Servlet --> 
+<!--  
   <servlet>
     <servlet-name>ProductServlet</servlet-name>
     <servlet-class>com.product.controller.ProductServlet</servlet-class>
@@ -324,6 +326,7 @@
     <url-pattern>/product/product.do</url-pattern>
     <url-pattern>/front_end/product/product.do</url-pattern>
   </servlet-mapping>
+  --> 
   <servlet>
     <servlet-name>Product_CategoryServlet</servlet-name>
     <servlet-class>com.product_category.controller.Product_CategoryServlet</servlet-class>
@@ -367,6 +370,4 @@
     <servlet-name>Shopping_ProductServlet</servlet-name>
     <url-pattern>/front_end/shopping_product/shopping_product.do</url-pattern>
   </servlet-mapping>
-  
-  
 </web-app>

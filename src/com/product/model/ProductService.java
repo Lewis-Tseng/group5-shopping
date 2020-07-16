@@ -39,6 +39,10 @@ public class ProductService {
 
 		return productVO;
 	}
+	
+	public void addProduct(ProductVO productVO) {
+		dao.insert(productVO);
+	}
 
 	public ProductVO updateProduct(Integer pro_no, Integer cat_no, String pro_nam, String pro_con, Integer pro_pri,
 			String pro_sta, Integer pro_sto) {
@@ -60,6 +64,10 @@ public class ProductService {
 		return productVO;
 	}
 
+	public void updateProduct(ProductVO productVO) {
+		dao.update(productVO);
+	}
+	
 	public void deleteProduct(Integer pro_no) {
 		dao.delete(pro_no);
 	}

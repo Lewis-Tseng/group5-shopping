@@ -45,7 +45,7 @@ public class ProductDAO implements ProductDAO_interface {
 	
 	@Override
 	public void insert(ProductVO productVO) {
-			hibernateTemplate.saveOrUpdate(productVO);
+			hibernateTemplate.saveOrUpdate(productVO);		
 	}
 
 	@Override
