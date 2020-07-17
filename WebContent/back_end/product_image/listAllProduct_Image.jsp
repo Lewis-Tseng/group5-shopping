@@ -488,7 +488,7 @@ pageContext.setAttribute("Auth",Auth);%>
 																		<tr>
 																			<td>${product_imageVO.pro_no}</td>
 																			<td><c:forEach var="productVO" items="${productSvc.all}">
-																				<c:if test="${productVO.pro_no==product_imageVO.pro_no}">
+																				<c:if test="${productVO.pro_no==product_imageVO.productVO.pro_no}">
 																				${productVO.pro_nam}
 																				</c:if>
 																			</c:forEach></td>
@@ -496,7 +496,7 @@ pageContext.setAttribute("Auth",Auth);%>
 																				${product_imageVO.img_nam}
 																			</td>
 																			<td><c:forEach var="productVO" items="${productSvc.all}">
-																				<c:if test="${productVO.pro_no==product_imageVO.pro_no}">
+																				<c:if test="${productVO.pro_no==product_imageVO.productVO.pro_no}">
 																				<img
 																				src="<%=request.getContextPath()%>/Reader_Image?pro_img_no=${product_imageVO.pro_img_no}"
 																				title="400px" width="200" border="1" />
@@ -507,7 +507,7 @@ pageContext.setAttribute("Auth",Auth);%>
 																					ACTION="<%=request.getContextPath()%>/product_image/product_image.do"
 																					style="margin-bottom: 0px;">
 																					<c:forEach var="productVO" items="${productSvc.all}">
-																					<c:if test="${productVO.pro_no==product_imageVO.pro_no}">
+																					<c:if test="${productVO.pro_no==product_imageVO.productVO.pro_no}">
 																					<input type="checkbox" name="pro_img_no"
 																					value="${product_imageVO.pro_img_no}" />${product_imageVO.pro_img_no}
 																					</c:if>
@@ -521,7 +521,7 @@ pageContext.setAttribute("Auth",Auth);%>
 																					ACTION="<%=request.getContextPath()%>/product_image/product_image.do"
 																					style="margin-bottom: 0px;">
 																					<c:forEach var="productVO" items="${productSvc.all}">
-																					<c:if test="${productVO.pro_no==product_imageVO.pro_no}">
+																					<c:if test="${productVO.pro_no==product_imageVO.productVO.pro_no}">
 																					<input type="checkbox" name="pro_img_no"
 																					value="${product_imageVO.pro_img_no}" />${product_imageVO.pro_img_no}
 																					</c:if>

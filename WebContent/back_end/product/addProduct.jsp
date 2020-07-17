@@ -4,13 +4,16 @@
 <%@page import="com.emp_auth.model.EaService"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page import="com.product.model.*"%>
 <%@page import="com.product_image.model.Product_ImageVO"%>
 <%   AdmVO empVO  =(AdmVO)session.getAttribute("empVO"); %>
 <%
-ProductVO productVO = (ProductVO) request.getAttribute("productVO");
+//ProductVO productVO = (ProductVO) request.getAttribute("productVO");
 %>
+<!--  
 <jsp:useBean id="product_categorySvc" scope="page" class="com.product_category.model.Product_CategoryService" />
+-->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -448,7 +451,9 @@ pageContext.setAttribute("Auth",Auth);%>
 													</div>
 													<div class="card-body">
 														<div class="table-responsive">
-															<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do" name="form1">
+														<!-- 	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do" name="form1"> -->
+																<form:form action="insert" method="POST" modelAttribute="productVO">
+												                <form:errors path="*" cssClass="errorblock" element="div"/>
 																<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 																	<thead>
 																		<tr>
@@ -464,33 +469,51 @@ pageContext.setAttribute("Auth",Auth);%>
 																	
 																	<tbody>
 																		<tr>
-																			<td><input type="TEXT" name="pro_nam" size="45"
-																			value="<%=(productVO == null) ? "請輸入商品名稱" : productVO.getPro_nam()%>" id="a"/>
+																			<td>
+																			<!--  <input type="TEXT" name="pro_nam" size="45"
+																			value="<%//=(productVO == null) ? "請輸入商品名稱" : productVO.getPro_nam()%>" id="a"/>-->
+																			<form:input type="text" path="pro_nam" id="pro_nam" size="45"/>
+																			<form:errors path="pro_nam" cssClass="error"/>
 																			<button type="button" id="in">神奇小按鈕</button>
 																			</td>
-																			<td><textarea style="width: 300px; height: 100px;" name="pro_con" id="b"><%=(productVO == null) ? "請輸入商品介紹" : productVO.getPro_con()%></textarea></td>
-																			<td><input type="TEXT" name="pro_pri" size="45"
-																			value="<%=(productVO == null) ? "請輸入售價" : productVO.getPro_pri()%>" id="c"/></td>
-																			<td><input type="radio" name="pro_sta"
+																			<td>
+																			<!--<textarea style="width: 300px; height: 100px;" name="pro_con" id="b"><%//=(productVO == null) ? "請輸入商品介紹" : productVO.getPro_con()%></textarea>-->
+																			<form:textarea style="width: 300px; height: 100px;" path="pro_con" id="pro_con"></form:textarea>
+																			<form:errors path="pro_con" cssClass="error"/>
+																			</td>
+																			<td>
+																			<!--<input type="text" name="pro_pri" size="45"
+																			value="<%//=(productVO == null) ? "請輸入售價" : productVO.getPro_pri()%>" id="c"/>-->
+																			<form:input type="text" path="pro_pri" id="pro_pri" size="45"/>
+																			<form:errors path="pro_pri" cssClass="error"/>
+																			</td>
+																			<td>
+																			<!--<input type="radio" name="pro_sta"
 																				value="0" />上架<br>
 																				<input type="radio" name="pro_sta"
-																			value="1" checked="true" />下架<br></td>
-																			<td><input type="TEXT" name="pro_sto" size="45"
-																			value="<%=(productVO == null) ? "請輸入庫存" : productVO.getPro_sto()%>" id="d"/></td>
-																			<td><select size="1" name="cat_no">
-																				<c:forEach var="product_categoryVO"
-																				items="${product_categorySvc.all}">
-																				<option value="${product_categoryVO.cat_no}"
-																					${(productVO.cat_no==product_categoryVO.cat_no)? 'selected':'' }>
-																					${product_categoryVO.cat_no} == ${product_categoryVO.cat_nam}
-																					</c:forEach>
-																				</select></td>
-																				<td><input type="hidden" name="action" value="insert"> <input
-																			type="submit" value="送出新增"></td>
+																			value="1" checked="true" />下架<br>-->
+																			<form:radiobutton path="pro_sta" value="0" label="上架" />
+																			<form:radiobutton path="pro_sta" value="1" label="下架" checked="true" />											
+																			</td>
+																			<td>
+																		<!--<input type="TEXT" name="pro_sto" size="45"
+																			value="<%//=(productVO == null) ? "請輸入庫存" : productVO.getPro_sto()%>" id="d"/>-->
+																			<form:input type="text" path="pro_sto" size="45"/>
+																			<form:errors path="pro_pri" cssClass="error"/>
+																			</td>
+																			<td>
+																			<form:select path="product_categoryVO.cat_no" id="product_categoryVO.cat_no" items="${listData}" itemValue="cat_no" itemLabel="cat_nam" />										
+																			</td>
+																			<td>
+																		<!--    <input type="hidden" name="action" value="insert"> -->
+																				<input type="submit" value="送出新增"/>
+																				
+																			</td>
 																		</tr>
 																	</tbody>
 																</table>
-															</FORM>
+														</form:form>
+														<!--  	</FORM> -->
 														</div>
 													</div>
 												</div>

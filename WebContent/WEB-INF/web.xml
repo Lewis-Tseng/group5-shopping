@@ -316,7 +316,7 @@
   
   
 <!-- 購物部分Servlet --> 
-<!--  
+ 
   <servlet>
     <servlet-name>ProductServlet</servlet-name>
     <servlet-class>com.product.controller.ProductServlet</servlet-class>
@@ -326,7 +326,7 @@
     <url-pattern>/product/product.do</url-pattern>
     <url-pattern>/front_end/product/product.do</url-pattern>
   </servlet-mapping>
-  --> 
+   
   <servlet>
     <servlet-name>Product_CategoryServlet</servlet-name>
     <servlet-class>com.product_category.controller.Product_CategoryServlet</servlet-class>
@@ -370,4 +370,31 @@
     <servlet-name>Shopping_ProductServlet</servlet-name>
     <url-pattern>/front_end/shopping_product/shopping_product.do</url-pattern>
   </servlet-mapping>
+  
+  <!-- 靜態資源部分 告訴伺服器不用攔截 --> 
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.gif</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.jpg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

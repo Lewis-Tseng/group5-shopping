@@ -1,16 +1,21 @@
 package com.product.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.product.model.ProductService;
 import com.product.model.ProductVO;
+import com.product_category.model.Product_CategoryService;
+import com.product_category.model.Product_CategoryVO;
 
 @Controller
 @RequestMapping("/back_end/product")
@@ -72,9 +77,13 @@ public class ProductSpringController {
 	}
 	
 	
-	
-	
-	
+	//給addProduct.jsp抓此Model用
+	@ModelAttribute("listData")
+	public List<Product_CategoryVO> referenceListData(){
+		Product_CategoryService product_categorySvc = new Product_CategoryService();
+		List<Product_CategoryVO> listData = product_categorySvc.getAll();
+		return listData;	
+	}
 	
 	
 	

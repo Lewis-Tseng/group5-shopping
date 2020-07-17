@@ -474,37 +474,39 @@ pageContext.setAttribute("Auth",Auth);%>
 																	<tr>
 																		<td>${productVO.pro_no}</td>
 																		<td>${productVO.pro_nam}</td>
-																		<td>${productVO.cat_no}</td>
+																		<td>${productVO.product_categoryVO.cat_no}</td>
 																		<td>${productVO.pro_con}</td>
 																		<td>${productVO.pro_pri}</td>
 																		<td><c:if test="${productVO.pro_sta == 0}">上架</c:if>
 																		<c:if test="${productVO.pro_sta == 1}">下架</c:if></td>
 																		<td>${productVO.pro_sto}</td>
 																		<td><c:forEach var="product_categoryVO" items="${product_categorySvc.all}">
-																			<c:if test="${productVO.cat_no==product_categoryVO.cat_no}">
+																			<c:if test="${productVO.product_categoryVO.cat_no==product_categoryVO.cat_no}">
 																			${product_categoryVO.cat_no}【${product_categoryVO.cat_nam}】
 																			</c:if>
 																			</c:forEach>
 																		</td>
 																		<td>
 																			<c:forEach var="product_imageVO" items="${product_imageSvc.all}">
-																			<c:if test="${productVO.pro_no==product_imageVO.pro_no}">
+																			<c:if test="${productVO.pro_no==product_imageVO.productVO.pro_no}">
 																			${product_imageVO.img_nam}
 																			<img src="<%=request.getContextPath()%>/Reader_Image?pro_img_no=${product_imageVO.pro_img_no}" title="400px" width="200" border="1"/>
 																			</c:if>
 																			</c:forEach>
 																		</td>
 																		<td>
-																			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do" style="margin-bottom: 0px;">
+																			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/product/getOne_For_Update" style="margin-bottom: 0px;">
 																				<input type="submit" value="修改">
 																				<input type="hidden" name="pro_no"  value="${productVO.pro_no}">
-																				<input type="hidden" name="action" value="getOne_For_Update"></FORM>
+																			<!-- <input type="hidden" name="action" value="getOne_For_Update">-->
+																				</FORM>
 																			</td>
 																			<td>
-																				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do" style="margin-bottom: 0px;">
+																				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/product/delete" style="margin-bottom: 0px;">
 																					<input type="submit" value="刪除">
 																					<input type="hidden" name="pro_no"  value="${productVO.pro_no}">
-																					<input type="hidden" name="action" value="delete"></FORM>
+																				<!--	<input type="hidden" name="action" value="delete">-->
+																					</FORM>
 																				</td>
 																			</tr>
 																			</c:forEach>

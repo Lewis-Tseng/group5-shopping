@@ -475,7 +475,7 @@ pageContext.setAttribute("Auth",Auth);%>
                                     <td><input type="TEXT" name="pro_sto" size="7" value="<%=productVO.getPro_sto()%>" /></td>
                                     <td><select size="1" name="cat_no">
                                       <c:forEach var="product_categoryVO" items="${product_categorySvc.all}">
-                                      <option value="${product_categoryVO.cat_no}" ${(productVO.cat_no==product_categoryVO.cat_no)? 'selected':'' } >
+                                      <option value="${product_categoryVO.cat_no}" ${(productVO.product_categoryVO.cat_no==product_categoryVO.cat_no)? 'selected':'' } >
                                         ${product_categoryVO.cat_no} == ${product_categoryVO.cat_nam}
                                         </c:forEach>
                                       </select></td>
