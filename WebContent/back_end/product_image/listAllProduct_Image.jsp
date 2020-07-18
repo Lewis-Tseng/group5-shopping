@@ -486,7 +486,7 @@ pageContext.setAttribute("Auth",Auth);%>
 																		<c:forEach var="product_imageVO" items="${list}"
 																		begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 																		<tr>
-																			<td>${product_imageVO.pro_no}</td>
+																			<td>${product_imageVO.productVO.pro_no}</td>
 																			<td><c:forEach var="productVO" items="${productSvc.all}">
 																				<c:if test="${productVO.pro_no==product_imageVO.productVO.pro_no}">
 																				${productVO.pro_nam}

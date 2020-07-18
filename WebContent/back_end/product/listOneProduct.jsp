@@ -479,16 +479,16 @@ pageContext.setAttribute("Auth",Auth);
 																	<tr>
 																		<td><%=productVO.getPro_no()%></td>
 																		<td><%=productVO.getPro_nam()%></td>
-																		<td><%=productVO.getProduct_categoryVO()%></td>
+																		<td><%=productVO.getProduct_categoryVO().getCat_no()%></td>
 																		<td><%=productVO.getPro_con()%></td>
 																		<td><%=productVO.getPro_pri()%></td>
 																		<td><c:if test="${productVO.pro_sta == 0}">上架</c:if>
 																		<c:if test="${productVO.pro_sta == 1}">下架</c:if></td>
 																		<td><%=productVO.getPro_sto()%></td>
-																		<td><%=productVO.getProduct_categoryVO()%>【<%=product_categoryVO.getCat_nam()%>】</td>
+																		<td>【<%=product_categoryVO.getCat_nam()%>】</td>
 																		<td>
 																			<c:forEach var="product_imageVO" items="${product_imageSvc.all}">
-																			<c:if test="${productVO.pro_no==product_imageVO.pro_no}">
+																			<c:if test="${productVO.pro_no==product_imageVO.productVO.pro_no}">
 																			${product_imageVO.img_nam}
 																			<img src="<%=request.getContextPath()%>/Reader_Image?pro_img_no=${product_imageVO.pro_img_no}"  title="400px" width="200" border="1"/>
 																			</c:if>
