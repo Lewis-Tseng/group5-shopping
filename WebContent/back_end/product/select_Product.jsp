@@ -443,6 +443,7 @@ pageContext.setAttribute("Auth",Auth);%>
                             </c:forEach>
                           </ul>
                           </c:if>
+                           <div class="errorblock">${errorMessage1}</div>
                         </div>
 			 <div class="card shadow mb-4 dataTable">
                         <div class="card-header py-3">
@@ -450,7 +451,7 @@ pageContext.setAttribute("Auth",Auth);%>
                         </div>
                         <div class="card-body">
                           <div class="table-responsive">
-                            <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do" name="form1">
+                            <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/product/getOne_For_Display" name="form1">
                               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                   <tr>
@@ -463,7 +464,7 @@ pageContext.setAttribute("Auth",Auth);%>
                                 <tbody>
                                   <tr>
                                     <td>
-                                      <form METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                      <form METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/product/getOne_For_Display" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                         <div class="input-group">
                                           <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="pro_no">
                                           <input type="hidden" name="action" value="getOne_For_Display">
@@ -476,7 +477,7 @@ pageContext.setAttribute("Auth",Auth);%>
                                       </form>
                                     </td>
                                     <td>
-                                      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do" >
+                                      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/product/getOne_For_Display" >
                                         <select size="1" name="pro_no">
                                           <c:forEach var="productVO" items="${productSvc.all}" >
                                           <option value="${productVO.pro_no}">${productVO.pro_no}
@@ -487,7 +488,7 @@ pageContext.setAttribute("Auth",Auth);%>
                                         </FORM>
                                       </td>
                                       <td>
-                                        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do" >
+                                        <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/product/getOne_For_Display" >
                                           <select size="1" name="pro_no">
                                             <c:forEach var="productVO" items="${productSvc.all}" >
                                             <option value="${productVO.pro_no}">${productVO.pro_nam}
