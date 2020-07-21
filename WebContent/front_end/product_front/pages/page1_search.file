@@ -8,9 +8,12 @@
 %>
 
 <%  
- 
-    rowNumber=list.size();
- 
+    if(list == null){
+       rowNumber=0;
+    }else{
+       rowNumber=list.size();
+    }
+    
     if (rowNumber%rowsPerPage !=0)
          pageNumber=rowNumber/rowsPerPage + 1;
     else pageNumber=rowNumber/rowsPerPage;    

@@ -7,10 +7,10 @@
 <%@page import="java.util.stream.Collectors"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <jsp:useBean id="listProduct_ByCompositeQuery" scope="request" type="java.util.List<ProductVO>" />  --%>
-	<%
-	List<ProductVO> list =  (List)session.getAttribute("listProduct_ByCompositeQuery");
-			pageContext.setAttribute("list", list);
-				%>
+<%
+List<ProductVO> list = (List<ProductVO>)request.getAttribute("listProduct_ByCompositeQuery");
+pageContext.setAttribute("list", list);
+%>
 				
 				<jsp:useBean id="product_imageSvc" scope="page" class="com.product_image.model.Product_ImageService"/>
 				<!DOCTYPE HTML>

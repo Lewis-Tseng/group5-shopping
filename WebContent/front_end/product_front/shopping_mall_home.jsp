@@ -276,9 +276,10 @@ CoaVO coaVO = (CoaVO) session.getAttribute("coaVO");
 										</c:forEach>
 									</ul>
 									</c:if>
+									<div class="errorblock">${errorMessage1}</div>
 								</div>
 								<div><%@ include file="pages/page1.file" %></div>
-								<form METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+								<form METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/product/listProduct_ByCompositeQuery" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 									<nav class="navbar navbar-default">
 										<div class="container-fluid">
 											<!-- Brand and toggle get grouped for better mobile display -->
@@ -313,7 +314,7 @@ CoaVO coaVO = (CoaVO) session.getAttribute("coaVO");
 													<div class="form-group">
 														<input type="text" class="form-control" placeholder="Search" name="pro_nam">
 														<input type="hidden" name="pro_sta" value="0">
-														<input type="hidden" name="action" value="listProduct_ByCompositeQuery">
+													<!--  	<input type="hidden" name="action" value="listProduct_ByCompositeQuery"> -->
 													</div>
 													<button type="submit" class="btn btn-default">搜尋</button>
 												</form>

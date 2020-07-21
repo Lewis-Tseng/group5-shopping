@@ -451,7 +451,7 @@ pageContext.setAttribute("Auth",Auth);%>
                         </div>
                         <div class="card-body">
                           <div class="table-responsive">
-                            <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/product/getOne_For_Display" name="form1">
+                            <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front_end/product/getOne_For_Display" name="form1">
                               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                   <tr>

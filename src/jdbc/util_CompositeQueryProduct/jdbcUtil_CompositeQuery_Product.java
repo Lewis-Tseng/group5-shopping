@@ -18,11 +18,13 @@ public class jdbcUtil_CompositeQuery_Product {
 	}
 
 	public static String get_WhereCondition(Map<String, String[]> map) {
-		Set<String> keys = map.keySet();
+		Map newMap = jdbcUtil_CompositeQuery_Product.getParameterMap(map);
+		Set<String> keys = newMap.keySet();
 		StringBuffer whereCondition = new StringBuffer();
 		int count = 0;
 		for (String key : keys) {
-			String value = map.get(key)[0];
+//			String value = ((String[])map.get(key))[0];
+			String value = (String) newMap.get(key);
 			if (value != null && value.trim().length() != 0	&& !"action".equals(key)) {
 				count++;
 				String aCondition = get_aCondition_For_Oracle(key, value.trim());
@@ -53,9 +55,40 @@ public class jdbcUtil_CompositeQuery_Product {
 		map.put("action", new String[] { "getXXX" }); // 注意Map裡面會含有action的key
 
 		String finalSQL = "select * from product_order "
-				          + jdbcUtil_CompositeQuery_Product_Order.get_WhereCondition(map)
+				          + jdbcUtil_CompositeQuery_Product.get_WhereCondition(map)
 				          + "order by ord_no";
 		System.out.println("●●finalSQL = " + finalSQL);
 
 	}
+	
+	public static Map getParameterMap(Map<String, String[]> map) {
+	    // 引數Map
+	    Map properties = map;
+	    // 返回值Map
+	    Map returnMap = new HashMap();
+	    Iterator entries = properties.entrySet().iterator();
+	    Map.Entry entry;
+	    String name = "";
+	    String value = "";
+	    while (entries.hasNext()) {
+	        entry = (Map.Entry) entries.next();
+	        name = (String) entry.getKey();
+	        Object valueObj = entry.getValue();
+	        if(null == valueObj){
+	            value = "";
+	        }else if(valueObj instanceof String[]){
+	            String[] values = (String[])valueObj;
+	            for(int i=0;i<values.length;i++){
+	                value = values[i] + ",";
+	            }
+	            value = value.substring(0, value.length()-1);
+	        }else{
+	            value = valueObj.toString();
+	        }
+	        returnMap.put(name, value);
+	    }
+	    return returnMap;
+	}
+	
+	
 }

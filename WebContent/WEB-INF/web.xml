@@ -313,7 +313,18 @@
     <url-pattern>/front_end/forum/listAllForum.jsp</url-pattern>
     <url-pattern>/front_end/product_front/shopping_mall_home.jsp</url-pattern>
   </filter-mapping>
-  
+  <filter>
+    <filter-name>setCharacterEncoding</filter-name>
+    <filter-class>filters.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>setCharacterEncoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   
 <!-- 購物部分Servlet --> 
  
