@@ -434,17 +434,17 @@ if ("insert".equals(action)) {
 
 - Hibernate 部分 Source code 位置
   
-  - [hibernate.cfg.xml](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/hibernate.cfg.xml "hibernate.cfg.xml")
+ - [hibernate.cfg.xml](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/hibernate.cfg.xml "hibernate.cfg.xml")
   
-  - [hibernate/util](https://github.com/Lewis-Tseng/group5-shopping/tree/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/hibernate/util "This path skips through empty directories")
+ - [hibernate/util](https://github.com/Lewis-Tseng/group5-shopping/tree/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/hibernate/util "This path skips through empty directories")
   
-  - [product.hbm.xml](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/product/model/product.hbm.xml "product.hbm.xml")
+ - [product.hbm.xml](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/product/model/product.hbm.xml "product.hbm.xml")
   
-  - [ProductDAO.java](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/product/model/ProductDAO.java "ProductDAO.java")
+ - [ProductDAO.java](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/product/model/ProductDAO.java "ProductDAO.java")
   
-  - [Product_OrderVO.java](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/product_order/model/Product_OrderVO.java "Product_OrderVO.java")
+ - [Product_OrderVO.java](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/product_order/model/Product_OrderVO.java "Product_OrderVO.java")
   
-  - [Order_DetailsVO.java](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/order_details/model/Order_DetailsVO.java "Order_DetailsVO.java")
+ - [Order_DetailsVO.java](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E6%B8%AC%E8%A9%A6%E8%A8%82%E5%96%AE%E8%88%87%E6%98%8E%E7%B4%B0%E8%A4%87%E5%90%88%E4%B8%BB%E9%8D%B5%E8%83%BD%E5%90%A6%E6%94%B9%E6%88%90JPA%E6%A8%99%E7%B1%A4%E7%89%88%E5%AE%8C%E6%88%90%E6%96%B0%E5%A2%9E/src/com/order_details/model/Order_DetailsVO.java "Order_DetailsVO.java")
 
 ## <span id="8">🔎8. SpringORM</span>
 
@@ -452,20 +452,20 @@ if ("insert".equals(action)) {
 
 - SpringORM 部分 Source code位置
   
-  - [model-config-JndiObjectFactoryBean.xml](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E4%BD%BF%E7%94%A8SpringORM%E6%A8%A1%E7%B5%84%E6%95%B4%E5%90%88%E6%8E%A5%E7%AE%A1Hibernate/src/model-config-JndiObjectFactoryBean.xml)
+ - [model-config-JndiObjectFactoryBean.xml](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E4%BD%BF%E7%94%A8SpringORM%E6%A8%A1%E7%B5%84%E6%95%B4%E5%90%88%E6%8E%A5%E7%AE%A1Hibernate/src/model-config-JndiObjectFactoryBean.xml)
   
-  - [ProductDAO 使用 HibernateTemplate](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E4%BD%BF%E7%94%A8SpringORM%E6%A8%A1%E7%B5%84%E6%95%B4%E5%90%88%E6%8E%A5%E7%AE%A1Hibernate/src/com/product/model/ProductDAO.java)
+ - [ProductDAO 使用 HibernateTemplate](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E4%BD%BF%E7%94%A8SpringORM%E6%A8%A1%E7%B5%84%E6%95%B4%E5%90%88%E6%8E%A5%E7%AE%A1Hibernate/src/com/product/model/ProductDAO.java)
 
 ## <span id="9">🔎8. SpringMVC</span>
 
-- 導入SpringMVC Controller (此版本目前存放在 [feature branch](https://github.com/Lewis-Tseng/group5-shopping/tree/feature/%E5%B0%8E%E5%85%A5SpringMVC%E6%B8%AC%E8%A9%A6/src)
+- 導入SpringMVC Controller (此版本目前存放在 [feature branch](https://github.com/Lewis-Tseng/group5-shopping/tree/feature/%E5%B0%8E%E5%85%A5SpringMVC%E6%B8%AC%E8%A9%A6/src) )
 
 - SpringMVC 部分 Source code 位置
   
-  - [model-config-JndiObjectFactoryBean.xml 包含交易部分設定](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E5%B0%8E%E5%85%A5SpringMVC%E6%B8%AC%E8%A9%A6/src/model-config-JndiObjectFactoryBean.xml)
+ - [model-config-JndiObjectFactoryBean.xml 包含交易部分設定](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E5%B0%8E%E5%85%A5SpringMVC%E6%B8%AC%E8%A9%A6/src/model-config-JndiObjectFactoryBean.xml)
   
-  - [註冊前端控制器與加入組態設定檔案](https://github.com/Lewis-Tseng/group5-shopping/tree/feature/%E5%B0%8E%E5%85%A5SpringMVC%E6%B8%AC%E8%A9%A6/src/spring5/mvc/configuration)
+ - [註冊前端控制器與加入組態設定檔案](https://github.com/Lewis-Tseng/group5-shopping/tree/feature/%E5%B0%8E%E5%85%A5SpringMVC%E6%B8%AC%E8%A9%A6/src/spring5/mvc/configuration)
   
-  - [ProductSpringController.java 採用 Bean 驗證](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E5%B0%8E%E5%85%A5SpringMVC%E6%B8%AC%E8%A9%A6/src/com/product/controller/ProductSpringController.java)
+ - [ProductSpringController.java 採用 Bean 驗證](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E5%B0%8E%E5%85%A5SpringMVC%E6%B8%AC%E8%A9%A6/src/com/product/controller/ProductSpringController.java)
   
-  - [ProductSpringController2.java 方法內驗證](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E5%B0%8E%E5%85%A5SpringMVC%E6%B8%AC%E8%A9%A6/src/com/product/controller/ProductSpringController2.java)
+ - [ProductSpringController2.java 方法內驗證](https://github.com/Lewis-Tseng/group5-shopping/blob/feature/%E5%B0%8E%E5%85%A5SpringMVC%E6%B8%AC%E8%A9%A6/src/com/product/controller/ProductSpringController2.java)
