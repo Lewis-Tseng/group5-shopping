@@ -469,7 +469,7 @@ CoaVO coaVO = (CoaVO) session.getAttribute("coaVO");
 													<c:forEach var="order_detailsVO" items="${order_detailsSvc.all}">
 													<c:if test="${product_orderVO.ord_no==order_detailsVO.product_orderVO.ord_no}">
 													<tr><td>
-														${order_detailsVO.product_orderVO.ord_no}【${productSvc.getOneProduct(order_detailsVO.product_orderVO.pro_no).pro_nam}】
+														${order_detailsVO.product_orderVO.ord_no}【${productSvc.getOneProduct(order_detailsVO.productVO.pro_no).pro_nam}】
 														- 【${order_detailsVO.quantity}】 - 【${order_detailsVO.uni_pri}】
 													</td><tr>
 													</c:if>

@@ -104,7 +104,8 @@ public class Product_OrderVO  implements java.io.Serializable{
 	public void setDel_add(String del_add) {
 		this.del_add = del_add;
 	}
-	@OneToMany(cascade=CascadeType.ALL ,fetch=FetchType.EAGER, mappedBy="product_orderVO")//cascade=CascadeType.
+	//(cascade=CascadeType.ALL ,fetch=FetchType.EAGER, mappedBy="product_orderVO")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="product_orderVO")
 	@OrderBy("ord_no asc")
 	public Set<Order_DetailsVO> getOrder_detailss() {
 		return order_detailss;

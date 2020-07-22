@@ -503,27 +503,27 @@ public class Product_OrderServlet extends HttpServlet {
 						errorMsgs.add("請輸入地址");
 					}
 					
-					/*扣除點數*/
-					MemService memSvc = new MemService();
-					MemVO memVO = (MemVO) session.getAttribute("memVO");
-					String mem_id1 = memVO.getMem_id();
-					Integer mem_point = memVO.getMem_point();
-					Integer mem_point_Deduction = 0;
-					if(mem_point != 0 && mem_point >= ord_amo) {
-					    mem_point_Deduction = (mem_point - ord_amo);
-					    memSvc.updatePoint(mem_id1, mem_point_Deduction);
-					    memVO = memSvc.getOneMem(mem_id1);
-					    //重新set新的memVO session 為了讓頁面顯示正確的點數
-					    session.setAttribute("memVO", memVO);	
-					    System.out.println(mem_point + " 點扣掉  " + ord_amo + " 點，剩餘點數="+ mem_point_Deduction); 
-					    System.out.println("剩餘點數" + memVO.getMem_point());
-					} else {
-						errorMsgs.add("點數不足，請先儲值");
-					}					
-					/*扣除點數*/
+//					/*扣除點數*/
+//					MemService memSvc = new MemService();
+//					MemVO memVO = (MemVO) session.getAttribute("memVO");
+//					String mem_id1 = memVO.getMem_id();
+//					Integer mem_point = memVO.getMem_point();
+//					Integer mem_point_Deduction = 0;
+//					if(mem_point != 0 && mem_point >= ord_amo) {
+//					    mem_point_Deduction = (mem_point - ord_amo);
+//					    memSvc.updatePoint(mem_id1, mem_point_Deduction);
+//					    memVO = memSvc.getOneMem(mem_id1);
+//					    //重新set新的memVO session 為了讓頁面顯示正確的點數
+//					    session.setAttribute("memVO", memVO);	
+//					    System.out.println(mem_point + " 點扣掉  " + ord_amo + " 點，剩餘點數="+ mem_point_Deduction); 
+//					    System.out.println("剩餘點數" + memVO.getMem_point());
+//					} else {
+//						errorMsgs.add("點數不足，請先儲值");
+//					}					
+//					/*扣除點數*/
 										
 					Product_OrderVO product_orderVO = new Product_OrderVO();
-					product_orderVO.setMem_id(mem_id1);
+					product_orderVO.setMem_id(mem_id);
 					product_orderVO.setOrd_dat(ord_dat);
 					product_orderVO.setOrd_amo(ord_amo);
 					product_orderVO.setPro_qua(pro_qua);

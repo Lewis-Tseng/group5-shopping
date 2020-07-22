@@ -90,7 +90,8 @@
                 <tx:method name="getAll" read-only="true"/>
                 <tx:method name="getAll_CompositeQuery" read-only="true"/>
                 <tx:method name="getAllPro_StaisZero" read-only="true"/>
-                <tx:method name="getOrder_DetailsByOrd_no" read-only="true"/> 
+                <tx:method name="getOrder_DetailsByOrd_no" read-only="true"/>
+                <tx:method name="insertWithOrder_Details" propagation="REQUIRED"/> 
             </tx:attributes>
         </tx:advice>
         

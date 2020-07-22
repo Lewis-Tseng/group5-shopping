@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 
 import com.product.model.ProductVO;
 import com.product_order.model.Product_OrderVO;
@@ -37,6 +38,10 @@ public class Order_DetailsService {
 		return order_detailsVO;
 	}
 
+	public void addOrder_Details(Order_DetailsVO order_detailsVO, HibernateTemplate hibernateTemplate) {
+		dao.insertCart2(order_detailsVO, hibernateTemplate);
+	}
+	
 	public Order_DetailsVO updateOrder_Details(Integer ord_no, Integer pro_no, Integer quantity, Integer uni_pri) {
 		
 		Order_DetailsVO order_detailsVO = new Order_DetailsVO();

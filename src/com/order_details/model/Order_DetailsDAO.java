@@ -138,6 +138,13 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 //		}
 
 	}
+	
+	@Override
+	public void insertCart2(Order_DetailsVO order_detailsVO, HibernateTemplate hibernateTemplate) {
+		hibernateTemplate.saveOrUpdate(order_detailsVO);
+	}
+
+	
 
 	public static void main(String[] args) {
 //
@@ -209,4 +216,5 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 
 	}
 
+	
 }

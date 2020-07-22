@@ -27,6 +27,8 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.hibernate.Session;
 import hibernate.util.HibernateUtil;
 
+import com.mem.model.MemService;
+import com.mem.model.MemVO;
 import com.order_details.model.Order_DetailsDAO;
 import com.order_details.model.Order_DetailsService;
 import com.order_details.model.Order_DetailsVO;
@@ -57,7 +59,40 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 	
 	@Override
 	public void insert(Product_OrderVO product_orderVO) {
-		hibernateTemplate.saveOrUpdate(product_orderVO);
+		Integer ord_no = (Integer) hibernateTemplate.save(product_orderVO);
+		Set<Order_DetailsVO> set = product_orderVO.getOrder_detailss();
+		for(Order_DetailsVO ordVO : set) {
+			Order_DetailsVO newOrdVO = new Order_DetailsVO();
+			newOrdVO = ordVO;
+			product_orderVO.setOrd_no(ord_no);	
+			newOrdVO.setProduct_orderVO(product_orderVO);
+		
+		 	System.out.println(newOrdVO.getQuantity() + ",");
+        	System.out.println(newOrdVO.getUni_pri() + ",");
+    		System.out.println(newOrdVO.getProductVO().getPro_no()+ ",");
+    		System.out.println(newOrdVO.getProduct_orderVO().getOrd_no() + ",");
+			
+			Order_DetailsService order_detailsSvc = new Order_DetailsService();
+			order_detailsSvc.addOrder_Details(newOrdVO, hibernateTemplate);
+		}
+		
+		/*扣除點數*/
+		MemService memSvc = new MemService();
+		MemVO memVO = new MemVO();
+		//取得會員資訊物件
+		memVO = memSvc.getOneMem(product_orderVO.getMem_id());
+		String mem_id = memVO.getMem_id();
+		Integer mem_point = memVO.getMem_point();		
+
+		Integer mem_point_Deduction = 0;//設定一個變數來儲存扣除完後的點數	
+		if(mem_point != 0 && mem_point >= product_orderVO.getOrd_amo()) {
+		    mem_point_Deduction = (mem_point - product_orderVO.getOrd_amo());
+		    memSvc.updatePoint(mem_id, mem_point_Deduction);
+		    System.out.println(mem_point + " 點扣掉  " + product_orderVO.getOrd_amo() + " 點，剩餘點數="+mem_point_Deduction); 
+		    System.out.println("剩餘點數" + memVO.getMem_point());
+		} 	
+		/*扣除點數*/
+		
 	}
 
 	@Override
@@ -189,16 +224,39 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 	@Override
 	public void insertWithOrder_Details(Product_OrderVO product_orderVO) {
 		
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-			session.beginTransaction();
-            session.saveOrUpdate(product_orderVO);
-            session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-		    session.getTransaction().rollback();
-		    throw ex;
+		Integer ord_no = (Integer) hibernateTemplate.save(product_orderVO);
+		Set<Order_DetailsVO> set = product_orderVO.getOrder_detailss();
+		for(Order_DetailsVO ordVO : set) {
+			Order_DetailsVO newOrdVO = new Order_DetailsVO();
+			newOrdVO = ordVO;
+			product_orderVO.setOrd_no(ord_no);	
+			newOrdVO.setProduct_orderVO(product_orderVO);
+		
+		 	System.out.println(newOrdVO.getQuantity() + ",");
+        	System.out.println(newOrdVO.getUni_pri() + ",");
+    		System.out.println(newOrdVO.getProductVO().getPro_no()+ ",");
+    		System.out.println(newOrdVO.getProduct_orderVO().getOrd_no() + ",");
+			
+			Order_DetailsService order_detailsSvc = new Order_DetailsService();
+			order_detailsSvc.addOrder_Details(newOrdVO, hibernateTemplate);
 		}
+		
+		/*扣除點數*/
+		MemService memSvc = new MemService();
+		MemVO memVO = new MemVO();
+		//取得會員資訊物件
+		memVO = memSvc.getOneMem(product_orderVO.getMem_id());
+		String mem_id = memVO.getMem_id();
+		Integer mem_point = memVO.getMem_point();		
+
+		Integer mem_point_Deduction = 0;//設定一個變數來儲存扣除完後的點數	
+		if(mem_point != 0 && mem_point >= product_orderVO.getOrd_amo()) {
+		    mem_point_Deduction = (mem_point - product_orderVO.getOrd_amo());
+		    memSvc.updatePoint(mem_id, mem_point_Deduction);
+		    System.out.println(mem_point + " 點扣掉  " + product_orderVO.getOrd_amo() + " 點，剩餘點數="+mem_point_Deduction); 
+		    System.out.println("剩餘點數" + memVO.getMem_point());
+		} 	
+		/*扣除點數*/
 	}
 
 	public static void main(String[] args) {
@@ -233,35 +291,30 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 			
 //	    //mem_id, ord_dat, ord_amo, ord_qua, ord_sta, pay_met, del_add, phone
 		//新增
-//		Product_OrderVO product_orderVO1 = new Product_OrderVO();
+		Product_OrderVO product_orderVO1 = new Product_OrderVO();
+		
+		order_detailsVO1.setQuantity(70);
+		order_detailsVO1.setUni_pri(5000);
+		productVO1.setPro_no(6000008);
+		order_detailsVO1.setProductVO(productVO1);
+		
+		order_detailsVO2.setQuantity(60);
+		order_detailsVO2.setUni_pri(4000);
+		productVO2.setPro_no(6000002);
+		order_detailsVO2.setProductVO(productVO2);
+
+		set.add(order_detailsVO1);
+		set.add(order_detailsVO2);
 //		
-//		order_detailsVO1.setQuantity(70);
-//		order_detailsVO1.setUni_pri(5000);
-//		productVO1.setPro_no(6000010);
-////		product_orderVO1.setOrd_no(null);
-////		product_orderVO2.setOrd_no(8000010);
-//		order_detailsVO1.setProductVO(productVO1);
-////		order_detailsVO1.setPro_no(6000010);
-//		
-//		order_detailsVO2.setQuantity(60);
-//		order_detailsVO2.setUni_pri(4000);
-//		productVO2.setPro_no(6000002);
-////		product_orderVO2.setOrd_no(null);
-//		order_detailsVO2.setProductVO(productVO2);
-////        order_detailsVO2.setPro_no(6000002);
-//		
-//		set.add(order_detailsVO1);
-//		set.add(order_detailsVO2);
-////		
-//		product_orderVO1.setOrder_detailss(set);
-//		product_orderVO1.setMem_id("ME00001");
-//		product_orderVO1.setOrd_dat(java.sql.Date.valueOf("2019-03-12"));
-//		product_orderVO1.setOrd_amo(new Integer(40000));
-//		product_orderVO1.setPro_qua(new Integer(300));
-//		product_orderVO1.setOrd_sta("1");
-//		product_orderVO1.setPay_met("信用卡");
-//		product_orderVO1.setDel_add("台北市");
-//		dao.insert(product_orderVO1);
+		product_orderVO1.setOrder_detailss(set);
+		product_orderVO1.setMem_id("ME00001");
+		product_orderVO1.setOrd_dat(java.sql.Date.valueOf("2019-03-12"));
+		product_orderVO1.setOrd_amo(new Integer(40000));
+		product_orderVO1.setPro_qua(new Integer(300));
+		product_orderVO1.setOrd_sta("1");
+		product_orderVO1.setPay_met("信用卡");
+		product_orderVO1.setDel_add("台北市");
+		dao.insert(product_orderVO1);
 
 //		//修改
 //		Product_OrderVO product_orderVO2 = new Product_OrderVO();
