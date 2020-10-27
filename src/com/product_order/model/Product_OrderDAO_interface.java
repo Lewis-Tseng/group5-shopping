@@ -17,8 +17,6 @@ public interface Product_OrderDAO_interface {
 	public List<Product_OrderVO> getAll();
 	                       //複合查詢用
 	public List<Product_OrderVO> getAll_CompositeQuery(Map<String, String[]> map);
-	              //新增訂單(一)同時新增訂單明細(多)
-//	public void insertWithOrder_Details(Product_OrderVO product_orderVO, List<Order_DetailsVO> list);
 	
 	public void insertWithOrder_Details(Product_OrderVO product_orderVO);
 

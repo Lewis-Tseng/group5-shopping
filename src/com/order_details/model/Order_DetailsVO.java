@@ -23,7 +23,7 @@ public class Order_DetailsVO implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
 	
 
-//    private Integer ord_no;
+//  private Integer ord_no;
 //	private Integer pro_no;	
 	private Product_OrderVO product_orderVO;
 	private ProductVO productVO;
@@ -105,7 +105,7 @@ public class Order_DetailsVO implements java.io.Serializable{
 		this.uni_pri = uni_pri;
 	}
 	
-               //product_orderVO.getOrd_no()
+          
 	@Override
 	public String toString() {
 		return "[訂單明細= 訂單編號:" + product_orderVO.getOrd_no() + ", 商品編號:" + productVO.getPro_no() + ", 單項商品總數量:" + quantity + 
