@@ -413,12 +413,12 @@ Order_DetailsVO order_detailsVO = (Order_DetailsVO) request.getAttribute("order_
                           <tr>
                             <td>訂單編號:</td>
                             <td><input type="TEXT" name="ord_no" size="45"
-                            value="<%= (order_detailsVO==null)? "PO00003" : order_detailsVO.getOrd_no()%>" /></td>
+                            value="<%= (order_detailsVO==null)? "PO00003" : order_detailsVO.getProduct_orderVO().getOrd_no()%>" /></td>
                           </tr>
                           <tr>
                             <td>商品編號:</td>
                             <td><input type="TEXT" name="pro_no" size="45"
-                            value="<%= (order_detailsVO==null)? "PT00001" : order_detailsVO.getPro_no()%>" /></td>
+                            value="<%= (order_detailsVO==null)? "PT00001" : order_detailsVO.getProductVO().getPro_no()%>" /></td>
                           </tr>
                           <tr>
                             <td>商品數量:</td>

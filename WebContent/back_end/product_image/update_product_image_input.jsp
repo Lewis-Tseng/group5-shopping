@@ -472,7 +472,7 @@ pageContext.setAttribute("Auth",Auth);%>
 																</thead>
 																<tbody>
 																	<tr>
-																		<td><input type="hidden" name="pro_no" size="45" value="<%=product_imageVO.getPro_no()%>" /><%=product_imageVO.getPro_no()%></td>
+																		<td><input type="hidden" name="pro_no" size="45" value="<%=product_imageVO.getProductVO().getPro_no()%>" /><%=product_imageVO.getProductVO().getPro_no()%></td>
 																		<td><input type="hidden" name="pro_img_no" size="45" value="<%=product_imageVO.getPro_img_no()%>" /><%=product_imageVO.getPro_img_no()%></td>
 																		<td><input type="TEXT" name="img_nam" size="45" value="<%=product_imageVO.getImg_nam()%>" /></td>
 																	</tr>

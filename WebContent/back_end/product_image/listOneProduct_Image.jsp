@@ -16,7 +16,7 @@ Product_ImageService product_imageSvc = new Product_ImageService();
 <%-- 取出 對應的DeptVO物件--%>
 <%
 ProductService productSvc = new ProductService();
-ProductVO productVO = productSvc.getOneProduct(product_imageVO.getPro_no());
+ProductVO productVO = productSvc.getOneProduct(product_imageVO.getProductVO().getPro_no());
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -459,7 +459,7 @@ pageContext.setAttribute("Auth",Auth);%>
 																</thead>
 																<tbody>
 																	<tr>
-																		<td><%=product_imageVO.getPro_no()%></td>
+																		<td><%=product_imageVO.getProductVO().getPro_no()%></td>
 																		<td><%=productVO.getPro_nam() %></td>
 																		<td><%=product_imageVO.getImg_nam()%></td>
 																		<td>
