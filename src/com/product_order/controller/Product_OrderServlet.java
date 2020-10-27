@@ -35,7 +35,7 @@ public class Product_OrderServlet extends HttpServlet {
 				// Store this set in the request scope, in case we need to
 				// send the ErrorPage view.
 				req.setAttribute("errorMsgs", errorMsgs);
-
+				
 				try {
 					/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 					String str = req.getParameter("ord_no");
@@ -151,7 +151,7 @@ public class Product_OrderServlet extends HttpServlet {
 					try {
 						ord_dat = java.sql.Date.valueOf(req.getParameter("ord_dat").trim());
 					} catch (IllegalArgumentException e) {
-						ord_dat=new java.sql.Date(System.currentTimeMillis());
+						ord_dat= new java.sql.Date(System.currentTimeMillis());
 						errorMsgs.add("請輸入日期!");
 					}
 

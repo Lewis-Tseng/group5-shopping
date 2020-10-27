@@ -23,6 +23,7 @@ import jdbc.util_CompositeQueryProduct.jdbcUtil_CompositeQuery_Product_Order;
 
 public class Product_OrderDAO implements Product_OrderDAO_interface {
 	private static DataSource ds = null;
+	
 	static {
 		try {
 			Context ctx = new InitialContext();
