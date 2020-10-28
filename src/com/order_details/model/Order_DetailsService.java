@@ -75,8 +75,6 @@ public class Order_DetailsService {
 		return dao.getAll();
 	}
 
-	public void insertProduct_Cart(Order_DetailsVO order_detailsVO, Connection con) {
-		dao.insertCart(order_detailsVO, con);
-	}
+
 
 }

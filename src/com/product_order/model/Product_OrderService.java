@@ -74,8 +74,6 @@ public class Product_OrderService {
 		dao.insertWithOrder_Details(product_OrderVO);
 	}
 	
-//	public void insertShopping_Order(Product_OrderVO product_OrderVO, List<Order_DetailsVO> list) {
-//		dao.insertWithOrder_Details(product_OrderVO, list);
-//	}
+
 
 }

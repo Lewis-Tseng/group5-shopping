@@ -134,20 +134,25 @@ public class ProductVO implements java.io.Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((pro_nam == null) ? 0 : pro_nam.hashCode());
+		result = prime * result + ((pro_no == null) ? 0 : pro_no.hashCode());
 		return result;
 	}
 
 	@Override
-	// 比對欲加入商品與購物車內商品的編號是否相同，true則值相同
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (obj == null || !(obj instanceof ProductVO)) {
-			return true;
-		}
-		return this.getPro_no().equals(((ProductVO)obj).getPro_no());
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProductVO other = (ProductVO) obj;
+		if (pro_no == null) {
+			if (other.pro_no != null)
+				return false;
+		} else if (!pro_no.equals(other.pro_no))
+			return false;
+		return true;
 	}
 	
 

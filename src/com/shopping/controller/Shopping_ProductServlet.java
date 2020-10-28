@@ -67,7 +67,7 @@ public class Shopping_ProductServlet extends HttpServlet {
 					pro_quantity_new = new Integer(req.getParameter("pro_quantity_new").trim());
 				} catch (NumberFormatException e) {
 					pro_quantity_new = 0;
-//					errorMsgs.add("售價請填數字");
+					errorMsgs.add("售價請填數字");
 				}
 				
 				Order_Details_ProductVO od_productVO_change = (Order_Details_ProductVO) buylist.get(ad);
@@ -89,19 +89,10 @@ public class Shopping_ProductServlet extends HttpServlet {
 				try {
 					pro_no = new Integer(req.getParameter("pro_no").trim());
 				} catch (NumberFormatException e) {
-//					errorMsgs.add("請輸入產品編號");
+					errorMsgs.add("請輸入正確編號");
 				}
 				
-//				String str = req.getParameter("pro_no");
-//				if (str == null || (str.trim()).length() == 0) {
-////					errorMsgs.add("請輸入產品編號");
-//				}
-//				String pro_no = null;
-//				try {
-//					pro_no = new String(str);
-//				} catch (Exception e) {
-////					errorMsgs.add("產品編號格式不正確");
-//				}
+
 				
 				Integer pro_quantity = null;	
 				try {
@@ -119,7 +110,7 @@ public class Shopping_ProductServlet extends HttpServlet {
 				}
 
 				if (!errorMsgs.isEmpty()) {
-//					req.setAttribute("product_orderVO", product_orderVO); // 含有輸入格式錯誤的empVO物件,也存入req
+
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/front_end/product_front/Product_Cart.jsp");
 					failureView.forward(req, res);
@@ -150,10 +141,6 @@ public class Shopping_ProductServlet extends HttpServlet {
 
 			session.setAttribute("shoppingcart", buylist);
 			
-//			PrintWriter out = res.getWriter();
-//			Integer cartcount = buylist.size();
-//			out.print(cartcount);
-//			String requestURL = req.getParameter("requestURL");
 			int removebulist = buylist.size();
 			if(oldbuylist > removebulist) {
 				String url = "/front_end/product_front/Product_Cart.jsp";

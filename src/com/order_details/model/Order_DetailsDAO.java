@@ -34,7 +34,7 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 	private static final String GET_ALL_STMT = "from Order_DetailsVO order by ord_no";
     private static final String GET_OD_WITH_ORDER_DETAILS_STMT = "from Order_DetailsVO where ord_no=?0";
     private static final String GET_ONE_STMT = "from Order_DetailsVO where ord_no=?0 and pro_no=?1";
-//  private static final String INSERT_STMT = "INSERT INTO order_details (ord_no, pro_no, quantity, uni_pri) VALUES (?, ?, ?, ?)";
+
     
     private HibernateTemplate hibernateTemplate;
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
@@ -99,45 +99,7 @@ public class Order_DetailsDAO implements Order_DetailsDAO_interface {
 		return order_detailsVO;
 	}
 
-	@Override
-	public void insertCart(Order_DetailsVO order_detailsVO, Connection con) {
-//
-//		PreparedStatement pstmt = null;
-//
-//		try {
-//
-//			pstmt = con.prepareStatement(INSERT_STMT);
-//			//暫時改成JDBC版本
-//			pstmt.setInt(1, order_detailsVO.getProduct_orderVO().getOrd_no());
-//			pstmt.setInt(2, order_detailsVO.getProductVO().getPro_no());
-//			pstmt.setInt(3, order_detailsVO.getQuantity());
-//			pstmt.setInt(4, order_detailsVO.getUni_pri());
-//			pstmt.executeUpdate();
-//
-//		} catch (SQLException se) {
-//			if (con != null) {
-//				try {
-//					System.out.println("交易正在進行中");
-//					System.out.println("rolled back由-訂單明細");
-//					con.rollback();
-//				} catch (SQLException excep) {
-//					excep.printStackTrace(System.err);
-//					throw new RuntimeException("rollback error occured. " + excep.getMessage());
-//				}
-//			}
-//			se.printStackTrace(System.err);
-//			throw new RuntimeException("A database error occured. " + se.getMessage());
-//		} finally {
-//			if (pstmt != null) {
-//				try {
-//					pstmt.close();
-//				} catch (SQLException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
 
-	}
 	
 	@Override
 	public void insertCart2(Order_DetailsVO order_detailsVO, HibernateTemplate hibernateTemplate) {

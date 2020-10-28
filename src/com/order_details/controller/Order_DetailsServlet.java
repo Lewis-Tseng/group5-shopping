@@ -1,8 +1,6 @@
 package com.order_details.controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -72,8 +70,6 @@ public class Order_DetailsServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-			
-			String requestURL = req.getParameter("requestURL");
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
@@ -229,12 +225,10 @@ public class Order_DetailsServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 ***************************************/
-				Integer ord_no = new Integer (req.getParameter("ord_no").trim());
-				
-				Integer pro_no = new Integer (req.getParameter("pro_no").trim());
+				Integer ord_no = new Integer (req.getParameter("ord_no").trim());			
 				/*************************** 2.開始刪除資料 ***************************************/
 				Order_DetailsService order_detailsSvc = new Order_DetailsService();
-				order_detailsSvc.deleteOrder_Details(ord_no, pro_no);
+				order_detailsSvc.deleteOrder_Details(ord_no);
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
 				String url = "/back_end/product_order/listAllProduct_Order.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
@@ -249,16 +243,5 @@ public class Order_DetailsServlet extends HttpServlet {
 		}
 	}
 	
-	public static String readString(Reader inputStream) throws IOException {
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br = new BufferedReader(inputStream);
-		String str;
-		while ((str = br.readLine()) != null) {
-			sb.append(str);
-			sb.append("\n");
-		}
-		br.close();
-
-		return sb.toString();
-	}
+	
 }

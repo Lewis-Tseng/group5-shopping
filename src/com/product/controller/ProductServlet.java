@@ -447,16 +447,5 @@ public class ProductServlet extends HttpServlet {
 	
 	
 	
-	public static String readString(Reader inputStream) throws IOException {
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br = new BufferedReader(inputStream);
-		String str;
-		while ((str = br.readLine()) != null) {
-			sb.append(str);
-			sb.append("\n");
-		}
-		br.close();
-
-		return sb.toString();
-	}
+	
 }
