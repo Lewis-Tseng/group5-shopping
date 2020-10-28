@@ -152,13 +152,20 @@ public class Product_OrderDAO implements Product_OrderDAO_interface {
 		String mem_id = memVO.getMem_id();
 		Integer mem_point = memVO.getMem_point();		
 
-		Integer mem_point_Deduction = 0;//設定一個變數來儲存扣除完後的點數	
-		if(mem_point != 0 && mem_point >= product_orderVO.getOrd_amo()) {
-		    mem_point_Deduction = (mem_point - product_orderVO.getOrd_amo());
-		    memSvc.updatePoint(mem_id, mem_point_Deduction);
-		    System.out.println(mem_point + " 點扣掉  " + product_orderVO.getOrd_amo() + " 點，剩餘點數="+mem_point_Deduction); 
-		    System.out.println("剩餘點數" + memVO.getMem_point());
-		} 	
+		Integer mem_point_Deduction = 0;// 設定一個變數來儲存扣除完後的點數
+		try {
+			if (mem_point != 0 && mem_point >= product_orderVO.getOrd_amo()) {
+				mem_point_Deduction = (mem_point - product_orderVO.getOrd_amo());
+				memSvc.updatePoint(mem_id, mem_point_Deduction);
+				System.out.println(
+						mem_point + " 點扣掉  " + product_orderVO.getOrd_amo() + " 點，剩餘點數=" + mem_point_Deduction);
+				System.out.println("剩餘點數" + memVO.getMem_point());
+			} else {
+				throw new Exception("點數不足");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		/*扣除點數*/
 	}
 

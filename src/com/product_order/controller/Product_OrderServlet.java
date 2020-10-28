@@ -503,13 +503,13 @@ public class Product_OrderServlet extends HttpServlet {
 						errorMsgs.add("請輸入地址");
 					}
 					
-//					/*判斷點數*/
+					/*判斷點數*/
 					MemVO memVO = (MemVO) session.getAttribute("memVO");
 					Integer mem_point = memVO.getMem_point();			
 					if(mem_point == 0 || mem_point < ord_amo) {	
 						errorMsgs.add("點數不足，請先儲值");
 					}					
-//					/*判斷點數*/
+					/*判斷點數*/
 										
 					Product_OrderVO product_orderVO = new Product_OrderVO();
 					product_orderVO.setMem_id(mem_id);
@@ -533,29 +533,29 @@ public class Product_OrderServlet extends HttpServlet {
 						req.setAttribute("amount", amount);
 						String proAllqua = String.valueOf(pro_total);
 						req.setAttribute("proAllqua", proAllqua);
-//						res.sendRedirect("http:/localhost:8081/G5_Shopping_ver4.1/front_end/product_order_front/Shopping_Checkout.jsp");
 						RequestDispatcher failureView = req
 								.getRequestDispatcher("/front_end/product_order_front/Shopping_Checkout.jsp");
 						failureView.forward(req, res);
 						return;
 					}
-					/* 清空購物車List */
-					od_buylist.removeAll(od_buylist);
-//					session.removeAttribute("shoppingcart");
+					
 					/*************************** 2.開始新增訂單資料 ***************************************/
 					Product_OrderService product_orderSvc = new Product_OrderService();
 					product_orderSvc.insertShopping_Order(product_orderVO);
-					/*************************** 2.開始新增訂單資料 ***************************************/
+					/* 清空購物車List */
+					od_buylist.removeAll(od_buylist);
 					req.setAttribute("product_orderVO", product_orderVO);
-                    /*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-//					res.sendRedirect("/front_end/product_front/shopping_mall_home.jsp");				
+                    /*************************** 3.新增完成,準備轉交(Send the Success view) ***********/	
+					//重新set新的memVO session 為了讓頁面顯示正確的點數 
+					MemService memSvc = new MemService();
+					memVO = memSvc.getOneMem(mem_id);
+				    session.setAttribute("memVO", memVO);
 					String url = "/front_end/product_order_front/Member_Order.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 					successView.forward(req, res);				
 					/*************************** 其他可能的錯誤處理 **********************************/
 				} catch (Exception e) {
 					errorMsgs.add(e.getMessage());
-//					res.sendRedirect("/front_end/product_order_front/Shopping_Checkout.jsp");
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/front_end/product_order_front/Shopping_Checkout.jsp");
 					failureView.forward(req, res);
